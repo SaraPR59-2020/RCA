@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>2.9</ProductVersion>
+    <ProjectGuid>e7720cfc-364e-4c81-9a71-28fb7ff30448</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RedditService</RootNamespace>
+    <AssemblyName>RedditService</AssemblyName>
+    <StartDevelopmentStorage>True</StartDevelopmentStorage>
+    <Name>RedditService</Name>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- Items for the project -->
+  <ItemGroup>
+    <ServiceDefinition Include="ServiceDefinition.csdef" />
+    <ServiceConfiguration Include="ServiceConfiguration.Local.cscfg" />
+    <ServiceConfiguration Include="ServiceConfiguration.Cloud.cscfg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HealthMonitoringServiceWorker\HealthMonitoringServiceWorker.csproj">
+      <Name>HealthMonitoringServiceWorker</Name>
+      <Project>{88dd32ca-7ccf-40eb-927a-3096236031f8}</Project>
+      <Private>True</Private>
+      <RoleType>Worker</RoleType>
+      <RoleName>HealthMonitoringServiceWorker</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+    </ProjectReference>
+    <ProjectReference Include="..\HealthStatusServiceWeb\HealthStatusServiceWeb.csproj">
+      <Name>HealthStatusServiceWeb</Name>
+      <Project>{9f09a5e8-9064-41ce-908b-4b4ae7b0adce}</Project>
+      <Private>True</Private>
+      <RoleType>Web</RoleType>
+      <RoleName>HealthStatusServiceWeb</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+    </ProjectReference>
+    <ProjectReference Include="..\NotificationServiceWorker\NotificationServiceWorker.csproj">
+      <Name>NotificationServiceWorker</Name>
+      <Project>{01aff5f5-2be9-4a35-8280-db692aca9bc1}</Project>
+      <Private>True</Private>
+      <RoleType>Worker</RoleType>
+      <RoleName>NotificationServiceWorker</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+    </ProjectReference>
+    <ProjectReference Include="..\RedditServiceWeb\RedditServiceWeb.csproj">
+      <Name>RedditServiceWeb</Name>
+      <Project>{3495cf61-98f9-4d12-979e-3a02dd5e5184}</Project>
+      <Private>True</Private>
+      <RoleType>Web</RoleType>
+      <RoleName>RedditServiceWeb</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="HealthMonitoringServiceWorkerContent\" />
+    <Folder Include="HealthStatusServiceWebContent\" />
+    <Folder Include="NotificationServiceWorkerContent\" />
+    <Folder Include="RedditServiceWebContent\" />
+  </ItemGroup>
+  <ItemGroup>
+    <DiagnosticsConfiguration Include="HealthMonitoringServiceWorkerContent\diagnostics.wadcfgx" />
+    <DiagnosticsConfiguration Include="HealthStatusServiceWebContent\diagnostics.wadcfgx" />
+    <DiagnosticsConfiguration Include="NotificationServiceWorkerContent\diagnostics.wadcfgx" />
+    <DiagnosticsConfiguration Include="RedditServiceWebContent\diagnostics.wadcfgx" />
+  </ItemGroup>
+  <!-- Import the target files for this project template -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+    <CloudExtensionsDir Condition=" '$(CloudExtensionsDir)' == '' ">$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Windows Azure Tools\2.9\</CloudExtensionsDir>
+  </PropertyGroup>
+  <Import Project="$(CloudExtensionsDir)Microsoft.WindowsAzure.targets" />
+</Project>
