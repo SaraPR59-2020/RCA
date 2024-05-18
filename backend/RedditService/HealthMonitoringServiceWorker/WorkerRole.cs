@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -9,6 +9,11 @@ using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.Diagnostics;
 using Microsoft.WindowsAzure.ServiceRuntime;
 using Microsoft.WindowsAzure.Storage;
+
+using System.Timers;
+using Microsoft.Extensions.Logging;
+using System.Net.Http;
+
 
 namespace HealthMonitoringServiceWorker
 {
@@ -67,5 +72,40 @@ namespace HealthMonitoringServiceWorker
                 await Task.Delay(1000);
             }
         }
+
+
+        public static void RunTimerTrigger(ILogger log)
+        {
+            System.Timers.Timer timer = new System.Timers.Timer();
+            timer.Interval = 5000; // Interval u milisekundama (ovde 5 sekundi)
+            timer.Elapsed += async (sender, e) =>
+            {
+                    // Slanje zahteva ka RedditService i NotificationService
+            };
+            timer.Start();
+
+            // Sačekaj da se funkcija ne završi odmah
+            Thread.Sleep(Timeout.Infinite);
+        }
+
+
+        private static async Task<HttpResponseMessage> SendRequestToRedditService()
+        {
+            HttpResponseMessage response = null;
+
+            // Logika slanja zahteva i dobijanja odgovora
+
+            return response;
+        }
+
+        private static async Task<HttpResponseMessage> SendRequestToNotificationService()
+        {
+            HttpResponseMessage response = null;
+
+            // Logika slanja zahteva i dobijanja odgovora
+
+            return response;
+        }
+
     }
 }
