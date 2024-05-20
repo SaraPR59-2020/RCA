@@ -4,7 +4,7 @@
 
 <div class="row">
 
-    @*<a href="~/Login/Logoff">Izloguj se</a><br />*@
+    <a href="~/Login/Logoff">Izloguj se</a><br />
     <h1 id="title">Welcome @ViewBag.Ime_Prijavljenog</h1>
     @*<p><a href="~/Home/ShowThemeMaker" class="btn btn-primary btn-md">Napravi temu &raquo;</a></p>*@
 
@@ -80,8 +80,8 @@
                 <td>@t.Downvote_number</td>
                 <td>@t.Comment_number</td>
                 
-                <td><a href="~/Home/UpvoteTheme?id_teme=@t.Id_teme">Upvote</a></td>
-                <td><a href="~/Home/DownvoteTheme?id_teme=@t.Id_teme">Downvote</a></td>
+                <td><a href="~/Home/UpvoteTheme?id_teme=@t.Topic_id">Upvote</a></td>
+                <td><a href="~/Home/DownvoteTheme?id_teme=@t.Topic_id">Downvote</a></td>
                 @*<td><a href="~/Home/ShowConcreteTheme?id_teme=@t.Id_teme">Prikazi temu</a></td>*@
             </tr>
         }
