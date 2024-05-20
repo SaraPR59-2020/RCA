@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "RegistrationPage";
+}
+<h2>Create a new account</h2>
+<form action="~/Registration/Registration" method="post" enctype="multipart/form-data">
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" name="Name" /></td>
+        </tr>
+        <tr>
+            <td>Surname:</td>
+            <td><input type="text" name="Surname" /></td>
+        </tr>
+        <tr>
+            <td>Address:</td>
+            <td><input type="text" name="Address" /></td>
+        </tr>
+        <tr>
+            <td>City:</td>
+            <td><input type="text" name="City" /></td>
+        </tr>
+        <tr>
+            <td>Country:</td>
+            <td><input type="text" name="Country" /></td>
+        </tr>
+        <tr>
+            <td>Phone number:</td>
+            <td><input type="text" name="Phone_number" /></td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><input type="text" name="Email" /></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type="password" name="Password" /></td>
+        </tr>
+        <tr>
+            <td>Image:</td>
+            <td><input type="file" name="Image" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Submit" />
+            </td>
+        </tr>
+    </table>
+</form>
