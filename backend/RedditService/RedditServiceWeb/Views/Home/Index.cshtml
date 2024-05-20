@@ -2,30 +2,91 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+
+    @*<a href="~/Login/Logoff">Izloguj se</a><br />*@
+    <h1 id="title">Welcome @ViewBag.Ime_Prijavljenog</h1>
+    @*<p><a href="~/Home/ShowThemeMaker" class="btn btn-primary btn-md">Napravi temu &raquo;</a></p>*@
+
+    <h2>Your topics</h2>
+        <table border="1">
+            <tr>
+                <th>Headline</th>
+                <th>Content</th>
+                <th>Upvote</th>
+                <th>Downvote</th>
+                <th>Comments</th>
+            </tr>
+            @foreach (Common.Topic t in ViewBag.userTopics)
+            {
+                <tr>
+                    <td>@t.Headline</td>
+                    <td>@t.Content</td>
+                    <td>@t.Upvote_number</td>
+                    <td>@t.Downvote_number</td>
+                    <td>@t.Comment_number</td>
+                    @*<td><a href="~/Home/ShowConcreteTheme?id_teme=@t.Id_teme">Prikazi temu</a></td>
+                    <td><a href="~/Home/DeleteTheme?id_teme=@t.Id_teme">Obrisi temu</a></td>*@
+                </tr>
+            }
+        </table>
+    }
+    @*<h4>Pretraga</h4>
+    <form action="~/Home/Pretraga" method="get">
+        <table border="1">
+            <tr>
+                <td>Naslov:</td>
+                <td><input type="text" name="naslov" /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Pretrazi" />
+                </td>
+            </tr>
+        </table>
+    </form>
+    <h4>Sortiranje</h4>
+    <form action="~/Home/Sortiranje" method="get">
+        <table border="1">
+            <tr>
+                <td>
+                    <input list="krit" name="kriterijum" />
+                    <datalist id="krit">
+                        <option value="RASTUCE"></option>
+                        <option value="OPADAJUCE"></option>
+                    </datalist>
+                </td>
+                <td colspan="2">
+                    <input type="submit" value="Sortiraj" />
+                </td>
+            </tr>
+        </table>
+    </form>*@
+    <h2>Sve teme</h2>
+    <table border="1">
+        <tr>
+            <th>Headline</th>
+            <th>Content</th>
+            <th>Upvote</th>
+            <th>Downvote</th>
+            <th>Comments</th>
+        </tr>
+        @foreach (Common.Topic t in ViewBag.topics)
+        {
+            <tr>
+                <td>@t.Headline</td>
+                <td>@t.Content</td>
+                <td>@t.Upvote_number</td>
+                <td>@t.Downvote_number</td>
+                <td>@t.Comment_number</td>
+                
+                <td><a href="~/Home/UpvoteTheme?id_teme=@t.Id_teme">Upvote</a></td>
+                <td><a href="~/Home/DownvoteTheme?id_teme=@t.Id_teme">Downvote</a></td>
+                @*<td><a href="~/Home/ShowConcreteTheme?id_teme=@t.Id_teme">Prikazi temu</a></td>*@
+            </tr>
+        }
+    </table>
+
+
 </div>
+@*</main>*@
