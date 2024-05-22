@@ -1,0 +1,2 @@
+D:\4. godina\Cloud\RCA\backend\RedditService\RedditService\bin\Debug\ServiceConfiguration.cscfg
+D:\4. godina\Cloud\RCA\backend\RedditService\RedditService\bin\Debug\ServiceDefinition.csdef

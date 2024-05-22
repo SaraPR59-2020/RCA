@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RedditServiceWeb.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -24,7 +25,7 @@ namespace RedditServiceWeb.Controllers
                 {
                     if (u.Email == Email && u.Password == Password)
                     {
-                        HttpContext.Session["current_user_id"] = u.User_id;
+                        HttpContext.Session["current_user_id"] = u.Id;
                         return RedirectToAction("Index", "Home");
                     }
                 }

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\stame\\source\\repos\\RCAReddit\\backend\\RedditService\\Common\\Common.csproj": {}
+    "D:\\4. godina\\Cloud\\RCA\\backend\\RedditService\\Common\\Common.csproj": {}
   },
   "projects": {
-    "C:\\Users\\stame\\source\\repos\\RCAReddit\\backend\\RedditService\\Common\\Common.csproj": {
+    "D:\\4. godina\\Cloud\\RCA\\backend\\RedditService\\Common\\Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\stame\\source\\repos\\RCAReddit\\backend\\RedditService\\Common\\Common.csproj",
+        "projectUniqueName": "D:\\4. godina\\Cloud\\RCA\\backend\\RedditService\\Common\\Common.csproj",
         "projectName": "Common",
-        "projectPath": "C:\\Users\\stame\\source\\repos\\RCAReddit\\backend\\RedditService\\Common\\Common.csproj",
-        "packagesPath": "C:\\Users\\stame\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\stame\\source\\repos\\RCAReddit\\backend\\RedditService\\Common\\obj\\",
+        "projectPath": "D:\\4. godina\\Cloud\\RCA\\backend\\RedditService\\Common\\Common.csproj",
+        "packagesPath": "C:\\Users\\Vuk\\.nuget\\packages\\",
+        "outputPath": "D:\\4. godina\\Cloud\\RCA\\backend\\RedditService\\Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\stame\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Vuk\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -34,11 +34,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -51,7 +46,7 @@
               "autoReferenced": true
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,0 +1,2 @@
+D:\4. godina\Cloud\RCA\backend\RedditService\RedditServiceWeb\obj\Debug\RedditServiceWeb.csproj.AssemblyReference.cache
+D:\4. godina\Cloud\RCA\backend\RedditService\RedditServiceWeb\obj\Debug\RedditServiceWeb.csproj.CoreCompileInputs.cache
