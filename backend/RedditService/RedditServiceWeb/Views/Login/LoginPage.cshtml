@@ -5,25 +5,25 @@
     <link rel="stylesheet" type="text/css" href="~/Content/LoginStyleSheet.css" />
 </head>
 <body>
-    <h2>Log In</h2>
-    <div><img src="~/App_Data/Pictures/loginBackground.png" alt="Slika" /></div>
-    <form action="~/Login/Login" method="get">
-        <table>
-            <tr>
-                <td>Email:</td>
-                <td><input type="text" name="Email" /></td>
-            </tr>
-            <tr>
-                <td>Password:</td>
-                <td><input type="password" name="Password" /></td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <input type="submit" value="Login" />
-                </td>
-            </tr>
-        </table>
-    </form>
-    <p>No account? <a href="~/Registracija/Registracija">Register for an account</a></p>
+    <div class="loginDiv">
+        <h2>Log In</h2>
+        <form action="~/Login/Login" method="get">
+            <table>
+                <tr class="email">
+                    <td>Email:</td>
+                    <td><input type="text" name="Email" /></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input type="password" name="Password" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="submitLogin">
+                        <input type="submit" value="Login" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <p class="noAcc">No account? <a href="~/Registracija/Registracija">Register for an account</a></p>
+    </div>
 </body>
-

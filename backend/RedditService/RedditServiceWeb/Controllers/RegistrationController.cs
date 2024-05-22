@@ -43,7 +43,7 @@ namespace RedditServiceWeb.Controllers
                     {
                         if (u.Email == Email && u.Password == Password)
                         {
-                            HttpContext.Session["current_user_id"] = u.Id;
+                            HttpContext.Session["current_user_id"] = u.User_id;
                             return RedirectToAction("Index", "Home");
                         }
                     }

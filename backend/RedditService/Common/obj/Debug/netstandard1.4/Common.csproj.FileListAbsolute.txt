@@ -1,0 +1,11 @@
+D:\4. godina\Cloud\RCA\backend\RedditService\Common\bin\Debug\netstandard1.4\Common.deps.json
+D:\4. godina\Cloud\RCA\backend\RedditService\Common\bin\Debug\netstandard1.4\Common.dll
+D:\4. godina\Cloud\RCA\backend\RedditService\Common\bin\Debug\netstandard1.4\Common.pdb
+D:\4. godina\Cloud\RCA\backend\RedditService\Common\obj\Debug\netstandard1.4\Common.csproj.AssemblyReference.cache
+D:\4. godina\Cloud\RCA\backend\RedditService\Common\obj\Debug\netstandard1.4\Common.GeneratedMSBuildEditorConfig.editorconfig
+D:\4. godina\Cloud\RCA\backend\RedditService\Common\obj\Debug\netstandard1.4\Common.AssemblyInfoInputs.cache
+D:\4. godina\Cloud\RCA\backend\RedditService\Common\obj\Debug\netstandard1.4\Common.AssemblyInfo.cs
+D:\4. godina\Cloud\RCA\backend\RedditService\Common\obj\Debug\netstandard1.4\Common.csproj.CoreCompileInputs.cache
+D:\4. godina\Cloud\RCA\backend\RedditService\Common\obj\Debug\netstandard1.4\Common.sourcelink.json
+D:\4. godina\Cloud\RCA\backend\RedditService\Common\obj\Debug\netstandard1.4\Common.dll
+D:\4. godina\Cloud\RCA\backend\RedditService\Common\obj\Debug\netstandard1.4\Common.pdb

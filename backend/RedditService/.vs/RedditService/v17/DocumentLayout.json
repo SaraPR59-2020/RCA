@@ -1,7 +1,20 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\stame\\source\\repos\\RCAReddit\\backend\\RedditService\\",
-  "Documents": [],
+  "WorkspaceRootPath": "D:\\4. godina\\Cloud\\RCA\\backend\\RedditService\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3495CF61-98F9-4D12-979E-3A02DD5E5184}|RedditServiceWeb\\RedditServiceWeb.csproj|d:\\4. godina\\cloud\\rca\\backend\\redditservice\\redditserviceweb\\content\\loginstylesheet.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{3495CF61-98F9-4D12-979E-3A02DD5E5184}|RedditServiceWeb\\RedditServiceWeb.csproj|solutionrelative:redditserviceweb\\content\\loginstylesheet.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3495CF61-98F9-4D12-979E-3A02DD5E5184}|RedditServiceWeb\\RedditServiceWeb.csproj|d:\\4. godina\\cloud\\rca\\backend\\redditservice\\redditserviceweb\\views\\login\\loginpage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3495CF61-98F9-4D12-979E-3A02DD5E5184}|RedditServiceWeb\\RedditServiceWeb.csproj|solutionrelative:redditserviceweb\\views\\login\\loginpage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3495CF61-98F9-4D12-979E-3A02DD5E5184}|RedditServiceWeb\\RedditServiceWeb.csproj|d:\\4. godina\\cloud\\rca\\backend\\redditservice\\redditserviceweb\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3495CF61-98F9-4D12-979E-3A02DD5E5184}|RedditServiceWeb\\RedditServiceWeb.csproj|solutionrelative:redditserviceweb\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +22,46 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\4. godina\\Cloud\\RCA\\backend\\RedditService\\RedditServiceWeb\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "RedditServiceWeb\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\4. godina\\Cloud\\RCA\\backend\\RedditService\\RedditServiceWeb\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "RedditServiceWeb\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAACkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-22T19:15:44.374Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LoginPage.cshtml",
+              "DocumentMoniker": "D:\\4. godina\\Cloud\\RCA\\backend\\RedditService\\RedditServiceWeb\\Views\\Login\\LoginPage.cshtml",
+              "RelativeDocumentMoniker": "RedditServiceWeb\\Views\\Login\\LoginPage.cshtml",
+              "ToolTip": "D:\\4. godina\\Cloud\\RCA\\backend\\RedditService\\RedditServiceWeb\\Views\\Login\\LoginPage.cshtml",
+              "RelativeToolTip": "RedditServiceWeb\\Views\\Login\\LoginPage.cshtml",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAwwBEAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-22T19:15:43.446Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LoginStyleSheet.css",
+              "DocumentMoniker": "D:\\4. godina\\Cloud\\RCA\\backend\\RedditService\\RedditServiceWeb\\Content\\LoginStyleSheet.css",
+              "RelativeDocumentMoniker": "RedditServiceWeb\\Content\\LoginStyleSheet.css",
+              "ToolTip": "D:\\4. godina\\Cloud\\RCA\\backend\\RedditService\\RedditServiceWeb\\Content\\LoginStyleSheet.css",
+              "RelativeToolTip": "RedditServiceWeb\\Content\\LoginStyleSheet.css",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABUAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-05-22T19:17:57.604Z",
+              "EditorCaption": ""
             }
           ]
         }
