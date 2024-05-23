@@ -6,16 +6,20 @@
 </head>
 <body>
     <div class="loginDiv">
-        <h2>Log In</h2>
+        <h2 class="text">Log In</h2>
+        @if (@ViewBag.Error == true)
+        {
+            <p class="error">Email or password is not correct! Please try again.</p>
+        }
         <form action="~/Login/Login" method="get">
             <table>
                 <tr class="email">
-                    <td>Email:</td>
-                    <td><input type="text" name="Email" /></td>
+                    <td class="text">Email:</td>
+                    <td><input type="text" name="Email" required /></td>
                 </tr>
                 <tr>
-                    <td>Password:</td>
-                    <td><input type="password" name="Password" /></td>
+                    <td class="text">Password:</td>
+                    <td><input type="password" name="Password" required /></td>
                 </tr>
                 <tr>
                     <td colspan="2" class="submitLogin">

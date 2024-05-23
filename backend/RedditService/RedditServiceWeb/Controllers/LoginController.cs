@@ -19,6 +19,7 @@ namespace RedditServiceWeb.Controllers
         {
             Dictionary<int, User> users = (Dictionary<int, User>)HttpContext.Application["users"];
             //int id_prijavljenog = (int)HttpContext.Session["id_prijavljenog"];
+            ViewBag.Error = false;
             if (HttpContext.Session["current_user_id"] == null || (int)HttpContext.Session["current_user_id"] == -1)
             {
                 foreach (User u in users.Values)
@@ -30,7 +31,8 @@ namespace RedditServiceWeb.Controllers
                     }
                 }
             }
-            return RedirectToAction("LoginPage", "LoginPage");
+            ViewBag.Error = true;
+            return View("LoginPage");
         }
 
         public ActionResult Logoff()
