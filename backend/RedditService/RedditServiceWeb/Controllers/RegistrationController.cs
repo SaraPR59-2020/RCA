@@ -30,7 +30,7 @@ namespace RedditServiceWeb.Controllers
                 {
 
                     fileName = Path.GetFileName(Image.FileName);
-                    path = Path.Combine(Server.MapPath("~/App_Data/Images/"), fileName);
+                    path = Path.Combine(Server.MapPath("~/Images/"), fileName);
                     Image.SaveAs(path);
                 }
                 User newUser = new User(number_of_users + 1, Name, Surname, Address, City, Country, Phone_number, Email, Password, $"/Images/{fileName}");

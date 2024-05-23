@@ -1,0 +1,76 @@
+﻿/* RegistrationStyleSheet.css */
+
+body {
+    background-image: url('../Images/registrationBackground.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height: 100vh;
+    margin: 0;
+    flex-direction: column;
+    color: #fff;
+    font-size: 1.2em;
+    margin-left: 15vw;
+}
+
+.registrationDiv {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.text {
+    color: #f1f1e6;
+}
+
+h2 {
+    margin-top: 5vw;
+    font-size: 50px;
+}
+
+form {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+td {
+    font-size: 20px;
+    padding-right: 20px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="submit"] {
+    width: 160%;
+    padding: 12px;
+    margin: 12px 0;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: black;
+}
+
+input[type="submit"] {
+    background-color: #ff8749;
+    color: #f1f1e6;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    width: 60%;
+    margin-top: 35px;
+    margin-left: 110px;
+    align-self: center;
+}
+
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+
+footer {
+    margin-top: 170px;
+    margin-left: 450px;
+}
