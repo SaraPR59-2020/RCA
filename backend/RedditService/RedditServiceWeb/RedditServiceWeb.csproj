@@ -145,6 +145,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PostOfTopicController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="RedditService.cs" />
@@ -190,16 +191,15 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Forum\PostComment.cshtml" />
+    <Content Include="Views\Forum\PostOfTopic.cshtml" />
     <Content Include="Views\Forum\Success.cshtml" />
     <Content Include="Views\Registration\RegistrationPage.cshtml" />
     <Content Include="Views\Login\LoginPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\PostOfTopic\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -216,7 +216,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{e44f36dc-af1e-4a53-b896-53a6fd5d8c4e}</Project>
+      <Project>{f367bca0-2378-460f-b1d9-8e7f2f716fc3}</Project>
       <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>

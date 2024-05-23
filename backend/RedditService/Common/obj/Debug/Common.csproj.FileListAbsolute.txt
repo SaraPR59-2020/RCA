@@ -1,0 +1,6 @@
+C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\Common\obj\Debug\Common.csprojAssemblyReference.cache
+C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\Common\bin\Debug\Common.dll
+C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\Common\bin\Debug\Common.pdb
+C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\Common\obj\Debug\Common.dll
+C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\Common\obj\Debug\Common.pdb

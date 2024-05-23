@@ -50,23 +50,23 @@ namespace NotificationServiceWorker
 
             bool result = base.OnStart();
 
-            // Initialize storage account
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(RoleEnvironment.GetConfigurationSettingValue("StorageConnectionString"));
-            CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
-            _queue = queueClient.GetQueueReference("notifications");
-            _queue.CreateIfNotExists();
+            //// Initialize storage account
+            ////CloudStorageAccount storageAccount = CloudStorageAccount.Parse(RoleEnvironment.GetConfigurationSettingValue("StorageConnectionString"));
+            ////CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
+            //_queue = queueClient.GetQueueReference("notifications");
+            //_queue.CreateIfNotExists();
 
-            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
-            _table = tableClient.GetTableReference("Subscriptions");
-            _table.CreateIfNotExists();
+            //CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+            //_table = tableClient.GetTableReference("Subscriptions");
+            //_table.CreateIfNotExists();
 
-            // Get a reference to the table you want to create (NotificationTable)
-            notificationTable = tableClient.GetTableReference("NotificationTable");
+            //// Get a reference to the table you want to create (NotificationTable)
+            //notificationTable = tableClient.GetTableReference("NotificationTable");
 
             // Create the table if it doesn't exist
-            notificationTable.CreateIfNotExists();
+            //notificationTable.CreateIfNotExists();
 
-            _sendGridApiKey = RoleEnvironment.GetConfigurationSettingValue("SendGridApiKey");
+            ///_sendGridApiKey = RoleEnvironment.GetConfigurationSettingValue("SendGridApiKey");
 
             Trace.TraceInformation("NotificationServiceWorker has been started");
 

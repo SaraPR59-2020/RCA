@@ -20,13 +20,12 @@
             @foreach (Common.Topic t in ViewBag.userTopics)
             {
                 <tr>
-                    <td>@t.Headline</td>
-                    <td>@t.Content</td>
-                    <td>@t.Upvote_number</td>
-                    <td>@t.Downvote_number</td>
-                    <td>@t.Comment_number</td>
-                    @*<td><a href="~/Home/ShowConcreteTheme?id_teme=@t.Id_teme">Prikazi temu</a></td>
-                    <td><a href="~/Home/DeleteTheme?id_teme=@t.Id_teme">Obrisi temu</a></td>*@
+                    <td><a href="~/Forum/PostOfTopic=@t.Topic_id"> @t.Headline </a> </td>
+                    <td> @t.Content </td>
+                    <td> @t.Upvote_number </td>
+                    <td> @t.Downvote_number </td>
+                    <td> @t.Comment_number </td>
+                    @*<td><a href="~/Home/DeleteTheme?id_teme=@t.Id_teme">Obrisi temu</a></td>*@
                 </tr>
             }
         </table>

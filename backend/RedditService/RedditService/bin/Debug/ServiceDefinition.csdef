@@ -23,16 +23,49 @@
     <Endpoints>
       <InputEndpoint name="Endpoint1" protocol="http" port="80" />
     </Endpoints>
+    <Contents>
+      <Content destination=".\">
+        <SourceDirectory path="C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\RedditService\rcf\Debug\RedditServiceWebContent\" />
+      </Content>
+      <Content destination=".\">
+        <SourceDirectory path="C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\RedditService\ecf\RedditServiceWebContent\" />
+      </Content>
+    </Contents>
+    <Imports>
+      <Import moduleName="Diagnostics" />
+    </Imports>
   </WebRole>
   <WorkerRole name="NotificationServiceWorker" vmsize="Standard_D1_v2">
     <ConfigurationSettings>
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
     </ConfigurationSettings>
+    <Contents>
+      <Content destination=".\">
+        <SourceDirectory path="C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\RedditService\rcf\Debug\NotificationServiceWorkerContent\" />
+      </Content>
+      <Content destination=".\">
+        <SourceDirectory path="C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\RedditService\ecf\NotificationServiceWorkerContent\" />
+      </Content>
+    </Contents>
+    <Imports>
+      <Import moduleName="Diagnostics" />
+    </Imports>
   </WorkerRole>
   <WorkerRole name="HealthMonitoringServiceWorker" vmsize="Standard_D1_v2">
     <ConfigurationSettings>
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
     </ConfigurationSettings>
+    <Contents>
+      <Content destination=".\">
+        <SourceDirectory path="C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\RedditService\rcf\Debug\HealthMonitoringServiceWorkerContent\" />
+      </Content>
+      <Content destination=".\">
+        <SourceDirectory path="C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\RedditService\ecf\HealthMonitoringServiceWorkerContent\" />
+      </Content>
+    </Contents>
+    <Imports>
+      <Import moduleName="Diagnostics" />
+    </Imports>
   </WorkerRole>
   <WebRole name="HealthStatusServiceWeb" vmsize="Standard_D1_v2">
     <Sites>
@@ -48,5 +81,16 @@
     <Endpoints>
       <InputEndpoint name="Endpoint1" protocol="http" port="8080" />
     </Endpoints>
+    <Contents>
+      <Content destination=".\">
+        <SourceDirectory path="C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\RedditService\rcf\Debug\HealthStatusServiceWebContent\" />
+      </Content>
+      <Content destination=".\">
+        <SourceDirectory path="C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\RedditService\ecf\HealthStatusServiceWebContent\" />
+      </Content>
+    </Contents>
+    <Imports>
+      <Import moduleName="Diagnostics" />
+    </Imports>
   </WebRole>
 </ServiceDefinition>

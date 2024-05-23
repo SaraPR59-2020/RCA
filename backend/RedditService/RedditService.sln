@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthMonitoringServiceWork
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthStatusServiceWeb", "HealthStatusServiceWeb\HealthStatusServiceWeb.csproj", "{9F09A5E8-9064-41CE-908B-4B4AE7B0ADCE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{E44F36DC-AF1E-4A53-B896-53A6FD5D8C4E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{F367BCA0-2378-460F-B1D9-8E7F2F716FC3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{9F09A5E8-9064-41CE-908B-4B4AE7B0ADCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F09A5E8-9064-41CE-908B-4B4AE7B0ADCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F09A5E8-9064-41CE-908B-4B4AE7B0ADCE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E44F36DC-AF1E-4A53-B896-53A6FD5D8C4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E44F36DC-AF1E-4A53-B896-53A6FD5D8C4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E44F36DC-AF1E-4A53-B896-53A6FD5D8C4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E44F36DC-AF1E-4A53-B896-53A6FD5D8C4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F367BCA0-2378-460F-B1D9-8E7F2F716FC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F367BCA0-2378-460F-B1D9-8E7F2F716FC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F367BCA0-2378-460F-B1D9-8E7F2F716FC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F367BCA0-2378-460F-B1D9-8E7F2F716FC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

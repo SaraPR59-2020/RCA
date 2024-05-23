@@ -26,9 +26,12 @@ namespace RedditServiceWeb.Controllers
                     userTopics.Add(t);
                 }
             }
+            //one kojima on pripada uzeti iz storage
             ViewBag.userTopics = userTopics;
             //ViewBag.id_prijavljenog = id_prijavljenog;
             ViewBag.User_name = current_user.Name;
+
+            //uzeti sve iz storagea 
             ViewBag.topics = topics.Values;
             return View();
         }

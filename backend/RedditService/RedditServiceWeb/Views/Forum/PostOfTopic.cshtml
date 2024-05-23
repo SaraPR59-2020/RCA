@@ -1,0 +1,14 @@
+﻿@model RedditServiceWeb.Models.Comment
+
+<h2>Post Comment</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(m => m.TopicId)
+    @Html.TextBoxFor(m => m.TopicId)
+
+    @Html.LabelFor(m => m.Text)
+    @Html.TextAreaFor(m => m.Text)
+
+    <input type="submit" value="Post Comment" />
+}

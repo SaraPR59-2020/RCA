@@ -1,0 +1,15 @@
+DiagnosticsPluginLauncher.exe Information: 0 : [23.5.2024. 20:30:08] Emulator config file set to C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\RedditService\csx\Debug\roles\RedditServiceWeb\approot\diagnostics.wadcfgx
+DiagnosticsPluginLauncher.exe Information: 0 : [23.5.2024. 20:30:08] DiagnosticsStoreRootPath set to: C:\Users\stame\AppData\Local\dftmp\Resources\fe3ed58d-9acc-42ae-a7a8-c9b6700081c3
+DiagnosticsPluginLauncher.exe Information: 0 : [23.5.2024. 20:30:08] Loading config file: C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\RedditService\csx\Debug\roles\RedditServiceWeb\approot\diagnostics.wadcfgx
+DiagnosticsPluginLauncher.exe Information: 0 : [23.5.2024. 20:30:08] Config file to read: C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\RedditService\csx\Debug\roles\RedditServiceWeb\approot\diagnostics.wadcfgx
+DiagnosticsPluginLauncher.exe Information: 0 : [23.5.2024. 20:30:08] Checking VM Type
+DiagnosticsPluginLauncher.exe Information: 0 : [23.5.2024. 20:30:08] Emulator config file set to C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\RedditService\csx\Debug\roles\RedditServiceWeb\approot\diagnostics.wadcfgx
+DiagnosticsPluginLauncher.exe Information: 0 : [23.5.2024. 20:30:08] Extension set to Emulator Mode
+DiagnosticsPluginLauncher.exe Information: 0 : [23.5.2024. 20:30:08] Reading XML configuration file
+DiagnosticsPluginLauncher.exe Information: 0 : [23.5.2024. 20:30:08] Bypassing private config decryption
+DiagnosticsPluginLauncher.exe Information: 0 : [23.5.2024. 20:30:08] Stopping the running plugin, if any
+DiagnosticsPluginLauncher.exe Information: 0 : [23.5.2024. 20:30:09] No DiagnosticsPlugin is running.
+DiagnosticsPluginLauncher.exe Information: 0 : [23.5.2024. 20:30:09] Killing any DiagnosticsPlugin that might remain.
+DiagnosticsPluginLauncher.exe Information: 0 : [23.5.2024. 20:30:09] Killing any MonAgentHost that might remain.
+DiagnosticsPluginLauncher.exe Information: 0 : [23.5.2024. 20:30:10] Diagnostics plugin stopped successfully
+DiagnosticsPluginLauncher.exe Information: 0 : [23.5.2024. 20:30:10] Resetting DiagnosticPlugin
