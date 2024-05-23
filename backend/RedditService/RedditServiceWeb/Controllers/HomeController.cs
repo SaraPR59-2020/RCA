@@ -29,7 +29,7 @@ namespace RedditServiceWeb.Controllers
             ViewBag.userTopics = userTopics;
             //ViewBag.id_prijavljenog = id_prijavljenog;
             ViewBag.User_name = current_user.Name;
-            ViewBag.topics = topics;
+            ViewBag.topics = topics.Values;
             return View();
         }
 
