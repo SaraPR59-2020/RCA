@@ -11,15 +11,12 @@ using Microsoft.WindowsAzure.ServiceRuntime;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;
 using Microsoft.WindowsAzure.Storage.Table;
-//send grid using
 using SendGrid;
 using SendGrid.Helpers.Mail;
-
-
+using Common;
 
 namespace NotificationServiceWorker
 {
-    
     public class WorkerRole : RoleEntryPoint
     {
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
@@ -33,6 +30,9 @@ namespace NotificationServiceWorker
         {
             Trace.TraceInformation("NotificationServiceWorker is running");
 
+            // Start the health check server in a new thread
+            Task.Run(() => StartHealthCheckServer());
+
             try
             {
                 this.RunAsync(this.cancellationTokenSource.Token).Wait();
@@ -43,16 +43,34 @@ namespace NotificationServiceWorker
             }
         }
 
+        private void StartHealthCheckServer()
+        {
+            //HttpListener listener = new HttpListener();
+            //listener.Prefixes.Add("http://*:8081/health-monitoring/");
+            //listener.Start();   //acces is denied greska pise 
+            //Trace.TraceInformation("Health check server is running at http://localhost:8081/health-monitoring/");
+
+            //while (true)
+            //{
+            //    HttpListenerContext context = listener.GetContext();
+            //    HttpListenerResponse response = context.Response;
+            //    string responseString = "NotificationService is healthy";
+            //    byte[] buffer = System.Text.Encoding.UTF8.GetBytes(responseString);
+            //    response.ContentLength64 = buffer.Length;
+            //    System.IO.Stream output = response.OutputStream;
+            //    output.Write(buffer, 0, buffer.Length);
+            //    output.Close();
+            //}
+        }
+
         public override bool OnStart()
         {
-            // Set the maximum number of concurrent connections
             ServicePointManager.DefaultConnectionLimit = 12;
 
             bool result = base.OnStart();
 
-            //// Initialize storage account
-            ////CloudStorageAccount storageAccount = CloudStorageAccount.Parse(RoleEnvironment.GetConfigurationSettingValue("StorageConnectionString"));
-            ////CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
+            //CloudStorageAccount storageAccount = CloudStorageAccount.Parse(RoleEnvironment.GetConfigurationSettingValue("StorageConnectionString"));
+            //CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
             //_queue = queueClient.GetQueueReference("notifications");
             //_queue.CreateIfNotExists();
 
@@ -60,19 +78,15 @@ namespace NotificationServiceWorker
             //_table = tableClient.GetTableReference("Subscriptions");
             //_table.CreateIfNotExists();
 
-            //// Get a reference to the table you want to create (NotificationTable)
             //notificationTable = tableClient.GetTableReference("NotificationTable");
-
-            // Create the table if it doesn't exist
             //notificationTable.CreateIfNotExists();
 
-            ///_sendGridApiKey = RoleEnvironment.GetConfigurationSettingValue("SendGridApiKey");
+            //_sendGridApiKey = RoleEnvironment.GetConfigurationSettingValue("SendGridApiKey");
 
             Trace.TraceInformation("NotificationServiceWorker has been started");
 
             return result;
         }
-
 
         public override void OnStop()
         {
@@ -99,14 +113,11 @@ namespace NotificationServiceWorker
                     {
                         string commentId = message.AsString;
 
-                        // Dohvatanje komentara i pretplaćenih korisnika
                         Comment comment = GetCommentById(commentId);
                         List<string> subscribersEmails = GetSubscribersEmails(comment.TopicId);
 
-                        // Slanje mejlova
                         await SendEmailsAsync(subscribersEmails, comment.Text);
 
-                        // Persistovanje informacije o poslatim notifikacijama
                         PersistNotificationLog(commentId, subscribersEmails.Count);
 
                         await _queue.DeleteMessageAsync(message);
@@ -126,15 +137,11 @@ namespace NotificationServiceWorker
 
         private Comment GetCommentById(string commentId)
         {
-            // Implementacija metode za dohvatanje komentara po ID-ju
-            // Ovo je mock implementacija
             return new Comment { Id = commentId, Text = "Example comment text", TopicId = "1" };
         }
 
         private List<string> GetSubscribersEmails(string topicId)
         {
-            // Implementacija metode za dohvatanje mejlova pretplaćenih korisnika
-            // Ovo je mock implementacija
             return new List<string> { "user1@example.com", "user2@example.com" };
         }
 
@@ -180,20 +187,5 @@ namespace NotificationServiceWorker
             TableOperation insertOperation = TableOperation.Insert(log);
             _table.Execute(insertOperation);
         }
-
-        public class NotificationLogEntity : TableEntity
-        {
-            public string CommentId { get; set; }
-            public DateTime DateSent { get; set; }
-            public int EmailsSent { get; set; }
-        }
-
-        public class Comment
-        {
-            public string Id { get; set; }
-            public string Text { get; set; }
-            public string TopicId { get; set; }
-        }
     }
-
 }
