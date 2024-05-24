@@ -100,12 +100,12 @@ namespace HealthMonitoringServiceWorker
             }
         }
 
-        private async Task<bool> SendRequestToRedditService()
+        public async Task<bool> SendRequestToRedditService()
         {
             return await SendRequestToService("http://your-reddit-service/health-monitoring");
         }
 
-        private async Task<bool> SendRequestToNotificationService()
+        public async Task<bool> SendRequestToNotificationService()
         {
             return await SendRequestToService("http://your-notification-service/health-monitoring");
         }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.34729.27
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "RedditService", "RedditService\RedditService.ccproj", "{E7720CFC-364E-4C81-9A71-28FB7FF30448}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthStatusServiceWeb", "HealthStatusServiceWeb\HealthStatusServiceWeb.csproj", "{9F09A5E8-9064-41CE-908B-4B4AE7B0ADCE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{F367BCA0-2378-460F-B1D9-8E7F2F716FC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminToolsConsoleApp", "AdminToolsConsoleApp\AdminToolsConsoleApp.csproj", "{6F82AB4D-256F-40E8-9CAD-AFFB8F3791DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{F367BCA0-2378-460F-B1D9-8E7F2F716FC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F367BCA0-2378-460F-B1D9-8E7F2F716FC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F367BCA0-2378-460F-B1D9-8E7F2F716FC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F82AB4D-256F-40E8-9CAD-AFFB8F3791DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F82AB4D-256F-40E8-9CAD-AFFB8F3791DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F82AB4D-256F-40E8-9CAD-AFFB8F3791DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F82AB4D-256F-40E8-9CAD-AFFB8F3791DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

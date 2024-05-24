@@ -26,7 +26,7 @@ namespace Common
             this.comment_number = comment_number;
             this.topic_image = topic_image;
         }
-
+       
         public int Topic_id { get => topic_id; set => topic_id = value; }
         public string Headline { get => headline; set => headline = value; }
         public string Content { get => content; set => content = value; }
