@@ -4,18 +4,25 @@ body {
     background-image: url('../Images/loginBackground.png');
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center center;
-    height: 100vh;
+    background-attachment: fixed;
+    /*background-position: center center;*/
+    /*height: 100vh;*/
     margin: 0;
-    flex-direction: column;
-    color: #fff;
-    font-size: 1.2em;
-    margin-left: 20vw;
+    padding: 0;
+    /*flex-direction: column;*/
+    color: #045f5f;
+    /*font-size: 1.2em;*/
+    /*margin-left: 20vw;*/
 }
 
 .loginDiv {
-    display: flex;
-    flex-direction: column;
+    /*display: flex;
+    flex-direction: column;*/
+    position: relative;
+    margin-left: 18vw;
+    margin-top: 20vw;
+    width: 25vw;
+    height: 20vw;
     gap: 10px;
 }
 
@@ -24,13 +31,12 @@ body {
 }
 
 h2 {
-    margin-top: 15vw;
-    font-size: 50px;
+    /*margin-top: 19vw;*/
+    font-size: 3vw;
 }
 
 form {
-    
-    width: 300px;
+    /*width: 40%;*/
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -38,28 +44,30 @@ form {
 
 .error {
     color: red;
-    font-size: 18px;
+    font-size: 1vw;
+    margin-left: 2vw;
 }
 
 td {
-    font-size: 20px;
-    padding-right: 20px; 
+    font-size: 1vw;
+    padding-right: 20px;
 }
 
 .noAcc {
-    font-size: 18px;
-    margin-top: 40px;
-    margin-left: 50px;
+    font-size: 1vw;
+    margin-top: 1vw;
+    margin-left: 4vw;
     color: #f1f1e6;
 }
 
 input[type="text"],
 input[type="password"],
 input[type="submit"] {
-    width: 160%;
+    width: 18vw;
+    height: 3vw;
     padding: 12px;
     margin: 12px 0;
-    font-size: 18px;
+    font-size: 1vw;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
@@ -72,16 +80,16 @@ input[type="submit"] {
     border: none;
     cursor: pointer;
     text-align: center;
-    width: 60%;
-    margin-top: 35px;
-    margin-left: 110px;
+    width: 10vw;
+    margin-top: 1vw;
+    margin-left: 6vw;
 }
 
-input[type="submit"]:hover {
-    background-color: #45a049;
-}
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
 
-footer{
+footer {
     margin-top: 170px;
     margin-left: 450px;
 }
