@@ -1,91 +1,101 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-
-<div class="row">
-
-    <a href="~/Login/Logoff">Izloguj se</a><br />
-    <h1 id="title">Welcome @ViewBag.User_name</h1>
-    @*<p><a href="~/Home/ShowThemeMaker" class="btn btn-primary btn-md">Napravi temu &raquo;</a></p>*@
-
-    <h2>Your topics</h2>
-        <table border="1">
-            <tr>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/HomePageStyleSheet.css" />
+</head>
+<body>
+    <div class="backgroundDiv">
+        @*<tr>
                 <th>Headline</th>
                 <th>Content</th>
                 <th>Upvote</th>
                 <th>Downvote</th>
                 <th>Comments</th>
-            </tr>
-            @foreach (Common.Topic t in ViewBag.userTopics)
-            {
-                <tr>
-                    <td><a href="~/Forum/PostOfTopic=@t.Topic_id"> @t.Headline </a> </td>
-                    <td> @t.Content </td>
-                    <td> @t.Upvote_number </td>
-                    <td> @t.Downvote_number </td>
-                    <td> @t.Comment_number </td>
-                    @*<td><a href="~/Home/DeleteTheme?id_teme=@t.Id_teme">Obrisi temu</a></td>*@
-                </tr>
-            }
-        </table>
-    }
-    @*<h4>Pretraga</h4>
-    <form action="~/Home/Pretraga" method="get">
-        <table border="1">
-            <tr>
-                <td>Naslov:</td>
-                <td><input type="text" name="naslov" /></td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <input type="submit" value="Pretrazi" />
-                </td>
-            </tr>
-        </table>
-    </form>
-    <h4>Sortiranje</h4>
-    <form action="~/Home/Sortiranje" method="get">
-        <table border="1">
-            <tr>
-                <td>
-                    <input list="krit" name="kriterijum" />
-                    <datalist id="krit">
-                        <option value="RASTUCE"></option>
-                        <option value="OPADAJUCE"></option>
-                    </datalist>
-                </td>
-                <td colspan="2">
-                    <input type="submit" value="Sortiraj" />
-                </td>
-            </tr>
-        </table>
-    </form>*@
-    <h2>Sve teme</h2>
-    <table border="1">
-        <tr>
-            <th>Headline</th>
-            <th>Content</th>
-            <th>Upvote</th>
-            <th>Downvote</th>
-            <th>Comments</th>
-        </tr>
-        @foreach (Common.Topic t in ViewBag.topics)
+            </tr>*@
+        @if (@ViewBag.ShowTopics == "Your topics")
         {
-            <tr>
-                <td>@t.Headline</td>
-                <td>@t.Content</td>
-                <td>@t.Upvote_number</td>
-                <td>@t.Downvote_number</td>
-                <td>@t.Comment_number</td>
-                
-                <td><a href="~/Home/UpvoteTheme?id_teme=@t.Topic_id">Upvote</a></td>
-                <td><a href="~/Home/DownvoteTheme?id_teme=@t.Topic_id">Downvote</a></td>
-                @*<td><a href="~/Home/ShowConcreteTheme?id_teme=@t.Id_teme">Prikazi temu</a></td>*@
-            </tr>
+            <h2>Your topics</h2>
+            <table border="1">
+                @foreach (Common.Topic t in ViewBag.userTopics)
+                {
+                    <tr>
+                        <td colspan="3"><a href="~/Forum/PostOfTopic=@t.Topic_id"> @t.Headline </a> </td>
+                        @*<td><a href="~/Home/DeleteTheme?id_teme=@t.Id_teme">Obrisi temu</a></td>*@
+                    </tr>
+                    <tr>
+                        <td colspan="3"> @t.Content </td>
+                    </tr>
+                    <tr>
+                        <td> @t.Upvote_number </td>
+                        <td> @t.Downvote_number </td>
+                        <td> @t.Comment_number </td>
+                    </tr>
+                }
+            </table>
         }
-    </table>
+        else if (@ViewBag.ShowTopics == "All topics")
+        {
+            <h2>All topics</h2>
+            <table border="1">
+                @foreach (Common.Topic t in ViewBag.topics)
+                {
+                    <tr>
+                        <td>@t.Headline</td>
+                        <td>@t.Content</td>
+                        <td>@t.Upvote_number</td>
+                        <td>@t.Downvote_number</td>
+                        <td>@t.Comment_number</td>
 
+                        <td><a href="~/Home/UpvoteTheme?id_teme=@t.Topic_id">Upvote</a></td>
+                        <td><a href="~/Home/DownvoteTheme?id_teme=@t.Topic_id">Downvote</a></td>
+                        @*<td><a href="~/Home/ShowConcreteTheme?id_teme=@t.Id_teme">Prikazi temu</a></td>*@
+                    </tr>
+                }
+            </table>
+        }
+    </div>
+    <div class="user">
+        <a href="~/Login/Logoff">Izloguj se</a><br />
+        <h1 id="title">Welcome @ViewBag.User_name</h1>
+        <a href="~/Home/Index">Your topics</a>
+        <a href="~/Home/AllTopics">All topics</a>
+    </div>
+    <div class="row">
 
-</div>
-@*</main>*@
+        @*<p><a href="~/Home/ShowThemeMaker" class="btn btn-primary btn-md">Napravi temu &raquo;</a></p>*@
+
+        @*<h4>Pretraga</h4>
+            <form action="~/Home/Pretraga" method="get">
+                <table border="1">
+                    <tr>
+                        <td>Naslov:</td>
+                        <td><input type="text" name="naslov" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="submit" value="Pretrazi" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <h4>Sortiranje</h4>
+            <form action="~/Home/Sortiranje" method="get">
+                <table border="1">
+                    <tr>
+                        <td>
+                            <input list="krit" name="kriterijum" />
+                            <datalist id="krit">
+                                <option value="RASTUCE"></option>
+                                <option value="OPADAJUCE"></option>
+                            </datalist>
+                        </td>
+                        <td colspan="2">
+                            <input type="submit" value="Sortiraj" />
+                        </td>
+                    </tr>
+                </table>
+            </form>*@
+
+    </div>
+</body>

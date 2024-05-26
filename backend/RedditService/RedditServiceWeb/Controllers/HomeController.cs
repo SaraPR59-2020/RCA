@@ -33,7 +33,19 @@ namespace RedditServiceWeb.Controllers
 
             //uzeti sve iz storagea 
             ViewBag.topics = topics.Values;
+            if (ViewBag.ShowTopics == null)
+            {
+                ViewBag.ShowTopics = "Your topics";
+            }
             return View();
+        }
+
+        public ActionResult AllTopics()
+        {
+            Dictionary<int, Topic> topics = (Dictionary<int, Topic>)HttpContext.Application["topics"];
+            ViewBag.ShowTopics = "All topics";
+            ViewBag.topics = topics.Values;
+            return View("Index");
         }
 
         public ActionResult About()

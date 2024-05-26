@@ -1,0 +1,36 @@
+﻿/* HomePageStyleSheet.css */
+
+body {
+    background-color: #045f5f;
+    background-image: url('../Images/homePageBackground.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: #045f5f;
+    overflow-y: scroll;
+}
+
+.backgroundDiv {
+    background: rgb(132, 173, 165);
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    height: 100vh;
+    width: 45vw;
+    margin-left: 29vw;
+    overflow-y: scroll;
+}
+
+table {
+    margin-left: 1vw;
+    border: thin;
+    border-color: lightgray;
+    width: 43vw;
+    font-size: 1vw;
+}
+
+.user {
+    position: fixed;
+    margin-left: 90vw;
+    color: #ff8749;
+}
