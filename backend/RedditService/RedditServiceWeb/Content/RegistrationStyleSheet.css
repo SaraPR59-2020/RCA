@@ -8,22 +8,33 @@ body {
     background-attachment: fixed;
     /*background-position: center center;*/
     /*height: 100vh;*/
-    margin: 0;
-    flex-direction: column;
+    /*margin: 0;
+    flex-direction: column;*/
     color: #045f5f;
-    font-size: 1.2em;
+    /*font-size: 1.2em;*/
     /*margin-left: 15vw;*/
 }
 
+.backgroundDiv {
+    background: rgb(132, 173, 165);
+    position: relative;
+    height: 60vh;
+    width: 60vw;
+    margin-left: 19vw;
+    margin-top: 10vw;
+    border-radius: 40px;
+}
+
 .registrationDiv {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    left: 50%;
+    /*display: flex;
+    flex-direction: column;*/
+    /*align-items: center;*/
+    position: relative;
+    top: 2vw;
+    /*left: 50%;
     top: 50%;
-    margin-left: -25%;
-    position: absolute;
-    margin-top: -10%;
+    margin-left: -25%;*/
+    /*margin-top: -10%;*/
 }
 
 .text {
@@ -31,30 +42,32 @@ body {
 }
 
 h2 {
-    margin-top: 5vw;
-    font-size: 50px;
-    color: #ff8749
+    /*margin-top: 5vw;*/
+    font-size: 2vw;
+    color: #ff8749;
+    text-align: center;
+    padding-bottom: 2vw;
 }
 
 form {
-    width: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 td {
-    font-size: 20px;
+    font-size: 1vw;
     padding-right: 20px;
 }
 
 input[type="text"],
 input[type="password"],
 input[type="submit"] {
-    width: 160%;
+    width: 18vw;
+    height: 3vw;
     padding: 12px;
     margin: 12px 0;
-    font-size: 18px;
+    font-size: 1vw;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
@@ -67,10 +80,8 @@ input[type="submit"] {
     border: none;
     cursor: pointer;
     text-align: center;
-    width: 60%;
-    margin-top: 35px;
-    margin-left: 110px;
-    align-self: center;
+    width: 10vw;
+    margin-left: 2vw;
 }
 
     input[type="submit"]:hover {
