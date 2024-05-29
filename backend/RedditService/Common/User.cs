@@ -12,6 +12,9 @@ public class User
     private string email;
     private string password;
     private string image;
+    private List<int> upvotedTopics;
+    private List<int> downvotedTopics;
+    public List<int> subscribedTopics;
 
     public User(int user_id, string name, string surname, string address, string city, string country, string phone_number, string email, string password, string image)
     {
@@ -37,4 +40,8 @@ public class User
     public string Email { get => email; set => email = value; }
     public string Password { get => password; set => password = value; }
     public string Image { get => image; set => image = value; }
+
+    public List<int> UpvotedTopics = new List<int>();
+    public List<int> DownvotedTopics = new List<int>();
+    public List<int> SubscribedTopics = new List<int>();
 }
