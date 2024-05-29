@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "AddNewTopicPage";
+}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/RegistrationStyleSheet.css" />
+</head>
+<body>
+    <div class="backgroundDiv">
+        <div class="registrationDiv">
+            <h2 class="text">Add a new topic</h2>
+            <form action="~/NewTopic/AddNewTopic" method="post" enctype="multipart/form-data">
+                <table>
+                    <tr>
+                        <td class="text">Headline:</td>
+                        <td><input type="text" name="Headline" required /></td>
+                    </tr>
+                    <tr>
+                        <td class="text">Content:</td>
+                        <td><input type="text" name="Content" required /></td>
+                    </tr>
+                    <tr>
+                        <td class="text">Image:</td>
+                        <td><input type="file" name="Image" /></td>
+                        <td></td>
+                        <td>
+                            <input type="submit" value="Add new topic" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</body>
+
