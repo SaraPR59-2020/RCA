@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "TopicPage";
+}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/TopicPageStyleSheet.css" />
+</head>
+<body>
+    <div class="backgroundDiv">
+        <table border="1">
+            <tr class="headline">
+                <th colspan="3" class="topic">@ViewBag.Topic.Headline</th>
+            </tr>
+            <tr>
+                <td colspan="3"> @ViewBag.Topic.Content </td>
+            </tr>
+            @if (ViewBag.Topic.Topic_image != "/Images/")
+            {
+                <tr>
+                    <td><img src="@ViewBag.Topic.Topic_image" class="topicImg" /></td>
+                </tr>
+            }
+            <tr>
+                @if (@ViewBag.VoteType == "upvoted")
+                {
+                    <td><a href="~/Forum/Upvote?topicId=@ViewBag.Topic.Topic_id"><img src="~/Images/upvote.png" /></a>&nbsp;@ViewBag.Topic.Upvote_number&emsp;<a href="~/Forum/Downvote?topicId=@ViewBag.Topic.Topic_id"><img src="~/Images/downvoteWhite.png" /></a>&nbsp;@ViewBag.Topic.Downvote_number&emsp; <img src="~/Images/comment.png" />&nbsp;@ViewBag.Topic.Comment_number</td>
+
+                }
+                else if (@ViewBag.VoteType == "downvoted")
+                {
+                    <td><a href="~/Forum/Upvote?topicId=@ViewBag.Topic.Topic_id"><img src="~/Images/upvoteWhite.png" /></a>&nbsp;@ViewBag.Topic.Upvote_number&emsp;<a href="~/Forum/Downvote?topicId=@ViewBag.Topic.Topic_id"><img src="~/Images/downvote.png" /></a>&nbsp;@ViewBag.Topic.Downvote_number&emsp; <img src="~/Images/comment.png" />&nbsp;@ViewBag.Topic.Comment_number</td>
+                }
+                else
+                {
+                    <td><a href="~/Forum/Upvote?topicId=@ViewBag.Topic.Topic_id"><img src="~/Images/upvoteWhite.png" /></a>&nbsp;@ViewBag.Topic.Upvote_number&emsp;<a href="~/Forum/Downvote?topicId=@ViewBag.Topic.Topic_id"><img src="~/Images/downvoteWhite.png" /></a>&nbsp;@ViewBag.Topic.Downvote_number&emsp; <img src="~/Images/comment.png" />&nbsp;@ViewBag.Topic.Comment_number</td>
+
+                }
+                <td></td>
+                <td></td>
+            </tr>
+        </table><br />
+        @if (ViewBag.AddComment == true)
+        {
+            <form action="~/Forum/AddComment" method="post" enctype="multipart/form-data">
+                <table>
+                    <tr hidden>
+                        <td><input type="text" name="topicId" value="@ViewBag.Topic.Topic_id" /></td>
+                    </tr>
+                    <tr>
+                        <td class="text">Your comment:</td>
+                        <td class="input"><input type="text" name="Text" required /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="submitComment">
+                            <input type="submit" value="Post Comment" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        }
+        <table border="1">
+            @if (ViewBag.UserComments.Count > 0)
+            {
+                foreach (Comment c in ViewBag.UserComments)
+                {
+                    <tr>
+                        <th class="headline"><img src="@ViewBag.CurrentUser.Image" />&nbsp;@ViewBag.CurrentUser.Name</th>
+                        <td><a href="~/Forum/DeleteComment?commentId=@c.Id&topicId=@ViewBag.Topic.Topic_id">Delete comment</a></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">@c.Text</td>
+                    </tr>
+                }
+            }
+            @if (ViewBag.TopicComments.Count > 0)
+            {
+                foreach (Comment c in ViewBag.TopicComments)
+                {
+                    foreach (User u in ViewBag.Users)
+                    {
+                        if (u.User_id == c.UserId)
+                        {
+                            <tr>
+                                <th class="headline"><img src="@u.Image" />&nbsp;@u.Name</th>
+                            </tr>
+                        }
+                    }
+                    <tr>
+                        <td>@c.Text</td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+    <div class="button">
+        <button type="button" onclick="location.href='@Url.Action("TopicPage", "Forum", new { topicId = ViewBag.Topic.Topic_id, showAddComment = true })'">Add new comment</button><br /><br />
+        <button type="button" onclick="location.href='@Url.Action("Index", "Home")'">Back to Home Page</button>
+    </div>
+</body>

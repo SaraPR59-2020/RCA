@@ -1,0 +1,64 @@
+﻿/* TopicPageStyleSheet.css */
+
+body {
+    background-color: #045f5f;
+    background-image: url('../Images/homePageBackground.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: #045f5f;
+    overflow-y: hidden;
+}
+
+.backgroundDiv {
+    background: rgb(132, 173, 165);
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    height: 100vh;
+    width: 45vw;
+    margin-left: 29vw;
+    overflow-y: scroll;
+}
+
+table {
+    margin-left: 1vw;
+    border: 1px solid lightgray;
+    border-collapse: collapse;
+    width: 43vw;
+    font-size: 1vw;
+}
+
+tr, td {
+    border: hidden;
+    padding: 3px;
+}
+
+.topic {
+    text-align: center;
+}
+
+.headline {
+    border-top: 1px solid lightgray;
+    font-size: 22px;
+    text-align: left;
+}
+
+.topicImg {
+    width: 10vw;
+    height: 10vw;
+}
+
+img {
+    width: 1vw;
+    height: 2vh;
+}
+
+.button {
+    height: 5vh;
+    width: 10vw;
+    margin-top: 80vh;
+    margin-left: 75vw;
+    font-size: 1vw;
+    align-items: center;
+}
