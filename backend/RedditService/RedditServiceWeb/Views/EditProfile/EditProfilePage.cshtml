@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "EditProfilePage";
+}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/RegistrationStyleSheet.css" />
+</head>
+<body>
+    <div class="backgroundDiv">
+        <div class="registrationDiv">
+            <h2 class="text">Edit profile</h2>
+            <form action="~/EditProfile/EditProfile" method="post" enctype="multipart/form-data">
+                <table>
+                    <tr>
+                        <td class="text">Name:</td>
+                        <td><input type="text" name="Name" value="@ViewBag.User.Name" required /></td>
+
+                        <td class="text">Surname:</td>
+                        <td><input type="text" name="Surname" value="@ViewBag.User.Surname" required /></td>
+                    </tr>
+                    <tr>
+                        <td class="text">Address:</td>
+                        <td><input type="text" name="Address" value="@ViewBag.User.Address" required /></td>
+                        <td class="text">City:</td>
+                        <td><input type="text" name="City" value="@ViewBag.User.City" required /></td>
+                    </tr>
+                    <tr>
+                        <td class="text">Country:</td>
+                        <td><input type="text" name="Country" value="@ViewBag.User.Country" required /></td>
+                        <td class="text">Phone number:</td>
+                        <td><input type="text" name="Phone_number" value="@ViewBag.User.Phone_number" required /></td>
+                    </tr>
+                    <tr>
+                        <td class="text">Email:</td>
+                        <td><input type="email" name="Email" value="@ViewBag.User.Email" required /></td>
+                        <td class="text">Password:</td>
+                        <td><input type="password" name="Password" value="@ViewBag.User.Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required /></td>
+                    </tr>
+                    <tr>
+                        <td class="text">Image:</td>
+                        <td><input type="file" name="Image" /></td>
+                        <td></td>
+                        <td>
+                            <input type="submit" value="Edit" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</body>
+
