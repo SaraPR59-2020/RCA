@@ -14,11 +14,11 @@ body {
     background: rgb(132, 173, 165);
     position: fixed;
     top: 0px;
-    bottom: 0px;
-    height: 100vh;
+    bottom: 0;
     width: 45vw;
     margin-left: 29vw;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 table {
