@@ -7,13 +7,29 @@ body {
     background-size: cover;
     background-attachment: fixed;
     color: #045f5f;
-    overflow-y: scroll;
+}
+
+.search {
+    background: rgb(132, 173, 165);
+    position: fixed;
+    top: 0px;
+    height: 10vh;
+    width: 45vw;
+    margin-left: 29vw;
+    padding-top: 5px;
+    display: flex;
+    font-size: 1vw;
+}
+
+.sort {
+    width: 20vw;
+    flex: 50%;
 }
 
 .backgroundDiv {
     background: rgb(132, 173, 165);
     position: fixed;
-    top: 0px;
+    top: 50px;
     bottom: 0px;
     height: 100vh;
     width: 45vw;
@@ -23,14 +39,59 @@ body {
 
 table {
     margin-left: 1vw;
-    border: thin;
-    border-color: lightgray;
+    border: 1px solid lightgray;
+    border-collapse: collapse;
     width: 43vw;
     font-size: 1vw;
 }
 
+tr, td {
+    border: hidden;
+    padding: 3px;
+}
+
+th {
+    text-align: center;
+}
+
+.topicImg {
+    width: 10vw;
+    height: 10vw;
+}
+
+img {
+    width: 1vw;
+    height: 2vh;
+}
+
+
+.headline {
+    border-top: 1px solid lightgray;
+    font-size: 22px;
+}
+
+.button {
+    text-align: right;
+}
+
 .user {
+    background: rgb(132, 173, 165);
     position: fixed;
-    margin-left: 90vw;
+    top: 0;
+    right: 0;
+    width: 25vw;
     color: #ff8749;
+}
+
+.userTable {
+    width: 23vw;
+}
+
+.userImage {
+    width: 3vw;
+    height: 5vh;
+}
+
+.userTd {
+    font-size: 2vw;
 }

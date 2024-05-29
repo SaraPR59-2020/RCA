@@ -5,31 +5,91 @@
     <link rel="stylesheet" type="text/css" href="~/Content/HomePageStyleSheet.css" />
 </head>
 <body>
+    <div class="search">
+        <form action="~/Home/Search" method="post" enctype="multipart/form-data">
+            <table border="1" class="sort">
+                <tr>
+                    <td hidden><input type="text" name="topicPage" value="@ViewBag.ShowTopics" /></td>
+                    <td>Headline:</td>
+                    <td><input type="text" name="headline" /></td>
+                    <td><input type="submit" value="Search" /></td>
+                </tr>
+            </table>
+        </form>
+        <form action="~/Home/Sort" method="post" enctype="multipart/form-data">
+            <table border="1" class="sort">
+                <tr>
+                    <td hidden><input type="text" name="topicPage" value="@ViewBag.ShowTopics" /></td>
+                    <td>
+                        Sort:
+                        <input list="type" name="sortType" />
+                        <datalist id="type">
+                            <option value="A-Z"></option>
+                            <option value="Z-A"></option>
+                        </datalist>
+                        <input type="submit" value="Sort" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
     <div class="backgroundDiv">
-        @*<tr>
-                <th>Headline</th>
-                <th>Content</th>
-                <th>Upvote</th>
-                <th>Downvote</th>
-                <th>Comments</th>
-            </tr>*@
         @if (@ViewBag.ShowTopics == "Your topics")
         {
-            <h2>Your topics</h2>
+            <table>
+                <tr>
+                    <td><h2>Your topics</h2></td>
+                    <td class="button"><button type="button" onclick="location.href='@Url.Action("AddNewTopicPage", "NewTopic")'">Add new topic</button></td>
+                </tr>
+            </table>
             <table border="1">
                 @foreach (Common.Topic t in ViewBag.userTopics)
                 {
                     <tr>
-                        <td colspan="3"><a href="~/Forum/PostOfTopic=@t.Topic_id"> @t.Headline </a> </td>
-                        @*<td><a href="~/Home/DeleteTheme?id_teme=@t.Id_teme">Obrisi temu</a></td>*@
+                        <th colspan="3" class="headline"><a href="~/Forum/TopicPage?topicId=@t.Topic_id&showAddComment=false"> @t.Headline </a> </th>
                     </tr>
                     <tr>
                         <td colspan="3"> @t.Content </td>
                     </tr>
+                    if (t.Topic_image != "/Images/")
+                    {
+                        <tr>
+                            <td><img src="@t.Topic_image" class="topicImg" /></td>
+                        </tr>
+                    }
                     <tr>
-                        <td> @t.Upvote_number </td>
-                        <td> @t.Downvote_number </td>
-                        <td> @t.Comment_number </td>
+                        @if (ViewBag.UpvotedTopics.Contains(t.Topic_id) || ViewBag.DownvotedTopics.Contains(t.Topic_id))
+                        {
+                            foreach (int id in ViewBag.UpvotedTopics)
+                            {
+                                if (id == t.Topic_id)
+                                {
+                                    <td><a href="~/Home/Upvote?topicId=@t.Topic_id"><img src="~/Images/upvote.png" /></a>&nbsp;@t.Upvote_number&emsp;<a href="~/Home/Downvote?topicId=@t.Topic_id"><img src="~/Images/downvoteWhite.png" /></a>&nbsp;@t.Downvote_number&emsp; <img src="~/Images/comment.png" />&nbsp;@t.Comment_number</td>
+                                    break;
+                                }
+                            }
+                            foreach (int id in ViewBag.DownvotedTopics)
+                            {
+                                if (id == t.Topic_id)
+                                {
+                                    <td><a href="~/Home/Upvote?topicId=@t.Topic_id"><img src="~/Images/upvoteWhite.png" /></a>&nbsp;@t.Upvote_number&emsp;<a href="~/Home/Downvote?topicId=@t.Topic_id"><img src="~/Images/downvote.png" /></a>&nbsp;@t.Downvote_number&emsp; <img src="~/Images/comment.png" />&nbsp;@t.Comment_number</td>
+                                }
+                            }
+                        }
+                        else
+                        {
+                            <td><a href="~/Home/Upvote?topicId=@t.Topic_id"><img src="~/Images/upvoteWhite.png" /></a>&nbsp;@t.Upvote_number&emsp;<a href="~/Home/Downvote?topicId=@t.Topic_id"><img src="~/Images/downvoteWhite.png" /></a>&nbsp;@t.Downvote_number&emsp; <img src="~/Images/comment.png" />&nbsp;@t.Comment_number</td>
+
+                        }
+                        <td><a href="~/Home/DeleteTopic?topicId=@t.Topic_id">Delete topic</a></td>
+                        @if (ViewBag.SubscribedTopics.Contains(t.Topic_id))
+                        {
+                            <td><a href="~/Home/Unsubscribe?topicId=@t.Topic_id">Unsubscribe</a></td>
+                        }
+                        else
+                        {
+                            <td><a href="~/Home/Subscribe?topicId=@t.Topic_id">Subscribe</a></td>
+                        }
                     </tr>
                 }
             </table>
@@ -41,61 +101,65 @@
                 @foreach (Common.Topic t in ViewBag.topics)
                 {
                     <tr>
-                        <td>@t.Headline</td>
-                        <td>@t.Content</td>
-                        <td>@t.Upvote_number</td>
-                        <td>@t.Downvote_number</td>
-                        <td>@t.Comment_number</td>
+                        <th colspan="3" class="headline"><a href="~/Forum/TopicPage?topicId=@t.Topic_id&showAddComment=false"> @t.Headline </a> </th>
+                    </tr>
+                    <tr>
+                        <td colspan="3"> @t.Content </td>
+                    </tr>
+                    if (t.Topic_image != "/Images/")
+                    {
+                        <tr>
+                            <td><img src="@t.Topic_image" class="topicImg" /></td>
+                        </tr>
+                    }
+                    <tr>
+                        @if (ViewBag.UpvotedTopics.Contains(t.Topic_id) || ViewBag.DownvotedTopics.Contains(t.Topic_id))
+                        {
+                            foreach (int id in ViewBag.UpvotedTopics)
+                            {
+                                if (id == t.Topic_id)
+                                {
+                                    <td><a href="~/Home/Upvote?topicId=@t.Topic_id"><img src="~/Images/upvote.png" /></a>&nbsp;@t.Upvote_number&emsp;<a href="~/Home/Downvote?topicId=@t.Topic_id"><img src="~/Images/downvoteWhite.png" /></a>&nbsp;@t.Downvote_number&emsp; <img src="~/Images/comment.png" />&nbsp;@t.Comment_number</td>
+                                    break;
+                                }
+                            }
+                            foreach (int id in ViewBag.DownvotedTopics)
+                            {
+                                if (id == t.Topic_id)
+                                {
+                                    <td><a href="~/Home/Upvote?topicId=@t.Topic_id"><img src="~/Images/upvoteWhite.png" /></a>&nbsp;@t.Upvote_number&emsp;<a href="~/Home/Downvote?topicId=@t.Topic_id"><img src="~/Images/downvote.png" /></a>&nbsp;@t.Downvote_number&emsp; <img src="~/Images/comment.png" />&nbsp;@t.Comment_number</td>
+                                }
+                            }
+                        }
+                        else
+                        {
+                            <td><a href="~/Home/Upvote?topicId=@t.Topic_id"><img src="~/Images/upvoteWhite.png" /></a>&nbsp;@t.Upvote_number&emsp;<a href="~/Home/Downvote?topicId=@t.Topic_id"><img src="~/Images/downvoteWhite.png" /></a>&nbsp;@t.Downvote_number&emsp; <img src="~/Images/comment.png" />&nbsp;@t.Comment_number</td>
 
-                        <td><a href="~/Home/UpvoteTheme?id_teme=@t.Topic_id">Upvote</a></td>
-                        <td><a href="~/Home/DownvoteTheme?id_teme=@t.Topic_id">Downvote</a></td>
-                        @*<td><a href="~/Home/ShowConcreteTheme?id_teme=@t.Id_teme">Prikazi temu</a></td>*@
+                        }
+                        <td></td>
+                        @if (ViewBag.SubscribedTopics.Contains(t.Topic_id))
+                        {
+                            <td><a href="~/Home/Unsubscribe?topicId=@t.Topic_id">Unsubscribe</a></td>
+                        }
+                        else
+                        {
+                            <td><a href="~/Home/Subscribe?topicId=@t.Topic_id">Subscribe</a></td>
+                        }
                     </tr>
                 }
             </table>
         }
     </div>
     <div class="user">
-        <a href="~/Login/Logoff">Izloguj se</a><br />
-        <h1 id="title">Welcome @ViewBag.User_name</h1>
-        <a href="~/Home/Index">Your topics</a>
-        <a href="~/Home/AllTopics">All topics</a>
-    </div>
-    <div class="row">
-
-        @*<p><a href="~/Home/ShowThemeMaker" class="btn btn-primary btn-md">Napravi temu &raquo;</a></p>*@
-
-        @*<h4>Pretraga</h4>
-            <form action="~/Home/Pretraga" method="get">
-                <table border="1">
-                    <tr>
-                        <td>Naslov:</td>
-                        <td><input type="text" name="naslov" /></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <input type="submit" value="Pretrazi" />
-                        </td>
-                    </tr>
-                </table>
-            </form>
-            <h4>Sortiranje</h4>
-            <form action="~/Home/Sortiranje" method="get">
-                <table border="1">
-                    <tr>
-                        <td>
-                            <input list="krit" name="kriterijum" />
-                            <datalist id="krit">
-                                <option value="RASTUCE"></option>
-                                <option value="OPADAJUCE"></option>
-                            </datalist>
-                        </td>
-                        <td colspan="2">
-                            <input type="submit" value="Sortiraj" />
-                        </td>
-                    </tr>
-                </table>
-            </form>*@
-
+        <table class="userTable">
+            <tr>
+                <td colspan="3" align="right" class="userTd"><a href="~/EditProfile/EditProfilePage">@ViewBag.User_name<img src="@ViewBag.UserPicture" class="userImage" /></a></td>
+            </tr>
+            <tr>
+                <td><a href="~/Home/Index">Your topics</a></td>
+                <td><a href="~/Home/AllTopics">All topics</a></td>
+                <td><a href="~/Login/Logoff">Izloguj se</a></td>
+            </tr>
+        </table>
     </div>
 </body>
