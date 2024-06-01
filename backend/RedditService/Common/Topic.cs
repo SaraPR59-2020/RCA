@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Microsoft.WindowsAzure.Storage.Table;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Common
 {
-    public class Topic
+    public class Topic : TableEntity
     {
         private int topic_id;
         private string headline;
@@ -35,5 +36,15 @@ namespace Common
         public int Downvote_number { get => downvote_number; set => downvote_number = value; }
         public int Comment_number { get => comment_number; set => comment_number = value; }
         public string Topic_image { get => topic_image; set => topic_image = value; }
+
+        public Topic(string indexNo)
+        {
+            PartitionKey = "Topic";
+            RowKey = indexNo;
+        }
+        public Topic()
+        {
+
+        }
     }
 }

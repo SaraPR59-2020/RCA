@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Microsoft.WindowsAzure.Storage.Table;
+using System;
 using System.Collections.Generic;
 
-public class User
+public class User : TableEntity
 {
     private int user_id;
     private string name;
@@ -45,4 +46,14 @@ public class User
     public List<int> UpvotedTopics = new List<int>();
     public List<int> DownvotedTopics = new List<int>();
     public List<int> SubscribedTopics = new List<int>();
+
+    public User(string indexNo)
+    {
+        PartitionKey = "User";
+        RowKey = indexNo;
+    }
+    public User()
+    {
+
+    }
 }

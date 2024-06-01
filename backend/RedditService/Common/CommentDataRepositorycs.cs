@@ -36,5 +36,21 @@ namespace Common
             TableOperation insertOperation = TableOperation.Insert(newComment);
             _cloudTable.Execute(insertOperation);
         }
+
+        public void RemoveComment(string id)
+        {
+            Comment comment = RetrieveAllCommentss().Where(s => s.RowKey == id).FirstOrDefault();
+
+            if (comment != null)
+            {
+                TableOperation deleteOperation = TableOperation.Delete(comment);
+                _cloudTable.Execute(deleteOperation);
+            }
+        }
+
+        public Comment GetComment(string index)
+        {
+            return RetrieveAllCommentss().Where(p => p.RowKey == index).FirstOrDefault();
+        }
     }
 }
