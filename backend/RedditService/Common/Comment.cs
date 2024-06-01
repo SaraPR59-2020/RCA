@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-public class Comment
+using Microsoft.WindowsAzure.Storage.Table;
+public class Comment : TableEntity
 {
     public int Id { get; set; }
     public string Text { get; set; }
@@ -14,6 +15,15 @@ public class Comment
         Text = text;
         TopicId = topicId;
         UserId = userId;
+    }
+    public Comment (string indexNo)
+    {
+        PartitionKey = "Comment";
+        RowKey = indexNo;
+    }
+    public Comment()
+    {
+
     }
 }
 

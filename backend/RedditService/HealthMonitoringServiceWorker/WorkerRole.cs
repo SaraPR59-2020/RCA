@@ -9,7 +9,8 @@ using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.Diagnostics;
 using Microsoft.WindowsAzure.ServiceRuntime;
 using Microsoft.WindowsAzure.Storage;
-
+using System.ServiceModel;
+using Common;
 using System.Timers;
 using Microsoft.Extensions.Logging;
 using System.Net.Http;
@@ -42,6 +43,7 @@ namespace HealthMonitoringServiceWorker
             bool result = base.OnStart();
             Trace.TraceInformation("HealthMonitoringServiceWorker has been started");
             return result;
+
         }
 
         public override void OnStop()
@@ -53,13 +55,24 @@ namespace HealthMonitoringServiceWorker
             Trace.TraceInformation("HealthMonitoringServiceWorker has stopped");
         }
 
+        //private IHealthMonitoring proxy;
+        //public void Connect()
+        //{
+        //    var binding = new NetTcpBinding();
+        //    ChannelFactory<IHealthMonitoring> factory = new
+        //    ChannelFactory<IHealthMonitoring>(binding, new
+        //    EndpointAddress("net.tcp://localhost:6000/HealthMonitoring"));
+        //    proxy = factory.CreateChannel();
+        //}
+
         private async Task RunAsync(CancellationToken cancellationToken)
         {
             System.Timers.Timer timer = new System.Timers.Timer();
             timer.Interval = 5000; // 5 sekundi
             timer.Elapsed += async (sender, e) =>
             {
-                //await CheckHealthAsync();   //smtp host wasnt found ili tako nesto greska 
+                //proxy.IAmAlive();
+                //CheckHealthAsync();
             };
             timer.Start();
             await Task.Delay(Timeout.Infinite, cancellationToken);

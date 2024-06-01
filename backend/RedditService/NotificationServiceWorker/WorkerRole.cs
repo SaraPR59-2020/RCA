@@ -5,15 +5,12 @@ using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.WindowsAzure;
-using Microsoft.WindowsAzure.Diagnostics;
 using Microsoft.WindowsAzure.ServiceRuntime;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;
 using Microsoft.WindowsAzure.Storage.Table;
 using SendGrid;
 using SendGrid.Helpers.Mail;
-using Common;
 
 namespace NotificationServiceWorker
 {
@@ -22,8 +19,9 @@ namespace NotificationServiceWorker
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly ManualResetEvent runCompleteEvent = new ManualResetEvent(false);
         private CloudQueue _queue;
-        private CloudTable _table;
         protected CloudTable notificationTable;
+        private CloudTable _cloudTable;
+        private CloudStorageAccount _cloudStorageAccount;
         private string _sendGridApiKey;
 
         public override void Run()
@@ -68,20 +66,17 @@ namespace NotificationServiceWorker
             ServicePointManager.DefaultConnectionLimit = 12;
 
             bool result = base.OnStart();
+            _cloudStorageAccount =
+            CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("DataConnectionString"));
+            CloudTableClient tableClient = new CloudTableClient(new
+            Uri(_cloudStorageAccount.TableEndpoint.AbsoluteUri), _cloudStorageAccount.Credentials);
+            _cloudTable = tableClient.GetTableReference("Subscriptions");
+            _cloudTable.CreateIfNotExists();
 
-            //CloudStorageAccount storageAccount = CloudStorageAccount.Parse(RoleEnvironment.GetConfigurationSettingValue("StorageConnectionString"));
-            //CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
-            //_queue = queueClient.GetQueueReference("notifications");
-            //_queue.CreateIfNotExists();
+            notificationTable = tableClient.GetTableReference("NotificationTable");
+            notificationTable.CreateIfNotExists();
 
-            //CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
-            //_table = tableClient.GetTableReference("Subscriptions");
-            //_table.CreateIfNotExists();
-
-            //notificationTable = tableClient.GetTableReference("NotificationTable");
-            //notificationTable.CreateIfNotExists();
-
-            //_sendGridApiKey = RoleEnvironment.GetConfigurationSettingValue("SendGridApiKey");
+            _sendGridApiKey = RoleEnvironment.GetConfigurationSettingValue("SendGridApiKey");
 
             Trace.TraceInformation("NotificationServiceWorker has been started");
 
@@ -114,7 +109,7 @@ namespace NotificationServiceWorker
                         string commentId = message.AsString;
 
                         Comment comment = GetCommentById(commentId);
-                        List<string> subscribersEmails = GetSubscribersEmails(comment.TopicId);
+                        List<string> subscribersEmails = GetSubscribersEmails(comment.TopicId.ToString());
 
                         await SendEmailsAsync(subscribersEmails, comment.Text);
 
@@ -137,7 +132,11 @@ namespace NotificationServiceWorker
 
         private Comment GetCommentById(string commentId)
         {
-            return new Comment { Id = commentId, Text = "Example comment text", TopicId = "1" };
+            int id = 0;
+            if (int.TryParse(commentId, out id))
+                return new Comment(id, "Example comment text",  1, 1 );
+            else
+                return null;
         }
 
         private List<string> GetSubscribersEmails(string topicId)
@@ -185,7 +184,7 @@ namespace NotificationServiceWorker
             };
 
             TableOperation insertOperation = TableOperation.Insert(log);
-            _table.Execute(insertOperation);
+            _cloudTable.Execute(insertOperation);
         }
     }
 }

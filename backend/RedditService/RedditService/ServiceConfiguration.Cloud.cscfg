@@ -3,28 +3,25 @@
   <Role name="RedditServiceWeb">
     <Instances count="1" />
     <ConfigurationSettings>
-      <Setting name="DataConnectionString" value="UseDevelopmentStorage=true" />
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="DataConnectionString" value="UseDevelopmentStorage=true" />
     </ConfigurationSettings>
   </Role>
   <Role name="NotificationServiceWorker">
     <Instances count="3" />
     <ConfigurationSettings>
-      <Setting name="DataConnectionString" value="UseDevelopmentStorage=true" />
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
     </ConfigurationSettings>
   </Role>
   <Role name="HealthMonitoringServiceWorker">
     <Instances count="2" />
     <ConfigurationSettings>
-      <Setting name="DataConnectionString" value="UseDevelopmentStorage=true" />
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
     </ConfigurationSettings>
   </Role>
   <Role name="HealthStatusServiceWeb">
     <Instances count="1" />
     <ConfigurationSettings>
-      <Setting name="DataConnectionString" value="UseDevelopmentStorage=true" />
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
     </ConfigurationSettings>
   </Role>

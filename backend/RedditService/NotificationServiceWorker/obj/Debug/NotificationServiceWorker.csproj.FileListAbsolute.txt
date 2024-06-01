@@ -130,3 +130,5 @@ C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\o
 C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.csproj.CopyComplete
 C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.dll
 C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.pdb
+C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.csprojAssemblyReference.cache
+C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.csproj.CoreCompileInputs.cache
