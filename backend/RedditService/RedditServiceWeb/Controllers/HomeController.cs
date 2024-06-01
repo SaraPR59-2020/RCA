@@ -10,19 +10,19 @@ namespace RedditServiceWeb.Controllers
 {
     public class HomeController : Controller
     {
+        UserDataRepository userDataRepository = new UserDataRepository();
+        TopicDataRepository topicDataRepository = new TopicDataRepository();
+        CommentDataRepositorycs commentDataRepository = new CommentDataRepositorycs();
         public ActionResult Index()
         {
-            Dictionary<int, User> users = (Dictionary<int, User>)HttpContext.Application["users"];
-            Dictionary<int, Topic> topics = (Dictionary<int, Topic>)HttpContext.Application["topics"];
-
             int current_user_id = (int)HttpContext.Session["current_user_id"];
-            User current_user = users[current_user_id];
+            User current_user = userDataRepository.GetUser(current_user_id.ToString());
             List<Topic> userTopics = new List<Topic>();
             List<int> upvotedTopics = new List<int>();
             List<int> downvotedTopics = new List<int>();
             List<int> subscribedTopics = new List<int>();
 
-            foreach (Topic t in topics.Values)
+            foreach (Topic t in topicDataRepository.RetrieveAllTopics())
             {
                 if (t.User == current_user_id)
                 {
@@ -54,7 +54,7 @@ namespace RedditServiceWeb.Controllers
             ViewBag.SubscribedTopics = subscribedTopics;
 
             //uzeti sve iz storagea 
-            ViewBag.topics = topics.Values;
+            ViewBag.topics = topicDataRepository.RetrieveAllTopics();
             if (ViewBag.ShowTopics == null)
             {
                 ViewBag.ShowTopics = "Your topics";
@@ -65,18 +65,16 @@ namespace RedditServiceWeb.Controllers
         [HttpPost]
         public ActionResult Search(string topicPage, string headline)
         {
-            Dictionary<int, User> users = (Dictionary<int, User>)HttpContext.Application["users"];
-            Dictionary<int, Topic> topics = (Dictionary<int, Topic>)HttpContext.Application["topics"];
             List<Topic> searchTopics = new List<Topic>();
 
             int current_user_id = (int)HttpContext.Session["current_user_id"];
-            User current_user = users[current_user_id];
+            User current_user = userDataRepository.RetrieveAllUsers().Where(u => u.User_id == current_user_id).First();
             List<Topic> userTopics = new List<Topic>();
             List<int> upvotedTopics = new List<int>();
             List<int> downvotedTopics = new List<int>();
             List<int> subscribedTopics = new List<int>();
 
-            foreach (Topic t in topics.Values)
+            foreach (Topic t in topicDataRepository.RetrieveAllTopics())
             {
                 if (t.User == current_user_id)
                 {
@@ -109,7 +107,7 @@ namespace RedditServiceWeb.Controllers
 
             if (topicPage == "Your topics")
             {
-                foreach (Topic t in topics.Values)
+                foreach (Topic t in topicDataRepository.RetrieveAllTopics())
                 {
                     if (t.Headline.Contains(headline) && t.User == current_user_id)
                     {
@@ -122,7 +120,7 @@ namespace RedditServiceWeb.Controllers
             }
             else if (topicPage == "All topics")
             {
-                foreach (Topic t in topics.Values)
+                foreach (Topic t in topicDataRepository.RetrieveAllTopics())
                 {
                     if (t.Headline.Contains(headline))
                     {
@@ -140,18 +138,16 @@ namespace RedditServiceWeb.Controllers
         [HttpPost]
         public ActionResult Sort(string topicPage, string sortType)
         {
-            Dictionary<int, User> users = (Dictionary<int, User>)HttpContext.Application["users"];
-            Dictionary<int, Topic> topics = (Dictionary<int, Topic>)HttpContext.Application["topics"];
             List<Topic> sortTopics = new List<Topic>();
 
             int current_user_id = (int)HttpContext.Session["current_user_id"];
-            User current_user = users[current_user_id];
+            User current_user = userDataRepository.GetUser(current_user_id.ToString());
             List<Topic> userTopics = new List<Topic>();
             List<int> upvotedTopics = new List<int>();
             List<int> downvotedTopics = new List<int>();
             List<int> subscribedTopics = new List<int>();
 
-            foreach (Topic t in topics.Values)
+            foreach (Topic t in topicDataRepository.RetrieveAllTopics())
             {
                 if (t.User == current_user_id)
                 {
@@ -184,7 +180,7 @@ namespace RedditServiceWeb.Controllers
 
             if (topicPage == "Your topics")
             {
-                foreach (Topic t in topics.Values)
+                foreach (Topic t in topicDataRepository.RetrieveAllTopics())
                 {
                     if (t.User == current_user_id)
                     {
@@ -208,13 +204,13 @@ namespace RedditServiceWeb.Controllers
             {
                 if (sortType == "A-Z")
                 {
-                    ViewBag.topics = topics.Values.OrderBy(o => o.Headline).ToList();
+                    ViewBag.topics = topicDataRepository.RetrieveAllTopics().OrderBy(o => o.Headline).ToList();
                     ViewBag.ShowTopics = "All topics";
                     return View("Index");
                 }
                 else if (sortType == "Z-A")
                 {
-                    ViewBag.topics = topics.Values.OrderByDescending(o => o.Headline).ToList();
+                    ViewBag.topics = topicDataRepository.RetrieveAllTopics().OrderByDescending(o => o.Headline).ToList();
                     ViewBag.ShowTopics = "All topics";
                     return View("Index");
                 }
@@ -225,18 +221,16 @@ namespace RedditServiceWeb.Controllers
 
         public ActionResult AllTopics()
         {
-            Dictionary<int, User> users = (Dictionary<int, User>)HttpContext.Application["users"];
-            Dictionary<int, Topic> topics = (Dictionary<int, Topic>)HttpContext.Application["topics"];
             int current_user_id = (int)HttpContext.Session["current_user_id"];
-            User current_user = users[current_user_id];
+            User current_user = userDataRepository.RetrieveAllUsers().Where(u => u.User_id == current_user_id).First();
             ViewBag.ShowTopics = "All topics";
-            ViewBag.topics = topics.Values;
+            ViewBag.topics = topicDataRepository.RetrieveAllTopics();
 
             List<int> upvotedTopics = new List<int>();
             List<int> downvotedTopics = new List<int>();
             List<int> subscribedTopics = new List<int>();
 
-            foreach (Topic t in topics.Values)
+            foreach (Topic t in topicDataRepository.RetrieveAllTopics())
             {
                 if (current_user.UpvotedTopics.Contains(t.Topic_id))
                 {
@@ -267,75 +261,82 @@ namespace RedditServiceWeb.Controllers
 
         public ActionResult Upvote(int topicId)
         {
-            Dictionary<int, User> users = (Dictionary<int, User>)HttpContext.Application["users"];
-            Dictionary<int, Topic> topics = (Dictionary<int, Topic>)HttpContext.Application["topics"];
             int current_user_id = (int)HttpContext.Session["current_user_id"];
+            Topic topic = topicDataRepository.GetTopic(topicId.ToString());
+            User user = userDataRepository.GetUser(current_user_id.ToString());
 
-            if (users.ElementAt(current_user_id).Value.UpvotedTopics.Contains(topicId))
+            if (user.UpvotedTopics.Contains(topicId))
             {
-                users.ElementAt(current_user_id).Value.UpvotedTopics.Remove(topicId);
-                topics.ElementAt(topicId).Value.Upvote_number--;
+                user.UpvotedTopics.Remove(topicId);
+                topic.Upvote_number--;
+                userDataRepository.UpdateUser(user);
+                topicDataRepository.UpdateTopic(topic);
                 return RedirectToAction("Index", "Home");
             }
 
-            if (users.ElementAt(current_user_id).Value.DownvotedTopics.Contains(topicId))
+            if (user.DownvotedTopics.Contains(topicId))
             {
-                users.ElementAt(current_user_id).Value.DownvotedTopics.Remove(topicId);
-                topics.ElementAt(topicId).Value.Downvote_number--;
+                user.DownvotedTopics.Remove(topicId);
+                topic.Downvote_number--;
             }
 
-            users.ElementAt(current_user_id).Value.UpvotedTopics.Add(topicId);
-            topics.ElementAt(topicId).Value.Upvote_number++;
+            user.UpvotedTopics.Add(topicId);
+            topic.Upvote_number++;
+            userDataRepository.UpdateUser(user);
+            topicDataRepository.UpdateTopic(topic);
 
             return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Downvote(int topicId)
         {
-            Dictionary<int, User> users = (Dictionary<int, User>)HttpContext.Application["users"];
-            Dictionary<int, Topic> topics = (Dictionary<int, Topic>)HttpContext.Application["topics"];
             int current_user_id = (int)HttpContext.Session["current_user_id"];
+            Topic topic = topicDataRepository.GetTopic(topicId.ToString());
+            User user = userDataRepository.GetUser(current_user_id.ToString());
 
-            if (users.ElementAt(current_user_id).Value.DownvotedTopics.Contains(topicId))
+            if (user.DownvotedTopics.Contains(topicId))
             {
-                users.ElementAt(current_user_id).Value.DownvotedTopics.Remove(topicId);
-                topics.ElementAt(topicId).Value.Downvote_number--;
+                user.DownvotedTopics.Remove(topicId);
+                topic.Downvote_number--;
+                userDataRepository.UpdateUser(user);
+                topicDataRepository.UpdateTopic(topic);
                 return RedirectToAction("Index", "Home");
             }
 
-            if (users.ElementAt(current_user_id).Value.UpvotedTopics.Contains(topicId))
+            if (user.UpvotedTopics.Contains(topicId))
             {
-                users.ElementAt(current_user_id).Value.UpvotedTopics.Remove(topicId);
-                topics.ElementAt(topicId).Value.Upvote_number--;
+                user.UpvotedTopics.Remove(topicId);
+                topic.Upvote_number--;
             }
 
-            users.ElementAt(current_user_id).Value.DownvotedTopics.Add(topicId);
-            topics.ElementAt(topicId).Value.Downvote_number++;
+            user.DownvotedTopics.Add(topicId);
+            topic.Downvote_number++;
+            userDataRepository.UpdateUser(user);
+            topicDataRepository.UpdateTopic(topic);
 
             return RedirectToAction("Index", "Home");
         }
 
         public ActionResult DeleteTopic(int topicId)
         {
-            Dictionary<int, User> users = (Dictionary<int, User>)HttpContext.Application["users"];
-            Dictionary<int, Topic> topics = (Dictionary<int, Topic>)HttpContext.Application["topics"];
-            Dictionary<int, Comment> comments = (Dictionary<int, Comment>)HttpContext.Application["comments"];
             int current_user_id = (int)HttpContext.Session["current_user_id"];
 
-            foreach (User u in users.Values)
+            foreach (User u in userDataRepository.RetrieveAllUsers())
             {
                 if (u.UpvotedTopics.Contains(topicId))
                 {
                     u.UpvotedTopics.Remove(topicId);
+                    userDataRepository.UpdateUser(u);
                 }
                 if (u.DownvotedTopics.Contains(topicId))
                 {
                     u.DownvotedTopics.Remove(topicId);
+                    userDataRepository.UpdateUser(u);
                 }
             }
 
             List<int> commentsToDelete = new List<int>();
-            foreach (Comment c in comments.Values)
+            foreach (Comment c in commentDataRepository.RetrieveAllCommentss())
             {
                 if (c.TopicId == topicId)
                 {
@@ -345,29 +346,31 @@ namespace RedditServiceWeb.Controllers
 
             foreach (int c in commentsToDelete)
             {
-                comments.Remove(c);
+                commentDataRepository.RemoveComment(c.ToString());
             }
 
-            topics.Remove(topicId);
+            topicDataRepository.RemoveTopic(topicId.ToString());
             return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Subscribe(int topicId)
         {
-            Dictionary<int, User> users = (Dictionary<int, User>)HttpContext.Application["users"];
             int current_user_id = (int)HttpContext.Session["current_user_id"];
+            User user = userDataRepository.GetUser(current_user_id.ToString());
 
-            users[current_user_id].SubscribedTopics.Add(topicId);
+            user.SubscribedTopics.Add(topicId);
+            userDataRepository.UpdateUser(user);
 
             return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Unsubscribe(int topicId)
         {
-            Dictionary<int, User> users = (Dictionary<int, User>)HttpContext.Application["users"];
             int current_user_id = (int)HttpContext.Session["current_user_id"];
+            User user = userDataRepository.GetUser(current_user_id.ToString());
 
-            users[current_user_id].SubscribedTopics.Remove(topicId);
+            user.SubscribedTopics.Remove(topicId);
+            userDataRepository.UpdateUser(user);
 
             return RedirectToAction("Index", "Home");
         }

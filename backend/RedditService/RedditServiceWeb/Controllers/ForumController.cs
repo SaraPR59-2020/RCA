@@ -13,6 +13,9 @@ namespace RedditServiceWeb.Controllers
     public class ForumController : Controller
     {
         private readonly RedditService _redditService;
+        UserDataRepository userDataRepository = new UserDataRepository();
+        TopicDataRepository topicDataRepository = new TopicDataRepository();
+        CommentDataRepositorycs commentDataRepository = new CommentDataRepositorycs();
 
         public ForumController()
         {
@@ -44,20 +47,16 @@ namespace RedditServiceWeb.Controllers
 
         public ActionResult TopicPage(int topicId, bool showAddComment)
         {
-            Dictionary<int, User> users = (Dictionary<int, User>)HttpContext.Application["users"];
-            Dictionary<int, Topic> topics = (Dictionary<int, Topic>)HttpContext.Application["topics"];
-            Dictionary<int, Comment> comments = (Dictionary<int, Comment>)HttpContext.Application["comments"];
-
             int current_user_id = (int)HttpContext.Session["current_user_id"];
-            ViewBag.CurrentUser = users.ElementAt(current_user_id).Value;
+            ViewBag.CurrentUser = userDataRepository.GetUser(current_user_id.ToString());
 
-            ViewBag.Topic = topics.ElementAt(topicId).Value;
+            ViewBag.Topic = topicDataRepository.GetTopic(topicId.ToString());
 
-            if (users[current_user_id].UpvotedTopics.Contains(topicId))
+            if (userDataRepository.GetUser(current_user_id.ToString()).UpvotedTopics.Contains(topicId))
             {
                 ViewBag.VoteType = "upvoted";
             }
-            else if (users[current_user_id].DownvotedTopics.Contains(topicId))
+            else if (userDataRepository.GetUser(current_user_id.ToString()).DownvotedTopics.Contains(topicId))
             {
                 ViewBag.VoteType = "downvoted";
             }
@@ -69,7 +68,7 @@ namespace RedditServiceWeb.Controllers
             List<Comment> topicComments = new List<Comment>();
             List<Comment> userComments = new List<Comment>();
 
-            foreach (Comment c in comments.Values)
+            foreach (Comment c in commentDataRepository.RetrieveAllCommentss())
             {
                 if (c.TopicId == topicId)
                 {
@@ -86,7 +85,7 @@ namespace RedditServiceWeb.Controllers
 
             ViewBag.TopicComments = topicComments;
             ViewBag.UserComments = userComments;
-            ViewBag.Users = users.Values;
+            ViewBag.Users = userDataRepository.RetrieveAllUsers();
 
             if (showAddComment == true)
             {
@@ -102,50 +101,58 @@ namespace RedditServiceWeb.Controllers
 
         public ActionResult Upvote(int topicId)
         {
-            Dictionary<int, User> users = (Dictionary<int, User>)HttpContext.Application["users"];
-            Dictionary<int, Topic> topics = (Dictionary<int, Topic>)HttpContext.Application["topics"];
             int current_user_id = (int)HttpContext.Session["current_user_id"];
+            Topic topic = topicDataRepository.GetTopic(topicId.ToString());
+            User user = userDataRepository.GetUser(current_user_id.ToString());
 
-            if (users.ElementAt(current_user_id).Value.UpvotedTopics.Contains(topicId))
+            if (user.UpvotedTopics.Contains(topicId))
             {
-                users.ElementAt(current_user_id).Value.UpvotedTopics.Remove(topicId);
-                topics.ElementAt(topicId).Value.Upvote_number--;
+                user.UpvotedTopics.Remove(topicId);
+                topic.Upvote_number--;
+                userDataRepository.UpdateUser(user);
+                topicDataRepository.UpdateTopic(topic);
                 return RedirectToAction("TopicPage", "Forum", new { topicId = topicId, showAddComment = false });
             }
 
-            if (users.ElementAt(current_user_id).Value.DownvotedTopics.Contains(topicId))
+            if (user.DownvotedTopics.Contains(topicId))
             {
-                users.ElementAt(current_user_id).Value.DownvotedTopics.Remove(topicId);
-                topics.ElementAt(topicId).Value.Downvote_number--;
+                user.DownvotedTopics.Remove(topicId);
+                topic.Downvote_number--;
             }
 
-            users.ElementAt(current_user_id).Value.UpvotedTopics.Add(topicId);
-            topics.ElementAt(topicId).Value.Upvote_number++;
+            user.UpvotedTopics.Add(topicId);
+            topic.Upvote_number++;
+            userDataRepository.UpdateUser(user);
+            topicDataRepository.UpdateTopic(topic);
 
             return RedirectToAction("TopicPage", "Forum", new { topicId = topicId, showAddComment = false });
         }
 
         public ActionResult Downvote(int topicId)
         {
-            Dictionary<int, User> users = (Dictionary<int, User>)HttpContext.Application["users"];
-            Dictionary<int, Topic> topics = (Dictionary<int, Topic>)HttpContext.Application["topics"];
             int current_user_id = (int)HttpContext.Session["current_user_id"];
+            Topic topic = topicDataRepository.GetTopic(topicId.ToString());
+            User user = userDataRepository.GetUser(current_user_id.ToString());
 
-            if (users.ElementAt(current_user_id).Value.DownvotedTopics.Contains(topicId))
+            if (user.DownvotedTopics.Contains(topicId))
             {
-                users.ElementAt(current_user_id).Value.DownvotedTopics.Remove(topicId);
-                topics.ElementAt(topicId).Value.Downvote_number--;
+                user.DownvotedTopics.Remove(topicId);
+                topic.Downvote_number--;
+                userDataRepository.UpdateUser(user);
+                topicDataRepository.UpdateTopic(topic);
                 return RedirectToAction("TopicPage", "Forum", new { topicId = topicId });
             }
 
-            if (users.ElementAt(current_user_id).Value.UpvotedTopics.Contains(topicId))
+            if (user.UpvotedTopics.Contains(topicId))
             {
-                users.ElementAt(current_user_id).Value.UpvotedTopics.Remove(topicId);
-                topics.ElementAt(topicId).Value.Upvote_number--;
+                user.UpvotedTopics.Remove(topicId);
+                topic.Upvote_number--;
             }
 
-            users.ElementAt(current_user_id).Value.DownvotedTopics.Add(topicId);
-            topics.ElementAt(topicId).Value.Downvote_number++;
+            user.DownvotedTopics.Add(topicId);
+            topic.Downvote_number++;
+            userDataRepository.UpdateUser(user);
+            topicDataRepository.UpdateTopic(topic);
 
             return RedirectToAction("TopicPage", "Forum", new { topicId = topicId, showAddComment = false });
         }
@@ -158,27 +165,26 @@ namespace RedditServiceWeb.Controllers
 
         public ActionResult AddComment(int topicId, string text)
         {
-            Dictionary<int, Comment> comments = (Dictionary<int, Comment>)HttpContext.Application["comments"];
-            Dictionary<int, Topic> topics = (Dictionary<int, Topic>)HttpContext.Application["topics"];
-
-
             int current_user_id = (int)HttpContext.Session["current_user_id"];
 
-            int commentId = comments.Count;
+            int commentId = commentDataRepository.RetrieveAllCommentss().ToList().Count;
 
-            comments.Add(commentId, new Comment(commentId, text, topicId, current_user_id));
-            topics[topicId].Comment_number++;
+            Comment newComment = new Comment(commentId.ToString()) { Id = commentId, Text = text, TopicId = topicId, UserId = current_user_id };
+            commentDataRepository.AddComment(newComment);
+            Topic topic = topicDataRepository.GetTopic(topicId.ToString());
+            topic.Comment_number++;
+            topicDataRepository.UpdateTopic(topic);
 
             return RedirectToAction("TopicPage", "Forum", new { topicId = topicId, showAddComment = false });
         }
 
         public ActionResult DeleteComment(int commentId, int topicId)
         {
-            Dictionary<int, Topic> topics = (Dictionary<int, Topic>)HttpContext.Application["topics"];
-            Dictionary<int, Comment> comments = (Dictionary<int, Comment>)HttpContext.Application["comments"];
-
-            topics[comments[commentId].TopicId].Comment_number--;
-            comments.Remove(commentId);
+            topicDataRepository.GetTopic(commentDataRepository.GetComment(commentId.ToString()).TopicId.ToString()).Comment_number--;
+            commentDataRepository.RemoveComment(commentId.ToString());
+            Topic topic = topicDataRepository.GetTopic(topicId.ToString());
+            topic.Comment_number--;
+            topicDataRepository.UpdateTopic(topic);
 
             return RedirectToAction("TopicPage", "Forum", new { topicId = topicId, showAddComment = false });
         }

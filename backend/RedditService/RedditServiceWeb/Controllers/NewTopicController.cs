@@ -11,6 +11,7 @@ namespace RedditServiceWeb.Controllers
 {
     public class NewTopicController : Controller
     {
+        TopicDataRepository topicDataRepository = new TopicDataRepository();
         // GET: NewTopic
         public ActionResult AddNewTopicPage()
         {
@@ -20,9 +21,8 @@ namespace RedditServiceWeb.Controllers
         [HttpPost]
         public ActionResult AddNewTopic(string Headline, string Content, HttpPostedFileBase Image)
         {
-            Dictionary<int, Topic> topics = (Dictionary<int, Topic>)HttpContext.Application["topics"];
             int current_user_id = (int)HttpContext.Session["current_user_id"];
-            int new_topic_id = topics.Count;
+            int new_topic_id = topicDataRepository.RetrieveAllTopics().ToList().Count;
             string fileName = "";
             string path = "";
             try
@@ -34,9 +34,8 @@ namespace RedditServiceWeb.Controllers
                     path = Path.Combine(Server.MapPath("~/Images/"), fileName);
                     Image.SaveAs(path);
                 }
-                Topic newTopic = new Topic(new_topic_id, Headline, Content, current_user_id, 0, 0, 0, $"/Images/{fileName}");
-                topics.Add(new_topic_id, newTopic);
-                HttpContext.Application["topics"] = topics;
+                Topic newTopic = new Topic(new_topic_id.ToString()) { Topic_id = new_topic_id, Headline = Headline, Content = Content, User = current_user_id, Upvote_number = 0, Downvote_number = 0, Comment_number = 0, Topic_image = $"/Images/{fileName}" };
+                topicDataRepository.AddTopic(newTopic);
                 Trace.WriteLine("New topic successfully added.");
                 return RedirectToAction("Index", "Home");
             }
