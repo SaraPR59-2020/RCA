@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.ServiceRuntime;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;
@@ -76,7 +77,7 @@ namespace NotificationServiceWorker
             notificationTable = tableClient.GetTableReference("NotificationTable");
             notificationTable.CreateIfNotExists();
 
-            _sendGridApiKey = RoleEnvironment.GetConfigurationSettingValue("SendGridApiKey");
+            //_sendGridApiKey = RoleEnvironment.GetConfigurationSettingValue("SendGridApiKey");
 
             Trace.TraceInformation("NotificationServiceWorker has been started");
 
