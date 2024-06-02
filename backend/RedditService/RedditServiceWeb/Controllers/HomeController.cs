@@ -13,32 +13,21 @@ namespace RedditServiceWeb.Controllers
         UserDataRepository userDataRepository = new UserDataRepository();
         TopicDataRepository topicDataRepository = new TopicDataRepository();
         CommentDataRepositorycs commentDataRepository = new CommentDataRepositorycs();
+        UpvoteDataRepository upvoteDataRepository = new UpvoteDataRepository();
+        DownvoteDataRepository downvoteDataRepository = new DownvoteDataRepository();
+        SubscriptionDataRepository subscriptionDataRepository = new SubscriptionDataRepository();
+
         public ActionResult Index()
         {
             int current_user_id = (int)HttpContext.Session["current_user_id"];
             User current_user = userDataRepository.GetUser(current_user_id.ToString());
             List<Topic> userTopics = new List<Topic>();
-            List<int> upvotedTopics = new List<int>();
-            List<int> downvotedTopics = new List<int>();
-            List<int> subscribedTopics = new List<int>();
 
             foreach (Topic t in topicDataRepository.RetrieveAllTopics())
             {
                 if (t.User == current_user_id)
                 {
                     userTopics.Add(t);
-                }
-                if (current_user.UpvotedTopics.Contains(t.Topic_id))
-                {
-                    upvotedTopics.Add(t.Topic_id);
-                }
-                if (current_user.DownvotedTopics.Contains(t.Topic_id))
-                {
-                    downvotedTopics.Add(t.Topic_id);
-                }
-                if (current_user.SubscribedTopics.Contains(t.Topic_id))
-                {
-                    subscribedTopics.Add(t.Topic_id);
                 }
             }
             //one kojima on pripada uzeti iz storage
@@ -47,11 +36,11 @@ namespace RedditServiceWeb.Controllers
             ViewBag.User_name = current_user.Name;
             ViewBag.UserPicture = current_user.Image;
             // upvoted topics
-            ViewBag.UpvotedTopics = upvotedTopics;
+            ViewBag.UpvotedTopics = upvoteDataRepository.GetTopicByUser(current_user_id);
             // downvoted topics
-            ViewBag.DownvotedTopics = downvotedTopics;
+            ViewBag.DownvotedTopics = downvoteDataRepository.GetTopicByUser(current_user_id);
             // subscribed topics
-            ViewBag.SubscribedTopics = subscribedTopics;
+            ViewBag.SubscribedTopics = subscriptionDataRepository.GetTopicByUser(current_user_id);
 
             //uzeti sve iz storagea 
             ViewBag.topics = topicDataRepository.RetrieveAllTopics();
@@ -70,27 +59,12 @@ namespace RedditServiceWeb.Controllers
             int current_user_id = (int)HttpContext.Session["current_user_id"];
             User current_user = userDataRepository.RetrieveAllUsers().Where(u => u.User_id == current_user_id).First();
             List<Topic> userTopics = new List<Topic>();
-            List<int> upvotedTopics = new List<int>();
-            List<int> downvotedTopics = new List<int>();
-            List<int> subscribedTopics = new List<int>();
 
             foreach (Topic t in topicDataRepository.RetrieveAllTopics())
             {
                 if (t.User == current_user_id)
                 {
                     userTopics.Add(t);
-                }
-                if (current_user.UpvotedTopics.Contains(t.Topic_id))
-                {
-                    upvotedTopics.Add(t.Topic_id);
-                }
-                if (current_user.DownvotedTopics.Contains(t.Topic_id))
-                {
-                    downvotedTopics.Add(t.Topic_id);
-                }
-                if (current_user.SubscribedTopics.Contains(t.Topic_id))
-                {
-                    subscribedTopics.Add(t.Topic_id);
                 }
             }
             //one kojima on pripada uzeti iz storage
@@ -99,11 +73,11 @@ namespace RedditServiceWeb.Controllers
             ViewBag.User_name = current_user.Name;
             ViewBag.UserPicture = current_user.Image;
             // upvoted topics
-            ViewBag.UpvotedTopics = upvotedTopics;
+            ViewBag.UpvotedTopics = upvoteDataRepository.GetTopicByUser(current_user_id);
             // downvoted topics
-            ViewBag.DownvotedTopics = downvotedTopics;
+            ViewBag.DownvotedTopics = downvoteDataRepository.GetTopicByUser(current_user_id);
             // subscribed topics
-            ViewBag.SubscribedTopics = subscribedTopics;
+            ViewBag.SubscribedTopics = subscriptionDataRepository.GetTopicByUser(current_user_id);
 
             if (topicPage == "Your topics")
             {
@@ -143,27 +117,12 @@ namespace RedditServiceWeb.Controllers
             int current_user_id = (int)HttpContext.Session["current_user_id"];
             User current_user = userDataRepository.GetUser(current_user_id.ToString());
             List<Topic> userTopics = new List<Topic>();
-            List<int> upvotedTopics = new List<int>();
-            List<int> downvotedTopics = new List<int>();
-            List<int> subscribedTopics = new List<int>();
 
             foreach (Topic t in topicDataRepository.RetrieveAllTopics())
             {
                 if (t.User == current_user_id)
                 {
                     userTopics.Add(t);
-                }
-                if (current_user.UpvotedTopics.Contains(t.Topic_id))
-                {
-                    upvotedTopics.Add(t.Topic_id);
-                }
-                if (current_user.DownvotedTopics.Contains(t.Topic_id))
-                {
-                    downvotedTopics.Add(t.Topic_id);
-                }
-                if (current_user.SubscribedTopics.Contains(t.Topic_id))
-                {
-                    subscribedTopics.Add(t.Topic_id);
                 }
             }
             //one kojima on pripada uzeti iz storage
@@ -172,11 +131,11 @@ namespace RedditServiceWeb.Controllers
             ViewBag.User_name = current_user.Name;
             ViewBag.UserPicture = current_user.Image;
             // upvoted topics
-            ViewBag.UpvotedTopics = upvotedTopics;
+            ViewBag.UpvotedTopics = upvoteDataRepository.GetTopicByUser(current_user_id);
             // downvoted topics
-            ViewBag.DownvotedTopics = downvotedTopics;
+            ViewBag.DownvotedTopics = downvoteDataRepository.GetTopicByUser(current_user_id);
             // subscribed topics
-            ViewBag.SubscribedTopics = subscribedTopics;
+            ViewBag.SubscribedTopics = subscriptionDataRepository.GetTopicByUser(current_user_id);
 
             if (topicPage == "Your topics")
             {
@@ -226,35 +185,15 @@ namespace RedditServiceWeb.Controllers
             ViewBag.ShowTopics = "All topics";
             ViewBag.topics = topicDataRepository.RetrieveAllTopics();
 
-            List<int> upvotedTopics = new List<int>();
-            List<int> downvotedTopics = new List<int>();
-            List<int> subscribedTopics = new List<int>();
-
-            foreach (Topic t in topicDataRepository.RetrieveAllTopics())
-            {
-                if (current_user.UpvotedTopics.Contains(t.Topic_id))
-                {
-                    upvotedTopics.Add(t.Topic_id);
-                }
-                if (current_user.DownvotedTopics.Contains(t.Topic_id))
-                {
-                    downvotedTopics.Add(t.Topic_id);
-                }
-                if (current_user.SubscribedTopics.Contains(t.Topic_id))
-                {
-                    subscribedTopics.Add(t.Topic_id);
-                }
-            }
-
             //ViewBag.id_prijavljenog = id_prijavljenog;
             ViewBag.User_name = current_user.Name;
             ViewBag.UserPicture = current_user.Image;
             // upvoted topics
-            ViewBag.UpvotedTopics = upvotedTopics;
+            ViewBag.UpvotedTopics = upvoteDataRepository.GetTopicByUser(current_user_id);
             // downvoted topics
-            ViewBag.DownvotedTopics = downvotedTopics;
+            ViewBag.DownvotedTopics = downvoteDataRepository.GetTopicByUser(current_user_id);
             // subscribed topics
-            ViewBag.SubscribedTopics = subscribedTopics;
+            ViewBag.SubscribedTopics = subscriptionDataRepository.GetTopicByUser(current_user_id);
 
             return View("Index");
         }
@@ -263,26 +202,28 @@ namespace RedditServiceWeb.Controllers
         {
             int current_user_id = (int)HttpContext.Session["current_user_id"];
             Topic topic = topicDataRepository.GetTopic(topicId.ToString());
-            User user = userDataRepository.GetUser(current_user_id.ToString());
+            IQueryable<Downvote> downvotes = downvoteDataRepository.RetrieveAllDownvotes();
+            IQueryable<Upvote> upvotes = upvoteDataRepository.RetrieveAllUpvotes();
 
-            if (user.UpvotedTopics.Contains(topicId))
+            if (upvoteDataRepository.GetTopicByUser(current_user_id).Contains(topicId))
             {
-                user.UpvotedTopics.Remove(topicId);
+                upvoteDataRepository.RemoveUpvote(upvotes.Where(t => t.Topic_id == topicId).FirstOrDefault().Upvote_id.ToString());
                 topic.Upvote_number--;
-                userDataRepository.UpdateUser(user);
                 topicDataRepository.UpdateTopic(topic);
                 return RedirectToAction("Index", "Home");
             }
 
-            if (user.DownvotedTopics.Contains(topicId))
+            if (downvoteDataRepository.GetTopicByUser(current_user_id).Contains(topicId))
             {
-                user.DownvotedTopics.Remove(topicId);
+                downvoteDataRepository.RemoveDownvote(downvotes.Where(t => t.Topic_id == topicId).FirstOrDefault().Downvote_id.ToString());
                 topic.Downvote_number--;
             }
 
-            user.UpvotedTopics.Add(topicId);
+            int newUpvote_id = upvotes.ToList().Count();
+            Upvote newUpvote = new Upvote(newUpvote_id.ToString()) { Upvote_id = newUpvote_id, User_id = current_user_id, Topic_id = topicId };
+
+            upvoteDataRepository.AddUpvote(newUpvote);
             topic.Upvote_number++;
-            userDataRepository.UpdateUser(user);
             topicDataRepository.UpdateTopic(topic);
 
             return RedirectToAction("Index", "Home");
@@ -292,26 +233,28 @@ namespace RedditServiceWeb.Controllers
         {
             int current_user_id = (int)HttpContext.Session["current_user_id"];
             Topic topic = topicDataRepository.GetTopic(topicId.ToString());
-            User user = userDataRepository.GetUser(current_user_id.ToString());
+            IQueryable<Downvote> downvotes = downvoteDataRepository.RetrieveAllDownvotes();
+            IQueryable<Upvote> upvotes = upvoteDataRepository.RetrieveAllUpvotes();
 
-            if (user.DownvotedTopics.Contains(topicId))
+            if (downvoteDataRepository.GetTopicByUser(current_user_id).Contains(topicId))
             {
-                user.DownvotedTopics.Remove(topicId);
+                downvoteDataRepository.RemoveDownvote(downvotes.Where(t => t.Topic_id == topicId).FirstOrDefault().Downvote_id.ToString());
                 topic.Downvote_number--;
-                userDataRepository.UpdateUser(user);
                 topicDataRepository.UpdateTopic(topic);
                 return RedirectToAction("Index", "Home");
             }
 
-            if (user.UpvotedTopics.Contains(topicId))
+            if (upvoteDataRepository.GetTopicByUser(current_user_id).Contains(topicId))
             {
-                user.UpvotedTopics.Remove(topicId);
+                upvoteDataRepository.RemoveUpvote(upvotes.Where(t => t.Topic_id == topicId).FirstOrDefault().Upvote_id.ToString());
                 topic.Upvote_number--;
             }
 
-            user.DownvotedTopics.Add(topicId);
+            int newDownvote_id = downvotes.ToList().Count();
+            Downvote newDownvote = new Downvote(newDownvote_id.ToString()) { Downvote_id = newDownvote_id, User_id = current_user_id, Topic_id = topicId };
+
+            downvoteDataRepository.AddDownvote(newDownvote);
             topic.Downvote_number++;
-            userDataRepository.UpdateUser(user);
             topicDataRepository.UpdateTopic(topic);
 
             return RedirectToAction("Index", "Home");
@@ -320,19 +263,16 @@ namespace RedditServiceWeb.Controllers
         public ActionResult DeleteTopic(int topicId)
         {
             int current_user_id = (int)HttpContext.Session["current_user_id"];
+            IQueryable<Downvote> downvotes = downvoteDataRepository.RetrieveAllDownvotes();
+            IQueryable<Upvote> upvotes = upvoteDataRepository.RetrieveAllUpvotes();
 
-            foreach (User u in userDataRepository.RetrieveAllUsers())
+            if (upvoteDataRepository.GetTopicByUser(current_user_id).Contains(topicId))
             {
-                if (u.UpvotedTopics.Contains(topicId))
-                {
-                    u.UpvotedTopics.Remove(topicId);
-                    userDataRepository.UpdateUser(u);
-                }
-                if (u.DownvotedTopics.Contains(topicId))
-                {
-                    u.DownvotedTopics.Remove(topicId);
-                    userDataRepository.UpdateUser(u);
-                }
+                upvoteDataRepository.RemoveUpvote(upvotes.Where(t => t.Topic_id == topicId).FirstOrDefault().Upvote_id.ToString());
+            }
+            if (downvoteDataRepository.GetTopicByUser(current_user_id).Contains(topicId))
+            {
+                downvoteDataRepository.RemoveDownvote(downvotes.Where(t => t.Topic_id == topicId).FirstOrDefault().Downvote_id.ToString());
             }
 
             List<int> commentsToDelete = new List<int>();
@@ -356,21 +296,18 @@ namespace RedditServiceWeb.Controllers
         public ActionResult Subscribe(int topicId)
         {
             int current_user_id = (int)HttpContext.Session["current_user_id"];
-            User user = userDataRepository.GetUser(current_user_id.ToString());
 
-            user.SubscribedTopics.Add(topicId);
-            userDataRepository.UpdateUser(user);
+            int number_of_subscriptions = subscriptionDataRepository.RetrieveAllSubscriptions().ToList().Count();
+            Subscription newSubscription = new Subscription(number_of_subscriptions.ToString()) { Subscription_id = number_of_subscriptions, User_id = current_user_id, Topic_id = topicId };
+
+            subscriptionDataRepository.AddSubscription(newSubscription);
 
             return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Unsubscribe(int topicId)
         {
-            int current_user_id = (int)HttpContext.Session["current_user_id"];
-            User user = userDataRepository.GetUser(current_user_id.ToString());
-
-            user.SubscribedTopics.Remove(topicId);
-            userDataRepository.UpdateUser(user);
+            subscriptionDataRepository.RemoveSubscription(subscriptionDataRepository.RetrieveAllSubscriptions().Where(t => t.Topic_id == topicId).FirstOrDefault().Subscription_id.ToString());
 
             return RedirectToAction("Index", "Home");
         }
