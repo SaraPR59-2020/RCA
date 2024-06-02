@@ -16,6 +16,8 @@ namespace RedditServiceWeb.Controllers
         UserDataRepository userDataRepository = new UserDataRepository();
         TopicDataRepository topicDataRepository = new TopicDataRepository();
         CommentDataRepositorycs commentDataRepository = new CommentDataRepositorycs();
+        UpvoteDataRepository upvoteDataRepository = new UpvoteDataRepository();
+        DownvoteDataRepository downvoteDataRepository = new DownvoteDataRepository();
 
         public ForumController()
         {
@@ -52,11 +54,11 @@ namespace RedditServiceWeb.Controllers
 
             ViewBag.Topic = topicDataRepository.GetTopic(topicId.ToString());
 
-            if (userDataRepository.GetUser(current_user_id.ToString()).UpvotedTopics.Contains(topicId))
+            if (upvoteDataRepository.GetTopicByUser(current_user_id).Contains(topicId))
             {
                 ViewBag.VoteType = "upvoted";
             }
-            else if (userDataRepository.GetUser(current_user_id.ToString()).DownvotedTopics.Contains(topicId))
+            else if (downvoteDataRepository.GetTopicByUser(current_user_id).Contains(topicId))
             {
                 ViewBag.VoteType = "downvoted";
             }
@@ -103,26 +105,28 @@ namespace RedditServiceWeb.Controllers
         {
             int current_user_id = (int)HttpContext.Session["current_user_id"];
             Topic topic = topicDataRepository.GetTopic(topicId.ToString());
-            User user = userDataRepository.GetUser(current_user_id.ToString());
+            IQueryable<Downvote> downvotes = downvoteDataRepository.RetrieveAllDownvotes();
+            IQueryable<Upvote> upvotes = upvoteDataRepository.RetrieveAllUpvotes();
 
-            if (user.UpvotedTopics.Contains(topicId))
+            if (upvoteDataRepository.GetTopicByUser(current_user_id).Contains(topicId))
             {
-                user.UpvotedTopics.Remove(topicId);
+                upvoteDataRepository.RemoveUpvote(upvotes.Where(t => t.Topic_id == topicId).FirstOrDefault().Upvote_id.ToString());
                 topic.Upvote_number--;
-                userDataRepository.UpdateUser(user);
                 topicDataRepository.UpdateTopic(topic);
                 return RedirectToAction("TopicPage", "Forum", new { topicId = topicId, showAddComment = false });
             }
 
-            if (user.DownvotedTopics.Contains(topicId))
+            if (downvoteDataRepository.GetTopicByUser(current_user_id).Contains(topicId))
             {
-                user.DownvotedTopics.Remove(topicId);
+                downvoteDataRepository.RemoveDownvote(downvotes.Where(t => t.Topic_id == topicId).FirstOrDefault().Downvote_id.ToString());
                 topic.Downvote_number--;
             }
 
-            user.UpvotedTopics.Add(topicId);
+            int newUpvote_id = upvotes.ToList().Count();
+            Upvote newUpvote = new Upvote(newUpvote_id.ToString()) { Upvote_id = newUpvote_id, User_id = current_user_id, Topic_id = topicId };
+
+            upvoteDataRepository.AddUpvote(newUpvote);
             topic.Upvote_number++;
-            userDataRepository.UpdateUser(user);
             topicDataRepository.UpdateTopic(topic);
 
             return RedirectToAction("TopicPage", "Forum", new { topicId = topicId, showAddComment = false });
@@ -132,26 +136,28 @@ namespace RedditServiceWeb.Controllers
         {
             int current_user_id = (int)HttpContext.Session["current_user_id"];
             Topic topic = topicDataRepository.GetTopic(topicId.ToString());
-            User user = userDataRepository.GetUser(current_user_id.ToString());
+            IQueryable<Downvote> downvotes = downvoteDataRepository.RetrieveAllDownvotes();
+            IQueryable<Upvote> upvotes = upvoteDataRepository.RetrieveAllUpvotes();
 
-            if (user.DownvotedTopics.Contains(topicId))
+            if (downvoteDataRepository.GetTopicByUser(current_user_id).Contains(topicId))
             {
-                user.DownvotedTopics.Remove(topicId);
+                downvoteDataRepository.RemoveDownvote(downvotes.Where(t => t.Topic_id == topicId).FirstOrDefault().Downvote_id.ToString());
                 topic.Downvote_number--;
-                userDataRepository.UpdateUser(user);
                 topicDataRepository.UpdateTopic(topic);
-                return RedirectToAction("TopicPage", "Forum", new { topicId = topicId });
+                return RedirectToAction("TopicPage", "Forum", new { topicId = topicId, showAddComment = false });
             }
 
-            if (user.UpvotedTopics.Contains(topicId))
+            if (upvoteDataRepository.GetTopicByUser(current_user_id).Contains(topicId))
             {
-                user.UpvotedTopics.Remove(topicId);
+                upvoteDataRepository.RemoveUpvote(upvotes.Where(t => t.Topic_id == topicId).FirstOrDefault().Upvote_id.ToString());
                 topic.Upvote_number--;
             }
 
-            user.DownvotedTopics.Add(topicId);
+            int newDownvote_id = downvotes.ToList().Count();
+            Downvote newDownvote = new Downvote(newDownvote_id.ToString()) { Downvote_id = newDownvote_id, User_id = current_user_id, Topic_id = topicId };
+
+            downvoteDataRepository.AddDownvote(newDownvote);
             topic.Downvote_number++;
-            userDataRepository.UpdateUser(user);
             topicDataRepository.UpdateTopic(topic);
 
             return RedirectToAction("TopicPage", "Forum", new { topicId = topicId, showAddComment = false });
