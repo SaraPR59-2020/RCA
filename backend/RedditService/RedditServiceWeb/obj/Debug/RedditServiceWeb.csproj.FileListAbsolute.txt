@@ -387,3 +387,5 @@ C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\RedditServiceWeb
 C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\RedditServiceWeb\obj\Debug\RedditServiceWeb.csproj.CopyComplete
 C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\RedditServiceWeb\obj\Debug\RedditServiceWeb.dll
 C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\RedditServiceWeb\obj\Debug\RedditServiceWeb.pdb
+C:\Users\Dell\source\repos\RCA3\backend\RedditService\RedditServiceWeb\obj\Debug\RedditServiceWeb.csprojAssemblyReference.cache
+C:\Users\Dell\source\repos\RCA3\backend\RedditService\RedditServiceWeb\obj\Debug\RedditServiceWeb.csproj.CoreCompileInputs.cache

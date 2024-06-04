@@ -786,3 +786,5 @@ C:\Users\doram\OneDrive\Desktop\CloudProjekat_Online\backend\RedditService\Reddi
 C:\Users\doram\OneDrive\Desktop\CloudProjekat_Online\backend\RedditService\RedditService\obj\Debug\NotificationServiceWorker\zh-Hant\Microsoft.Data.OData.resources.dll
 C:\Users\doram\OneDrive\Desktop\CloudProjekat_Online\backend\RedditService\RedditService\obj\Debug\NotificationServiceWorker\zh-Hant\Microsoft.Data.Services.Client.resources.dll
 C:\Users\doram\OneDrive\Desktop\CloudProjekat_Online\backend\RedditService\RedditService\obj\Debug\NotificationServiceWorker\zh-Hant\System.Spatial.resources.dll
+C:\Users\Dell\source\repos\RCA3\backend\RedditService\RedditService\bin\Debug\ServiceConfiguration.cscfg
+C:\Users\Dell\source\repos\RCA3\backend\RedditService\RedditService\bin\Debug\ServiceDefinition.csdef
