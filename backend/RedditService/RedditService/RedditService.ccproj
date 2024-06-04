@@ -53,6 +53,14 @@
       <RoleName>HealthStatusServiceWeb</RoleName>
       <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
     </ProjectReference>
+    <ProjectReference Include="..\ImageConverterWorker\ImageConverterWorker.csproj">
+      <Name>ImageConverterWorker</Name>
+      <Project>{bc4c63ef-d827-46ad-b453-60ff452f2b11}</Project>
+      <Private>True</Private>
+      <RoleType>Worker</RoleType>
+      <RoleName>ImageConverterWorker</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+    </ProjectReference>
     <ProjectReference Include="..\NotificationServiceWorker\NotificationServiceWorker.csproj">
       <Name>NotificationServiceWorker</Name>
       <Project>{01aff5f5-2be9-4a35-8280-db692aca9bc1}</Project>
@@ -73,12 +81,14 @@
   <ItemGroup>
     <Folder Include="HealthMonitoringServiceWorkerContent\" />
     <Folder Include="HealthStatusServiceWebContent\" />
+    <Folder Include="ImageConverterWorkerContent\" />
     <Folder Include="NotificationServiceWorkerContent\" />
     <Folder Include="RedditServiceWebContent\" />
   </ItemGroup>
   <ItemGroup>
     <DiagnosticsConfiguration Include="HealthMonitoringServiceWorkerContent\diagnostics.wadcfgx" />
     <DiagnosticsConfiguration Include="HealthStatusServiceWebContent\diagnostics.wadcfgx" />
+    <DiagnosticsConfiguration Include="ImageConverterWorkerContent\diagnostics.wadcfgx" />
     <DiagnosticsConfiguration Include="NotificationServiceWorkerContent\diagnostics.wadcfgx" />
     <DiagnosticsConfiguration Include="RedditServiceWebContent\diagnostics.wadcfgx" />
   </ItemGroup>
