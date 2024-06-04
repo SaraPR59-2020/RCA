@@ -42,7 +42,14 @@ namespace ImageConverterWorker
                         queue.DeleteMessage(message);
                     }
 
-                    ResizeImage(message.AsString);
+                    if(message.AsString.Split('_').ElementAt(1) == "User")
+                    {
+                        ResizeImageUser(message.ToString().Split('_').ElementAt(0));
+                    }
+                    else if (message.AsString.Split('_').ElementAt(1) == "Topic")
+                    {
+                        ResizeImageTopic(message.AsString.Split('_').ElementAt(0));
+                    }
 
                     Trace.TraceInformation(String.Format("Poruka procesuirana: {0}", message.AsString), "Information");
                 }
@@ -96,7 +103,7 @@ namespace ImageConverterWorker
         /// cuva url do manje slike na mesto ThumbnailUrl.
         /// </summary>
         /// <param name="indexNo">broj indeksa studenta</param>
-        public void ResizeImage(String indexNo)
+        public void ResizeImageUser(String indexNo)
         {
             UserDataRepository udr = new UserDataRepository();
             User user = udr.GetUser(indexNo);
@@ -116,6 +123,34 @@ namespace ImageConverterWorker
 
             user.ThumbnailUrl = thumbnailUrl;
             udr.UpdateUser(user);
+        }
+
+        /// <summary>
+        /// Metoda pronalazi studenta po prosledjenom broju indeksa. Ukoliko student ne postoji, ispisuje poruku o tome u compute emulatoru.
+        /// Ukoliko student postoji, preuzima sliku, konvertuje je u manju sliku i vrsi upload manje slike.
+        /// cuva url do manje slike na mesto ThumbnailUrl.
+        /// </summary>
+        /// <param name="indexNo">broj indeksa studenta</param>
+        public void ResizeImageTopic(String indexNo)
+        {
+            TopicDataRepository tdr = new TopicDataRepository();
+            Topic topic = tdr.GetTopic(indexNo);
+            if (topic == null)
+            {
+                Trace.TraceInformation(String.Format("Student sa brojem indeksa {0} ne postoji!", indexNo), "Information");
+                return;
+            }
+
+            BlobHelper blobHelper = new BlobHelper();
+            string uniqueBlobName = string.Format("image_{0}", topic.RowKey);
+
+
+            Image image = blobHelper.DownloadImage("reddit", uniqueBlobName);
+            image = ImageConvertes.ConvertImage(image);
+            string thumbnailUrl = blobHelper.UploadImage(image, "reddit", uniqueBlobName + "thumb");
+
+            topic.ThumbnailUrl = thumbnailUrl;
+            tdr.UpdateTopic(topic);
         }
     }
 }

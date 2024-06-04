@@ -45,7 +45,8 @@ namespace RedditServiceWeb.Controllers
                 userDataRepository.AddUser(newUser);
 
                 CloudQueue queue = QueueHelper.GetQueueReference("reddit");
-                queue.AddMessage(new CloudQueueMessage(number_of_users.ToString()), null, TimeSpan.FromMilliseconds(30));
+                string message = number_of_users.ToString() + "_User";
+                queue.AddMessage(new CloudQueueMessage(message), null, TimeSpan.FromMilliseconds(30));
 
                 Trace.WriteLine("Registration successfull.");
                 if (HttpContext.Session["current_user_id"] == null || (int)HttpContext.Session["current_user_id"] == -1)

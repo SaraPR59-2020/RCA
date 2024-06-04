@@ -56,8 +56,8 @@ namespace RedditServiceWeb.Controllers
                 userDataRepository.UpdateUser(current_user);
 
                 CloudQueue queue = QueueHelper.GetQueueReference("reddit");
-                queue.AddMessage(new CloudQueueMessage(current_user_id.ToString()), null, TimeSpan.FromMilliseconds(30));
-
+                string message = current_user_id.ToString() + "_User";
+                queue.AddMessage(new CloudQueueMessage(message), null, TimeSpan.FromMilliseconds(30));
             }
 
             return RedirectToAction("Index", "Home");

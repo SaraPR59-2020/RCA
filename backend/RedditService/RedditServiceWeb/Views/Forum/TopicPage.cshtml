@@ -14,10 +14,10 @@
             <tr>
                 <td colspan="3"> @ViewBag.Topic.Content </td>
             </tr>
-            @if (ViewBag.Topic.Topic_image != "/Images/")
+            @if (ViewBag.Topic.ThumbnailUrl != null)
             {
                 <tr>
-                    <td><img src="@ViewBag.Topic.Topic_image" class="topicImg" /></td>
+                    <td><img src="@ViewBag.Topic.ThumbnailUrl" class="topicImg" /></td>
                 </tr>
             }
             <tr>

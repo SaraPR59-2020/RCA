@@ -1,4 +1,9 @@
 ﻿using Common;
+using ImageConverterWorker;
+using Microsoft.WindowsAzure;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
+using Microsoft.WindowsAzure.Storage.Queue;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -23,19 +28,27 @@ namespace RedditServiceWeb.Controllers
         {
             int current_user_id = (int)HttpContext.Session["current_user_id"];
             int new_topic_id = topicDataRepository.RetrieveAllTopics().ToList().Count;
-            string fileName = "";
-            string path = "";
             try
             {
                 if (Image != null)
                 {
+                    string uniqueBlobName = string.Format("image_{0}", new_topic_id);
+                    var storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("DataConnectionString"));
+                    CloudBlobClient blobStorage = storageAccount.CreateCloudBlobClient();
+                    CloudBlobContainer container = blobStorage.GetContainerReference("reddit");
+                    CloudBlockBlob blob = container.GetBlockBlobReference(uniqueBlobName);
+                    blob.Properties.ContentType = Image.ContentType;
+                    // postavljanje odabrane datoteke (slike) u blob servis koristeci blob klijent
+                    blob.UploadFromStream(Image.InputStream);
+                    
+                    Topic newTopic = new Topic(new_topic_id.ToString()) { Topic_id = new_topic_id, Headline = Headline, Content = Content, User = current_user_id, Upvote_number = 0, Downvote_number = 0, Comment_number = 0, PhotoUrl = blob.Uri.ToString(), ThumbnailUrl = blob.Uri.ToString() };
+                    topicDataRepository.AddTopic(newTopic);
 
-                    fileName = Path.GetFileName(Image.FileName);
-                    path = Path.Combine(Server.MapPath("~/Images/"), fileName);
-                    Image.SaveAs(path);
+                    CloudQueue queue = QueueHelper.GetQueueReference("reddit");
+                    string message = new_topic_id.ToString() + "_Topic";
+                    queue.AddMessage(new CloudQueueMessage(message), null, TimeSpan.FromMilliseconds(30));
                 }
-                Topic newTopic = new Topic(new_topic_id.ToString()) { Topic_id = new_topic_id, Headline = Headline, Content = Content, User = current_user_id, Upvote_number = 0, Downvote_number = 0, Comment_number = 0, Topic_image = $"/Images/{fileName}" };
-                topicDataRepository.AddTopic(newTopic);
+
                 Trace.WriteLine("New topic successfully added.");
                 return RedirectToAction("Index", "Home");
             }
