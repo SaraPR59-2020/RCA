@@ -1,4 +1,9 @@
 ﻿using Common;
+using ImageConverterWorker;
+using Microsoft.WindowsAzure;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
+using Microsoft.WindowsAzure.Storage.Queue;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -25,30 +30,35 @@ namespace RedditServiceWeb.Controllers
         {
             int current_user_id = (int)HttpContext.Session["current_user_id"];
             User current_user = userDataRepository.GetUser(current_user_id.ToString());
-            string fileName = "";
-            string path = "";
+
             if (Image != null)
             {
-                if (Image.ContentLength > 0)
-                {
+                string uniqueBlobName = string.Format("image_{0}", current_user_id);
+                var storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("DataConnectionString"));
+                CloudBlobClient blobStorage = storageAccount.CreateCloudBlobClient();
+                CloudBlobContainer container = blobStorage.GetContainerReference("reddit");
+                CloudBlockBlob blob = container.GetBlockBlobReference(uniqueBlobName);
+                blob.Properties.ContentType = Image.ContentType;
+                // postavljanje odabrane datoteke (slike) u blob servis koristeci blob klijent
+                blob.UploadFromStream(Image.InputStream);
 
-                    fileName = Path.GetFileName(Image.FileName);
-                    path = Path.Combine(Server.MapPath("~/Images/"), fileName);
-                    Image.SaveAs(path);
-                    current_user.Image = $"/Images/{fileName}";
-                }
+                current_user.Name = Name;
+                current_user.Surname = Surname;
+                current_user.Address = Address;
+                current_user.City = City;
+                current_user.Country = Country;
+                current_user.Phone_number = Phone_number;
+                current_user.Email = Email;
+                current_user.Password = GenerateHash(Password);
+                current_user.PhotoUrl = blob.Uri.ToString();
+                current_user.ThumbnailUrl = blob.Uri.ToString();
+
+                userDataRepository.UpdateUser(current_user);
+
+                CloudQueue queue = QueueHelper.GetQueueReference("reddit");
+                queue.AddMessage(new CloudQueueMessage(current_user_id.ToString()), null, TimeSpan.FromMilliseconds(30));
+
             }
-
-            current_user.Name = Name;
-            current_user.Surname = Surname;
-            current_user.Address = Address;
-            current_user.City = City;
-            current_user.Country = Country;
-            current_user.Phone_number = Phone_number;
-            current_user.Email = Email;
-            current_user.Password = GenerateHash(Password);
-
-            userDataRepository.UpdateUser(current_user);
 
             return RedirectToAction("Index", "Home");
         }

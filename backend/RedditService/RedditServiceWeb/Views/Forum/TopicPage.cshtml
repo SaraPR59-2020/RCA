@@ -64,7 +64,7 @@
                 foreach (Comment c in ViewBag.UserComments)
                 {
                     <tr>
-                        <th class="headline"><img src="@ViewBag.CurrentUser.Image" />&nbsp;@ViewBag.CurrentUser.Name</th>
+                        <th class="headline"><img src="@ViewBag.CurrentUser.ThumbnailUrl" />&nbsp;@ViewBag.CurrentUser.Name</th>
                         <td><a href="~/Forum/DeleteComment?commentId=@c.Id&topicId=@ViewBag.Topic.Topic_id">Delete comment</a></td>
                     </tr>
                     <tr>
@@ -81,7 +81,7 @@
                         if (u.User_id == c.UserId)
                         {
                             <tr>
-                                <th class="headline"><img src="@u.Image" />&nbsp;@u.Name</th>
+                                <th class="headline"><img src="@u.ThumbnailUrl" />&nbsp;@u.Name</th>
                             </tr>
                         }
                     }
