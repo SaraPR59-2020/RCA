@@ -1,4 +1,9 @@
 ﻿using Common;
+using ImageConverterWorker;
+using Microsoft.WindowsAzure;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
+using Microsoft.WindowsAzure.Storage.Queue;
 using RedditServiceWeb.Models;
 using System;
 using System.Collections.Generic;
@@ -25,19 +30,23 @@ namespace RedditServiceWeb.Controllers
         public ActionResult Registration(string Name, string Surname, string Address, string City, string Country, string Phone_number, string Email, string Password, HttpPostedFileBase Image)
         {
             int number_of_users = userDataRepository.RetrieveAllUsers().ToList().Count;
-            string fileName = "";
-            string path = "";
             try
             {
-                if (Image.ContentLength > 0)
-                {
+                string uniqueBlobName = string.Format("image_{0}", number_of_users);
+                var storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("DataConnectionString"));
+                CloudBlobClient blobStorage = storageAccount.CreateCloudBlobClient();
+                CloudBlobContainer container = blobStorage.GetContainerReference("reddit");
+                CloudBlockBlob blob = container.GetBlockBlobReference(uniqueBlobName);
+                blob.Properties.ContentType = Image.ContentType;
+                // postavljanje odabrane datoteke (slike) u blob servis koristeci blob klijent
+                blob.UploadFromStream(Image.InputStream);
 
-                    fileName = Path.GetFileName(Image.FileName);
-                    path = Path.Combine(Server.MapPath("~/Images/"), fileName);
-                    Image.SaveAs(path);
-                }
-                User newUser = new User(number_of_users.ToString()) { User_id = number_of_users, Name = Name, Surname = Surname, Address = Address, City = City, Country = Country, Phone_number = Phone_number, Email = Email, Password = GenerateHash(Password), Image = $"/Images/{fileName}" };
+                User newUser = new User(number_of_users.ToString()) { User_id = number_of_users, Name = Name, Surname = Surname, Address = Address, City = City, Country = Country, Phone_number = Phone_number, Email = Email, Password = GenerateHash(Password), PhotoUrl = blob.Uri.ToString(), ThumbnailUrl = blob.Uri.ToString() };
                 userDataRepository.AddUser(newUser);
+
+                CloudQueue queue = QueueHelper.GetQueueReference("reddit");
+                queue.AddMessage(new CloudQueueMessage(number_of_users.ToString()), null, TimeSpan.FromMilliseconds(30));
+
                 Trace.WriteLine("Registration successfull.");
                 if (HttpContext.Session["current_user_id"] == null || (int)HttpContext.Session["current_user_id"] == -1)
                 {

@@ -69,10 +69,18 @@
   <ItemGroup>
     <Compile Include="Comment.cs" />
     <Compile Include="CommentDataRepositorycs.cs" />
+    <Compile Include="Downvote.cs" />
+    <Compile Include="DownvoteDataRepository.cs" />
     <Compile Include="IHealthMonitoring.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Subscription.cs" />
+    <Compile Include="SubscriptionDataRepository.cs" />
     <Compile Include="Topic.cs" />
+    <Compile Include="TopicDataRepository.cs" />
+    <Compile Include="Upvote.cs" />
+    <Compile Include="UpvoteDataRepository.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="UserDataRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

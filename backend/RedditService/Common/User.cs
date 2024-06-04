@@ -13,12 +13,10 @@ public class User : TableEntity
     private string phone_number;
     private string email;
     private string password;
-    private string image;
-    private List<int> upvotedTopics;
-    private List<int> downvotedTopics;
-    public List<int> subscribedTopics;
+    public String PhotoUrl { get; set; }
+    public String ThumbnailUrl { get; set; }
 
-    public User(int user_id, string name, string surname, string address, string city, string country, string phone_number, string email, string password, string image)
+    public User(int user_id, string name, string surname, string address, string city, string country, string phone_number, string email, string password)
     {
         this.user_id = user_id;
         this.name = name;
@@ -29,7 +27,6 @@ public class User : TableEntity
         this.phone_number = phone_number;
         this.email = email;
         this.password = password;
-        this.image = image;
     }
 
     public int User_id { get => user_id; set => user_id = value; }
@@ -41,11 +38,6 @@ public class User : TableEntity
     public string Phone_number { get => phone_number; set => phone_number = value; }
     public string Email { get => email; set => email = value; }
     public string Password { get => password; set => password = value; }
-    public string Image { get => image; set => image = value; }
-
-    public List<int> UpvotedTopics = new List<int>();
-    public List<int> DownvotedTopics = new List<int>();
-    public List<int> SubscribedTopics = new List<int>();
 
     public User(string indexNo)
     {

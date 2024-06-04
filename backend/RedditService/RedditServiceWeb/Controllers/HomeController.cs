@@ -34,7 +34,7 @@ namespace RedditServiceWeb.Controllers
             ViewBag.userTopics = userTopics;
             //ViewBag.id_prijavljenog = id_prijavljenog;
             ViewBag.User_name = current_user.Name;
-            ViewBag.UserPicture = current_user.Image;
+            ViewBag.UserPicture = current_user.ThumbnailUrl;
             // upvoted topics
             ViewBag.UpvotedTopics = upvoteDataRepository.GetTopicByUser(current_user_id);
             // downvoted topics
@@ -71,7 +71,7 @@ namespace RedditServiceWeb.Controllers
             ViewBag.userTopics = userTopics;
             //ViewBag.id_prijavljenog = id_prijavljenog;
             ViewBag.User_name = current_user.Name;
-            ViewBag.UserPicture = current_user.Image;
+            ViewBag.UserPicture = current_user.ThumbnailUrl;
             // upvoted topics
             ViewBag.UpvotedTopics = upvoteDataRepository.GetTopicByUser(current_user_id);
             // downvoted topics
@@ -129,7 +129,7 @@ namespace RedditServiceWeb.Controllers
             ViewBag.userTopics = userTopics;
             //ViewBag.id_prijavljenog = id_prijavljenog;
             ViewBag.User_name = current_user.Name;
-            ViewBag.UserPicture = current_user.Image;
+            ViewBag.UserPicture = current_user.ThumbnailUrl;
             // upvoted topics
             ViewBag.UpvotedTopics = upvoteDataRepository.GetTopicByUser(current_user_id);
             // downvoted topics
@@ -187,7 +187,7 @@ namespace RedditServiceWeb.Controllers
 
             //ViewBag.id_prijavljenog = id_prijavljenog;
             ViewBag.User_name = current_user.Name;
-            ViewBag.UserPicture = current_user.Image;
+            ViewBag.UserPicture = current_user.ThumbnailUrl;
             // upvoted topics
             ViewBag.UpvotedTopics = upvoteDataRepository.GetTopicByUser(current_user_id);
             // downvoted topics
