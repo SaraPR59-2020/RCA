@@ -251,3 +251,16 @@ C:\Users\Dell\source\repos\RCA4\backend\RedditService\HealthStatusServiceWeb\obj
 C:\Users\Dell\source\repos\RCA4\backend\RedditService\HealthStatusServiceWeb\obj\Debug\HealthStatusServiceWeb.csproj.CopyComplete
 C:\Users\Dell\source\repos\RCA4\backend\RedditService\HealthStatusServiceWeb\obj\Debug\HealthStatusServiceWeb.dll
 C:\Users\Dell\source\repos\RCA4\backend\RedditService\HealthStatusServiceWeb\obj\Debug\HealthStatusServiceWeb.pdb
+C:\Users\Dell\source\repos\RCA4\backend\RedditService\HealthStatusServiceWeb\bin\NotificationServiceWeb.dll
+C:\Users\Dell\source\repos\RCA4\backend\RedditService\HealthStatusServiceWeb\bin\NotificationServiceWorker.dll
+C:\Users\Dell\source\repos\RCA4\backend\RedditService\HealthStatusServiceWeb\bin\Common.dll
+C:\Users\Dell\source\repos\RCA4\backend\RedditService\HealthStatusServiceWeb\bin\HealthMonitoringServiceWorker.dll
+C:\Users\Dell\source\repos\RCA4\backend\RedditService\HealthStatusServiceWeb\bin\Microsoft.WindowsAzure.Configuration.dll
+C:\Users\Dell\source\repos\RCA4\backend\RedditService\HealthStatusServiceWeb\bin\NotificationServiceWeb.pdb
+C:\Users\Dell\source\repos\RCA4\backend\RedditService\HealthStatusServiceWeb\bin\NotificationServiceWeb.dll.config
+C:\Users\Dell\source\repos\RCA4\backend\RedditService\HealthStatusServiceWeb\bin\NotificationServiceWorker.pdb
+C:\Users\Dell\source\repos\RCA4\backend\RedditService\HealthStatusServiceWeb\bin\NotificationServiceWorker.dll.config
+C:\Users\Dell\source\repos\RCA4\backend\RedditService\HealthStatusServiceWeb\bin\Common.pdb
+C:\Users\Dell\source\repos\RCA4\backend\RedditService\HealthStatusServiceWeb\bin\HealthMonitoringServiceWorker.pdb
+C:\Users\Dell\source\repos\RCA4\backend\RedditService\HealthStatusServiceWeb\bin\HealthMonitoringServiceWorker.dll.config
+C:\Users\Dell\source\repos\RCA4\backend\RedditService\HealthStatusServiceWeb\bin\Microsoft.WindowsAzure.Configuration.xml
