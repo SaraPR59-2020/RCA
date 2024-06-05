@@ -75,7 +75,7 @@ namespace HealthMonitoringServiceWorker
             timer.Elapsed += async (sender, e) =>
             {
                 proxy.IAmAlive();
-                CheckHealthAsync();
+                //await CheckHealthAsync();     ovde puca
             };
             timer.Start();
             await Task.Delay(Timeout.Infinite, cancellationToken);
@@ -118,12 +118,12 @@ namespace HealthMonitoringServiceWorker
 
         public async Task<bool> SendRequestToRedditService()
         {
-            return await SendRequestToService("http://your-reddit-service/health-monitoring");
+            return await SendRequestToService("http://RedditService/");
         }
 
         public async Task<bool> SendRequestToNotificationService()
         {
-            return await SendRequestToService("http://your-notification-service/health-monitoring");
+            return await SendRequestToService("http://NotificationServiceWorker/HealthMonitoringServiceEndpoint");
         }
 
         private async Task LogHealthCheckAsync(string serviceName, bool isSuccess)

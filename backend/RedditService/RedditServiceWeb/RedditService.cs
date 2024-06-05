@@ -21,9 +21,7 @@ namespace RedditServiceWeb
 
         public void PostComment(Comment comment)
         {
-            // Kod za postavljanje komentara...
-
-            // Slanje poruke u red
+            // Kod za postavljanje komentara je u funkciji koja poziva ovu
             CloudQueueMessage message = new CloudQueueMessage(comment.Id.ToString());
             _queue.AddMessage(message);
         }

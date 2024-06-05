@@ -1,7 +1,6 @@
 ﻿using HealthStatusServiceWeb.Models;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
-using NotificationServiceWeb.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

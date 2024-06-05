@@ -5,6 +5,7 @@
       <Site name="Web">
         <Bindings>
           <Binding name="Endpoint1" endpointName="Endpoint1" />
+          <Binding name="Endpoint2" endpointName="HealthMonitoringServiceEndpoint" />
         </Bindings>
       </Site>
     </Sites>
@@ -14,16 +15,17 @@
     </ConfigurationSettings>
     <Endpoints>
       <InputEndpoint name="Endpoint1" protocol="http" port="80" />
+      <InternalEndpoint name="HealthMonitoringServiceEndpoint" protocol="http" />
     </Endpoints>
   </WebRole>
   <WorkerRole name="NotificationServiceWorker" vmsize="Standard_D1_v2">
-    <Endpoints>
-      <InputEndpoint name="HealthMonitoringServiceEndpoint" protocol="http" port="8081" />
-    </Endpoints>
     <ConfigurationSettings>
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
       <Setting name="DataConnectionString" />
     </ConfigurationSettings>
+    <Endpoints>
+      <InternalEndpoint name="HealthMonitoringServiceEndpoint" protocol="http" />
+    </Endpoints>
   </WorkerRole>
   <WorkerRole name="HealthMonitoringServiceWorker" vmsize="Standard_D1_v2">
     <ConfigurationSettings>

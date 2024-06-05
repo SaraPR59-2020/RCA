@@ -180,6 +180,8 @@ namespace RedditServiceWeb.Controllers
             Topic topic = topicDataRepository.GetTopic(topicId.ToString());
             topic.Comment_number++;
             topicDataRepository.UpdateTopic(topic);
+            RedditService redditService = new RedditService();
+            redditService.PostComment(newComment);
 
             return RedirectToAction("TopicPage", "Forum", new { topicId = topicId, showAddComment = false });
         }
