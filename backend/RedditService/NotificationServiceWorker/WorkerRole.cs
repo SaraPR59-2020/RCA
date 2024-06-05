@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Mail;
 using System.Threading;
 using System.Threading.Tasks;
 using Common;
@@ -13,8 +14,6 @@ using Microsoft.WindowsAzure.ServiceRuntime;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;
 using Microsoft.WindowsAzure.Storage.Table;
-using SendGrid;
-using SendGrid.Helpers.Mail;
 
 namespace NotificationServiceWorker
 {
@@ -29,14 +28,16 @@ namespace NotificationServiceWorker
         private CommentDataRepositorycs _commentRepository;
         private SubscriptionDataRepository _subscriptionRepository;
         private UserDataRepository _userRepository;
-        private string _sendGridApiKey;
+        private string _smtpServer;
+        private int _smtpPort;
+        private string _smtpUser;
+        private string _smtpPassword;
         private List<string> _healthCheckUrls = new List<string>
         {
             "http://redditservice/health-monitoring",
             "http://notificationservice/health-monitoring"
         };
         private List<string> _alertEmails = new List<string> { "admin@example.com" }; // Konfigurabilne email adrese
-
 
         public override void Run()
         {
@@ -55,38 +56,13 @@ namespace NotificationServiceWorker
             }
         }
 
-        //private void StartHealthCheckServer()
-       // {
-            //HttpListener listener = new HttpListener();
-            //listener.Prefixes.Add("http://*:8081/health-monitoring/");
-            //listener.Start();   //acces is denied greska pise 
-            //Trace.TraceInformation("Health check server is running at http://localhost:8081/health-monitoring/");
-
-            //while (true)
-            //{
-            //    HttpListenerContext context = listener.GetContext();
-            //    HttpListenerResponse response = context.Response;
-            //    string responseString = "NotificationService is healthy";
-            //    byte[] buffer = System.Text.Encoding.UTF8.GetBytes(responseString);
-            //    response.ContentLength64 = buffer.Length;
-            //    System.IO.Stream output = response.OutputStream;
-            //    output.Write(buffer, 0, buffer.Length);
-            //    output.Close();
-            //}
-      //  }
-
         public override bool OnStart()
         {
             ServicePointManager.DefaultConnectionLimit = 12;
 
             bool result = base.OnStart();
-             /*_cloudStorageAccount =
-             CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("DataConnectionString"));
-             CloudTableClient tableClient = new CloudTableClient(new
-             Uri(_cloudStorageAccount.TableEndpoint.AbsoluteUri), _cloudStorageAccount.Credentials);
-             _cloudTable = tableClient.GetTableReference("Subscriptions");
-             _cloudTable.CreateIfNotExists();*/
-           var storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("DataConnectionString"));
+
+            _cloudStorageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("DataConnectionString"));
             var queueClient = _cloudStorageAccount.CreateCloudQueueClient();
             _queue = queueClient.GetQueueReference("notifications");
             _queue.CreateIfNotExists();
@@ -95,8 +71,7 @@ namespace NotificationServiceWorker
             _subscriptionRepository = new SubscriptionDataRepository();
             _userRepository = new UserDataRepository();
 
-            var tableClient = storageAccount.CreateCloudTableClient();
-
+            var tableClient = _cloudStorageAccount.CreateCloudTableClient();
 
             notificationTable = tableClient.GetTableReference("NotificationTable");
             notificationTable.CreateIfNotExists();
@@ -104,7 +79,10 @@ namespace NotificationServiceWorker
             healthCheckTable = tableClient.GetTableReference("HealthCheck");
             healthCheckTable.CreateIfNotExists();
 
-            _sendGridApiKey = RoleEnvironment.GetConfigurationSettingValue("SendGridApiKey");
+            /*_smtpServer = RoleEnvironment.GetConfigurationSettingValue("SmtpServer");
+            _smtpPort = int.Parse(RoleEnvironment.GetConfigurationSettingValue("SmtpPort"));
+            _smtpUser = RoleEnvironment.GetConfigurationSettingValue("SmtpUser");
+            _smtpPassword = RoleEnvironment.GetConfigurationSettingValue("SmtpPassword");*/
 
             Trace.TraceInformation("NotificationServiceWorker has been started");
 
@@ -135,16 +113,6 @@ namespace NotificationServiceWorker
                     if (message != null)
                     {
                         string commentId = message.AsString;
-
-
-                        /* Comment comment = GetCommentById(commentId);
-                         List<string> subscribersEmails = GetSubscribersEmails(comment.TopicId.ToString());
-
-                         await SendEmailsAsync(subscribersEmails, comment.Text);
-
-                         PersistNotificationLog(commentId, subscribersEmails.Count);
-
-                         await _queue.DeleteMessageAsync(message);*/
                         Comment comment = _commentRepository.GetComment(commentId);
                         if (comment != null)
                         {
@@ -167,69 +135,56 @@ namespace NotificationServiceWorker
             }
         }
 
-        /* private Comment GetCommentById(string commentId)
-         {
-             int id = 0;
-             if (int.TryParse(commentId, out id))
-                 return new Comment(id, "Example comment text",  1, 1 );
-             else
-                 return null;
-         }
-
-         private List<string> GetSubscribersEmails(string topicId)
-         {
-             return new List<string> { "user1@example.com", "user2@example.com" };
-         }*/
         private List<string> GetSubscribersEmails(int topicId)
         {
             var subscriptions = _subscriptionRepository.RetrieveAllSubscriptions()
                                                        .Where(sub => sub.Topic_id == topicId)
                                                        .ToList();
-
-            // Pretpostavka je da imate način da dobijete emailove korisnika po njihovim userId.
-            // Ovde možete da implementirate logiku za dobijanje emailova na osnovu userId.
             return subscriptions.Select(sub => GetEmailByUserId(sub.User_id)).ToList();
         }
 
         private string GetEmailByUserId(int userId)
         {
             var user = _userRepository.GetUser(userId.ToString());
-            if (user != null)
-            {
-                return user.Email;
-            }
-            else
-            {
-                // Ako korisnik nije pronađen, možete vratiti neku podrazumevanu vrednost
-                return "user@example.com";
-            }
+            return user?.Email ?? "user@example.com";
         }
+
         private async Task SendEmailsAsync(List<string> emails, string commentText)
         {
-            var client = new SendGridClient(_sendGridApiKey);
-            var from = new EmailAddress("noreply@example.com", "Forum Notifications");
+            var fromAddress = new MailAddress("noreply@example.com", "Forum Notifications");
             var subject = "New Comment Notification";
             var plainTextContent = commentText;
             var htmlContent = $"<p>{commentText}</p>";
 
-            var tasks = emails.Select(email =>
+            using (var smtpClient = new SmtpClient(_smtpServer, _smtpPort))
             {
-                var to = new EmailAddress(email);
-                var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
-                return client.SendEmailAsync(msg);
-            });
+                smtpClient.EnableSsl = true;
+                smtpClient.Credentials = new NetworkCredential(_smtpUser, _smtpPassword);
 
-           /* var notificationEntity = new NotificationEntity(DateTime.UtcNow.ToString("yyyyMMdd"), Guid.NewGuid().ToString())
-            {
-                CommentId = "your_comment_id",
-                SentDateTime = DateTime.UtcNow,
-                NumberOfEmailsSent = emails.Count
-            };
+                var tasks = emails.Select(email =>
+                {
+                    var toAddress = new MailAddress(email);
+                    var mailMessage = new MailMessage(fromAddress, toAddress)
+                    {
+                        Subject = subject,
+                        Body = htmlContent,
+                        IsBodyHtml = true,
+                    };
+                    return smtpClient.SendMailAsync(mailMessage);
+                });
 
-            TableOperation insertOperation = TableOperation.Insert(notificationEntity);
-            notificationTable.Execute(insertOperation);*/
+                var notificationEntity = new NotificationEntity(DateTime.UtcNow.ToString("yyyyMMdd"), Guid.NewGuid().ToString())
+                {
+                    CommentId = "your_comment_id",
+                    SentDateTime = DateTime.UtcNow,
+                    NumberOfEmailsSent = emails.Count
+                };
 
-            await Task.WhenAll(tasks);
+                TableOperation insertOperation = TableOperation.Insert(notificationEntity);
+                notificationTable.Execute(insertOperation);
+
+                await Task.WhenAll(tasks);
+            }
         }
 
         private void PersistNotificationLog(string commentId, int emailsSent)
@@ -246,6 +201,7 @@ namespace NotificationServiceWorker
             TableOperation insertOperation = TableOperation.Insert(log);
             notificationTable.Execute(insertOperation);
         }
+
         private async void StartHealthCheckServer()
         {
             while (!cancellationTokenSource.Token.IsCancellationRequested)
@@ -255,10 +211,10 @@ namespace NotificationServiceWorker
                     bool isHealthy = await CheckHealthAsync(url);
                     await PersistHealthCheckResult(url, isHealthy);
 
-                    if (!isHealthy)
+                    /*if (!isHealthy)
                     {
                         await SendHealthAlertAsync(url);
-                    }
+                    }*/
                 }
 
                 await Task.Delay(TimeSpan.FromSeconds(5), cancellationTokenSource.Token);
@@ -284,12 +240,8 @@ namespace NotificationServiceWorker
 
         private async Task PersistHealthCheckResult(string url, bool isHealthy)
         {
-            var log = new HealthCheck
+            var log = new HealthCheck(url, DateTime.UtcNow)
             {
-                PartitionKey = DateTime.UtcNow.ToString("yyyyMMdd"),
-                RowKey = Guid.NewGuid().ToString(),
-                ServiceName = url,
-                CheckTime = DateTime.UtcNow,
                 Status = isHealthy ? "OK" : "NOT_OK"
             };
 
@@ -297,22 +249,33 @@ namespace NotificationServiceWorker
             await healthCheckTable.ExecuteAsync(insertOperation);
         }
 
+
         private async Task SendHealthAlertAsync(string url)
         {
-            var client = new SendGridClient(_sendGridApiKey);
-            var from = new EmailAddress("noreply@example.com", "Health Monitoring");
+            var fromAddress = new MailAddress("noreply@example.com", "Health Monitoring");
             var subject = "Service Health Alert";
             var plainTextContent = $"Health check failed for {url} at {DateTime.UtcNow}.";
             var htmlContent = $"<p>Health check failed for {url} at {DateTime.UtcNow}.</p>";
 
-            var tasks = _alertEmails.Select(email =>
+            using (var smtpClient = new SmtpClient(_smtpServer, _smtpPort))
             {
-                var to = new EmailAddress(email);
-                var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
-                return client.SendEmailAsync(msg);
-            });
+                smtpClient.EnableSsl = true;
+                smtpClient.Credentials = new NetworkCredential(_smtpUser, _smtpPassword);
 
-            await Task.WhenAll(tasks);
+                var tasks = _alertEmails.Select(email =>
+                {
+                    var toAddress = new MailAddress(email);
+                    var mailMessage = new MailMessage(fromAddress, toAddress)
+                    {
+                        Subject = subject,
+                        Body = htmlContent,
+                        IsBodyHtml = true,
+                    };
+                    return smtpClient.SendMailAsync(mailMessage);
+                });
+
+                await Task.WhenAll(tasks);
+            }
         }
     }
 }

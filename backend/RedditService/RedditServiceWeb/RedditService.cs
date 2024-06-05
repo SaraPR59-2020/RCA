@@ -2,6 +2,7 @@
 using Microsoft.WindowsAzure.Storage.Queue;
 using System.Configuration;
 using RedditServiceWeb.Models;
+using Microsoft.Azure;
 
 namespace RedditServiceWeb
 {
@@ -11,10 +12,11 @@ namespace RedditServiceWeb
 
         public RedditService()
         {
-            //CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
-            //CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
-            //_queue = queueClient.GetQueueReference("notifications");
-            //_queue.CreateIfNotExists();
+            var _cloudStorageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("DataConnectionString"));
+            var tableClient = _cloudStorageAccount.CreateCloudTableClient();
+            CloudQueueClient queueClient = _cloudStorageAccount.CreateCloudQueueClient();
+            _queue = queueClient.GetQueueReference("notifications");
+            _queue.CreateIfNotExists();
         }
 
         public void PostComment(Comment comment)

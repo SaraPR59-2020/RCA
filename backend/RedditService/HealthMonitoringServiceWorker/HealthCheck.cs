@@ -10,20 +10,17 @@ namespace HealthMonitoringServiceWorker
 {
     public class HealthCheck : TableEntity
     {
-            public int Id { get; set; }
-            public string ServiceName { get; set; }
-            public DateTime CheckTime { get; set; }
-            public string Status { get; set; }
-
-        public HealthCheck()
+        public HealthCheck(string serviceName, DateTime checkTime)
         {
+            PartitionKey = checkTime.ToString("yyyyMMdd");
+            RowKey = Guid.NewGuid().ToString();
+            ServiceName = serviceName;
+            CheckTime = checkTime;
         }
 
-        public HealthCheck(string partitionKey, string rowKey)
-        {
-            PartitionKey = partitionKey;
-            RowKey = rowKey;
-        }
-
+        public string ServiceName { get; set; }
+        public DateTime CheckTime { get; set; }
+        public string Status { get; set; }
     }
+
 }

@@ -14,7 +14,8 @@ using Common;
 using System.Timers;
 using Microsoft.Extensions.Logging;
 using System.Net.Http;
-
+using Microsoft.Azure;
+using Microsoft.WindowsAzure.Storage.Table;
 
 namespace HealthMonitoringServiceWorker
 {
@@ -22,6 +23,7 @@ namespace HealthMonitoringServiceWorker
     {
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly ManualResetEvent runCompleteEvent = new ManualResetEvent(false);
+        private CloudTable healthCheckTable;
 
         public override void Run()
         {
@@ -41,6 +43,7 @@ namespace HealthMonitoringServiceWorker
         {
             ServicePointManager.DefaultConnectionLimit = 12;
             bool result = base.OnStart();
+            Connect();
             Trace.TraceInformation("HealthMonitoringServiceWorker has been started");
             return result;
 
@@ -55,15 +58,15 @@ namespace HealthMonitoringServiceWorker
             Trace.TraceInformation("HealthMonitoringServiceWorker has stopped");
         }
 
-        //private IHealthMonitoring proxy;
-        //public void Connect()
-        //{
-        //    var binding = new NetTcpBinding();
-        //    ChannelFactory<IHealthMonitoring> factory = new
-        //    ChannelFactory<IHealthMonitoring>(binding, new
-        //    EndpointAddress("net.tcp://localhost:6000/HealthMonitoring"));
-        //    proxy = factory.CreateChannel();
-        //}
+        private IHealthMonitoring proxy;
+        public void Connect()
+        {
+            var binding = new NetTcpBinding();
+            ChannelFactory<IHealthMonitoring> factory = new
+            ChannelFactory<IHealthMonitoring>(binding, new
+            EndpointAddress("net.tcp://localhost:6000/HealthMonitoring"));
+            proxy = factory.CreateChannel();
+        }
 
         private async Task RunAsync(CancellationToken cancellationToken)
         {
@@ -71,8 +74,8 @@ namespace HealthMonitoringServiceWorker
             timer.Interval = 5000; // 5 sekundi
             timer.Elapsed += async (sender, e) =>
             {
-                //proxy.IAmAlive();
-                //CheckHealthAsync();
+                proxy.IAmAlive();
+                CheckHealthAsync();
             };
             timer.Start();
             await Task.Delay(Timeout.Infinite, cancellationToken);
@@ -125,18 +128,20 @@ namespace HealthMonitoringServiceWorker
 
         private async Task LogHealthCheckAsync(string serviceName, bool isSuccess)
         {
-            //using (var context = new YourDbContext())
-            //{
-            //    var healthCheck = new HealthCheck
-            //    {
-            //        ServiceName = serviceName,
-            //        CheckTime = DateTime.UtcNow,
-            //        Status = isSuccess ? "OK" : "NOT_OK"
-            //    };
-            //    context.HealthChecks.Add(healthCheck);
-            //    await context.SaveChangesAsync();
-            //}
+            var _cloudStorageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("DataConnectionString"));
+            var tableClient = _cloudStorageAccount.CreateCloudTableClient();
+            healthCheckTable = tableClient.GetTableReference("HealthCheck");
+            await healthCheckTable.CreateIfNotExistsAsync();
+
+            var healthCheck = new HealthCheck(serviceName, DateTime.UtcNow)
+            {
+                Status = isSuccess ? "OK" : "NOT_OK"
+            };
+
+            var insertOperation = TableOperation.Insert(healthCheck);
+            await healthCheckTable.ExecuteAsync(insertOperation);
         }
+
 
         private async Task SendFailureEmailAsync(string serviceName)
         {

@@ -1,141 +1,8 @@
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\NotificationServiceWorker.dll.config
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\NotificationServiceWorker.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\NotificationServiceWorker.pdb
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.Azure.KeyVault.Core.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.Data.Edm.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.Data.OData.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.Data.Services.Client.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.WindowsAzure.Diagnostics.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.WindowsAzure.Storage.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Newtonsoft.Json.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\SendGrid.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\StarkbankEcdsa.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\System.Spatial.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\MonAgentListener.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.Azure.KeyVault.Core.xml
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.Data.Edm.xml
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.Data.OData.xml
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.Data.Services.Client.xml
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.WindowsAzure.Storage.pdb
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.WindowsAzure.Storage.xml
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Newtonsoft.Json.xml
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\SendGrid.pdb
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\SendGrid.xml
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\System.Spatial.xml
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\de\Microsoft.Data.Edm.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\es\Microsoft.Data.Edm.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\fr\Microsoft.Data.Edm.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\it\Microsoft.Data.Edm.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\ja\Microsoft.Data.Edm.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\ko\Microsoft.Data.Edm.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\ru\Microsoft.Data.Edm.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\zh-Hans\Microsoft.Data.Edm.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\zh-Hant\Microsoft.Data.Edm.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\de\Microsoft.Data.OData.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\es\Microsoft.Data.OData.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\fr\Microsoft.Data.OData.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\it\Microsoft.Data.OData.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\ja\Microsoft.Data.OData.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\ko\Microsoft.Data.OData.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\ru\Microsoft.Data.OData.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\zh-Hans\Microsoft.Data.OData.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\zh-Hant\Microsoft.Data.OData.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\de\Microsoft.Data.Services.Client.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\es\Microsoft.Data.Services.Client.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\fr\Microsoft.Data.Services.Client.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\it\Microsoft.Data.Services.Client.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\ja\Microsoft.Data.Services.Client.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\ko\Microsoft.Data.Services.Client.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\ru\Microsoft.Data.Services.Client.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\zh-Hans\Microsoft.Data.Services.Client.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\zh-Hant\Microsoft.Data.Services.Client.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\de\System.Spatial.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\es\System.Spatial.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\fr\System.Spatial.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\it\System.Spatial.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\ja\System.Spatial.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\ko\System.Spatial.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\ru\System.Spatial.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\zh-Hans\System.Spatial.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\zh-Hant\System.Spatial.resources.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.csproj.AssemblyReference.cache
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.csproj.CoreCompileInputs.cache
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.csproj.CopyComplete
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.dll
-D:\4. godina\Cloud\RCA\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.pdb
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\NotificationServiceWorker.dll.config
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\NotificationServiceWorker.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\NotificationServiceWorker.pdb
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Common.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.Azure.KeyVault.Core.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.Data.Edm.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.Data.OData.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.Data.Services.Client.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.WindowsAzure.Diagnostics.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.WindowsAzure.Storage.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\SendGrid.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\StarkbankEcdsa.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\System.Spatial.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\MonAgentListener.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Common.pdb
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.Azure.KeyVault.Core.xml
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.Data.Edm.xml
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.Data.OData.xml
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.Data.Services.Client.xml
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.WindowsAzure.Storage.pdb
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.WindowsAzure.Storage.xml
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Newtonsoft.Json.xml
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\SendGrid.pdb
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\SendGrid.xml
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\System.Spatial.xml
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\de\Microsoft.Data.Edm.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\es\Microsoft.Data.Edm.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\fr\Microsoft.Data.Edm.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\it\Microsoft.Data.Edm.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\ja\Microsoft.Data.Edm.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\ko\Microsoft.Data.Edm.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\ru\Microsoft.Data.Edm.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\zh-Hans\Microsoft.Data.Edm.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\zh-Hant\Microsoft.Data.Edm.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\de\Microsoft.Data.OData.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\es\Microsoft.Data.OData.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\fr\Microsoft.Data.OData.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\it\Microsoft.Data.OData.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\ja\Microsoft.Data.OData.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\ko\Microsoft.Data.OData.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\ru\Microsoft.Data.OData.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\zh-Hans\Microsoft.Data.OData.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\zh-Hant\Microsoft.Data.OData.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\de\Microsoft.Data.Services.Client.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\es\Microsoft.Data.Services.Client.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\fr\Microsoft.Data.Services.Client.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\it\Microsoft.Data.Services.Client.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\ja\Microsoft.Data.Services.Client.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\ko\Microsoft.Data.Services.Client.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\ru\Microsoft.Data.Services.Client.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\zh-Hans\Microsoft.Data.Services.Client.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\zh-Hant\Microsoft.Data.Services.Client.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\de\System.Spatial.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\es\System.Spatial.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\fr\System.Spatial.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\it\System.Spatial.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\ja\System.Spatial.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\ko\System.Spatial.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\ru\System.Spatial.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\zh-Hans\System.Spatial.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\zh-Hant\System.Spatial.resources.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.csproj.AssemblyReference.cache
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.csproj.CoreCompileInputs.cache
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.csproj.CopyComplete
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.dll
-C:\Users\Dell\source\repos\RCA\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.pdb
-C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.csprojAssemblyReference.cache
-C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.csproj.CoreCompileInputs.cache
 C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\NotificationServiceWorker.dll.config
 C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\NotificationServiceWorker.dll
 C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\NotificationServiceWorker.pdb
 C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Common.dll
+C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\HealthMonitoringServiceWorker.dll
 C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.Azure.KeyVault.Core.dll
 C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.Data.Edm.dll
 C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.Data.OData.dll
@@ -149,6 +16,8 @@ C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServ
 C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\System.Spatial.dll
 C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\MonAgentListener.dll
 C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Common.pdb
+C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\HealthMonitoringServiceWorker.pdb
+C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\HealthMonitoringServiceWorker.dll.config
 C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.Azure.KeyVault.Core.xml
 C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.Data.Edm.xml
 C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.Data.OData.xml
@@ -196,75 +65,8 @@ C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServ
 C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\ru\System.Spatial.resources.dll
 C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\zh-Hans\System.Spatial.resources.dll
 C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServiceWorker\bin\Debug\zh-Hant\System.Spatial.resources.dll
+C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.csprojAssemblyReference.cache
+C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.csproj.CoreCompileInputs.cache
 C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.csproj.CopyComplete
 C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.dll
 C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.pdb
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\NotificationServiceWorker.dll.config
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\NotificationServiceWorker.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\NotificationServiceWorker.pdb
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\Common.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.Azure.KeyVault.Core.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.Data.Edm.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.Data.OData.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.Data.Services.Client.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.WindowsAzure.Configuration.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.WindowsAzure.Diagnostics.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.WindowsAzure.Storage.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\SendGrid.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\StarkbankEcdsa.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\System.Spatial.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\MonAgentListener.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\Common.pdb
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.Azure.KeyVault.Core.xml
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.Data.Edm.xml
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.Data.OData.xml
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.Data.Services.Client.xml
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.WindowsAzure.Configuration.xml
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.WindowsAzure.Storage.pdb
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\Microsoft.WindowsAzure.Storage.xml
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\Newtonsoft.Json.xml
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\SendGrid.pdb
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\SendGrid.xml
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\System.Spatial.xml
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\de\Microsoft.Data.Edm.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\es\Microsoft.Data.Edm.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\fr\Microsoft.Data.Edm.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\it\Microsoft.Data.Edm.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\ja\Microsoft.Data.Edm.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\ko\Microsoft.Data.Edm.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\ru\Microsoft.Data.Edm.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\zh-Hans\Microsoft.Data.Edm.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\zh-Hant\Microsoft.Data.Edm.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\de\Microsoft.Data.OData.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\es\Microsoft.Data.OData.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\fr\Microsoft.Data.OData.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\it\Microsoft.Data.OData.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\ja\Microsoft.Data.OData.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\ko\Microsoft.Data.OData.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\ru\Microsoft.Data.OData.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\zh-Hans\Microsoft.Data.OData.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\zh-Hant\Microsoft.Data.OData.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\de\Microsoft.Data.Services.Client.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\es\Microsoft.Data.Services.Client.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\fr\Microsoft.Data.Services.Client.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\it\Microsoft.Data.Services.Client.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\ja\Microsoft.Data.Services.Client.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\ko\Microsoft.Data.Services.Client.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\ru\Microsoft.Data.Services.Client.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\zh-Hans\Microsoft.Data.Services.Client.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\zh-Hant\Microsoft.Data.Services.Client.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\de\System.Spatial.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\es\System.Spatial.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\fr\System.Spatial.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\it\System.Spatial.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\ja\System.Spatial.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\ko\System.Spatial.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\ru\System.Spatial.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\zh-Hans\System.Spatial.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\bin\Debug\zh-Hant\System.Spatial.resources.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.csprojAssemblyReference.cache
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.csproj.CoreCompileInputs.cache
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.csproj.CopyComplete
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.dll
-C:\Users\Dell\source\repos\RCA3\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.pdb

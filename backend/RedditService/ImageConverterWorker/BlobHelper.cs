@@ -14,7 +14,7 @@ namespace ImageConverterWorker
     public class BlobHelper
     {
         // read account configuration settings
-        CloudStorageAccount storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("DataConnectionString"));
+        CloudStorageAccount storageAccount = CloudStorageAccount.Parse(Microsoft.Azure.CloudConfigurationManager.GetSetting("DataConnectionString"));
 
         // create blob container for images
         CloudBlobClient blobStorage;

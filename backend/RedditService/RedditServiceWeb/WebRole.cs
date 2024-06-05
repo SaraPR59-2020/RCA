@@ -16,12 +16,12 @@ namespace RedditServiceWeb
         {
             // For information on handling configuration changes
             // see the MSDN topic at https://go.microsoft.com/fwlink/?LinkId=166357.
-            //serviceHost = new ServiceHost(typeof(HealthMonitoring));
-            //NetTcpBinding binding = new NetTcpBinding();
-            //serviceHost.AddServiceEndpoint(typeof(IHealthMonitoring), binding, new
-            //Uri("net.tcp://localhost:6000/HealthMonitoring"));
-            //serviceHost.Open();
-            //Console.WriteLine("Server ready and waiting for requests.");
+            serviceHost = new ServiceHost(typeof(HealthMonitoring));
+            NetTcpBinding binding = new NetTcpBinding();
+            serviceHost.AddServiceEndpoint(typeof(IHealthMonitoring), binding, new
+            Uri("net.tcp://localhost:6000/HealthMonitoring"));
+            serviceHost.Open();
+            Console.WriteLine("Server ready and waiting for requests.");
 
 
             return base.OnStart();

@@ -109,7 +109,7 @@ namespace ImageConverterWorker
             User user = udr.GetUser(indexNo);
             if (user == null)
             {
-                Trace.TraceInformation(String.Format("Student sa brojem indeksa {0} ne postoji!", indexNo), "Information");
+                Trace.TraceInformation(String.Format("Korisnik sa datim ID-em {0} ne postoji!", indexNo), "Information");
                 return;
             }
 
@@ -137,7 +137,7 @@ namespace ImageConverterWorker
             Topic topic = tdr.GetTopic(indexNo);
             if (topic == null)
             {
-                Trace.TraceInformation(String.Format("Student sa brojem indeksa {0} ne postoji!", indexNo), "Information");
+                Trace.TraceInformation(String.Format("Korisnik sa datim ID-em {0} ne postoji!", indexNo), "Information");
                 return;
             }
 

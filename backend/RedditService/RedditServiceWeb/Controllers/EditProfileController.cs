@@ -1,5 +1,6 @@
 ﻿using Common;
 using ImageConverterWorker;
+using Microsoft.Azure;
 using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
