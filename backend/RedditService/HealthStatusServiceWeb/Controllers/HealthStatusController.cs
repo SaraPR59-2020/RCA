@@ -1,4 +1,5 @@
-﻿using HealthStatusServiceWeb.Models;
+﻿using Microsoft.Azure;
+using HealthStatusServiceWeb.Models;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 using System;
@@ -12,31 +13,47 @@ namespace HealthStatusServiceWeb.Controllers
 {
     public class HealthStatusController : Controller
     {
-        private CloudTable healthCheckTable;
+        private static CloudTable healthCheckTable;
 
-        public HealthStatusController()
+        static HealthStatusController()
         {
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["StorageConnectionString"].ConnectionString);
-            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
-            healthCheckTable = tableClient.GetTableReference("HealthCheck");
-            healthCheckTable.CreateIfNotExists();
+            try
+            {
+                CloudStorageAccount _cloudStorageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString")); ;
+                CloudTableClient tableClient = _cloudStorageAccount.CreateCloudTableClient();
+                healthCheckTable = tableClient.GetTableReference("HealthCheck");
+                healthCheckTable.CreateIfNotExists();
+            }
+            catch (Exception ex)
+            {
+                // Log or handle the exception as necessary
+                throw new InvalidOperationException("Unable to initialize Azure table storage", ex);
+            }
         }
 
         public ActionResult Index()
         {
-            var checks = GetHealthChecksLastHour();
-            var uptime = CalculateUptime(checks);
-            var model = new HealthStatus
+            try
             {
-                UptimeLast24Hours = uptime
-            };
-            return View(model);
+                var checks = GetHealthChecksLastHour();
+                var uptime = CalculateUptime(checks);
+                var model = new HealthStatus
+                {
+                    UptimeLast24Hours = uptime
+                };
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                // Log or handle the exception as necessary
+                return new HttpStatusCodeResult(500, "Internal server error");
+            }
         }
 
         private List<HealthCheck> GetHealthChecksLastHour()
         {
             var query = new TableQuery<HealthCheck>().Where(
-                TableQuery.GenerateFilterConditionForDate("Timestamp", QueryComparisons.GreaterThanOrEqual, DateTime.UtcNow.AddHours(-1)));
+                TableQuery.GenerateFilterConditionForDate("Timestamp", QueryComparisons.GreaterThanOrEqual, DateTimeOffset.UtcNow.AddHours(-1)));
             return healthCheckTable.ExecuteQuery(query).ToList();
         }
 
