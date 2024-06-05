@@ -222,8 +222,6 @@ C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\HealthMonitoring
 C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\HealthMonitoringServiceWorker\obj\Debug\HealthMonitoringServiceWorker.csproj.CopyComplete
 C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\HealthMonitoringServiceWorker\obj\Debug\HealthMonitoringServiceWorker.dll
 C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\HealthMonitoringServiceWorker\obj\Debug\HealthMonitoringServiceWorker.pdb
-C:\Users\Dell\source\repos\RCA4\backend\RedditService\HealthMonitoringServiceWorker\obj\Debug\HealthMonitoringServiceWorker.csprojAssemblyReference.cache
-C:\Users\Dell\source\repos\RCA4\backend\RedditService\HealthMonitoringServiceWorker\obj\Debug\HealthMonitoringServiceWorker.csproj.CoreCompileInputs.cache
 C:\Users\Dell\source\repos\RCA4\backend\RedditService\HealthMonitoringServiceWorker\bin\Debug\HealthMonitoringServiceWorker.dll.config
 C:\Users\Dell\source\repos\RCA4\backend\RedditService\HealthMonitoringServiceWorker\bin\Debug\HealthMonitoringServiceWorker.dll
 C:\Users\Dell\source\repos\RCA4\backend\RedditService\HealthMonitoringServiceWorker\bin\Debug\HealthMonitoringServiceWorker.pdb
@@ -443,6 +441,8 @@ C:\Users\Dell\source\repos\RCA4\backend\RedditService\HealthMonitoringServiceWor
 C:\Users\Dell\source\repos\RCA4\backend\RedditService\HealthMonitoringServiceWorker\bin\Debug\ru\System.Spatial.resources.dll
 C:\Users\Dell\source\repos\RCA4\backend\RedditService\HealthMonitoringServiceWorker\bin\Debug\zh-Hans\System.Spatial.resources.dll
 C:\Users\Dell\source\repos\RCA4\backend\RedditService\HealthMonitoringServiceWorker\bin\Debug\zh-Hant\System.Spatial.resources.dll
+C:\Users\Dell\source\repos\RCA4\backend\RedditService\HealthMonitoringServiceWorker\obj\Debug\HealthMonitoringServiceWorker.csprojAssemblyReference.cache
+C:\Users\Dell\source\repos\RCA4\backend\RedditService\HealthMonitoringServiceWorker\obj\Debug\HealthMonitoringServiceWorker.csproj.CoreCompileInputs.cache
 C:\Users\Dell\source\repos\RCA4\backend\RedditService\HealthMonitoringServiceWorker\obj\Debug\HealthMonitoringServiceWorker.csproj.CopyComplete
 C:\Users\Dell\source\repos\RCA4\backend\RedditService\HealthMonitoringServiceWorker\obj\Debug\HealthMonitoringServiceWorker.dll
 C:\Users\Dell\source\repos\RCA4\backend\RedditService\HealthMonitoringServiceWorker\obj\Debug\HealthMonitoringServiceWorker.pdb

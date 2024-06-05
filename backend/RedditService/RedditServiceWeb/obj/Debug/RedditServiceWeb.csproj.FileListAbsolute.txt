@@ -132,8 +132,6 @@ C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\RedditServiceWeb
 C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\RedditServiceWeb\obj\Debug\RedditServiceWeb.csproj.CopyComplete
 C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\RedditServiceWeb\obj\Debug\RedditServiceWeb.dll
 C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\RedditServiceWeb\obj\Debug\RedditServiceWeb.pdb
-C:\Users\Dell\source\repos\RCA4\backend\RedditService\RedditServiceWeb\obj\Debug\RedditServiceWeb.csprojAssemblyReference.cache
-C:\Users\Dell\source\repos\RCA4\backend\RedditService\RedditServiceWeb\obj\Debug\RedditServiceWeb.csproj.CoreCompileInputs.cache
 C:\Users\Dell\source\repos\RCA4\backend\RedditService\RedditServiceWeb\bin\RedditServiceWeb.dll.config
 C:\Users\Dell\source\repos\RCA4\backend\RedditService\RedditServiceWeb\bin\RedditServiceWeb.dll
 C:\Users\Dell\source\repos\RCA4\backend\RedditService\RedditServiceWeb\bin\RedditServiceWeb.pdb
@@ -263,6 +261,8 @@ C:\Users\Dell\source\repos\RCA4\backend\RedditService\RedditServiceWeb\bin\ko\Sy
 C:\Users\Dell\source\repos\RCA4\backend\RedditService\RedditServiceWeb\bin\ru\System.Spatial.resources.dll
 C:\Users\Dell\source\repos\RCA4\backend\RedditService\RedditServiceWeb\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\Dell\source\repos\RCA4\backend\RedditService\RedditServiceWeb\bin\zh-Hant\System.Spatial.resources.dll
+C:\Users\Dell\source\repos\RCA4\backend\RedditService\RedditServiceWeb\obj\Debug\RedditServiceWeb.csprojAssemblyReference.cache
+C:\Users\Dell\source\repos\RCA4\backend\RedditService\RedditServiceWeb\obj\Debug\RedditServiceWeb.csproj.CoreCompileInputs.cache
 C:\Users\Dell\source\repos\RCA4\backend\RedditService\RedditServiceWeb\obj\Debug\RedditServiceWeb.csproj.CopyComplete
 C:\Users\Dell\source\repos\RCA4\backend\RedditService\RedditServiceWeb\obj\Debug\RedditServiceWeb.dll
 C:\Users\Dell\source\repos\RCA4\backend\RedditService\RedditServiceWeb\obj\Debug\RedditServiceWeb.pdb

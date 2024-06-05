@@ -70,8 +70,6 @@ C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServ
 C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.csproj.CopyComplete
 C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.dll
 C:\Users\stame\source\repos\RCAReddit\RCA\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.pdb
-C:\Users\Dell\source\repos\RCA4\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.csprojAssemblyReference.cache
-C:\Users\Dell\source\repos\RCA4\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.csproj.CoreCompileInputs.cache
 C:\Users\Dell\source\repos\RCA4\backend\RedditService\NotificationServiceWorker\bin\Debug\NotificationServiceWorker.dll.config
 C:\Users\Dell\source\repos\RCA4\backend\RedditService\NotificationServiceWorker\bin\Debug\NotificationServiceWorker.dll
 C:\Users\Dell\source\repos\RCA4\backend\RedditService\NotificationServiceWorker\bin\Debug\NotificationServiceWorker.pdb
@@ -139,6 +137,8 @@ C:\Users\Dell\source\repos\RCA4\backend\RedditService\NotificationServiceWorker\
 C:\Users\Dell\source\repos\RCA4\backend\RedditService\NotificationServiceWorker\bin\Debug\ru\System.Spatial.resources.dll
 C:\Users\Dell\source\repos\RCA4\backend\RedditService\NotificationServiceWorker\bin\Debug\zh-Hans\System.Spatial.resources.dll
 C:\Users\Dell\source\repos\RCA4\backend\RedditService\NotificationServiceWorker\bin\Debug\zh-Hant\System.Spatial.resources.dll
+C:\Users\Dell\source\repos\RCA4\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.csprojAssemblyReference.cache
+C:\Users\Dell\source\repos\RCA4\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.csproj.CoreCompileInputs.cache
 C:\Users\Dell\source\repos\RCA4\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.csproj.CopyComplete
 C:\Users\Dell\source\repos\RCA4\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.dll
 C:\Users\Dell\source\repos\RCA4\backend\RedditService\NotificationServiceWorker\obj\Debug\NotificationServiceWorker.pdb

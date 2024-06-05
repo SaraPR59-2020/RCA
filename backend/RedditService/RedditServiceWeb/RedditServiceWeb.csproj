@@ -164,6 +164,16 @@
     <Compile Include="WebRole.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\HomePageStyleSheet.css" />
+    <Content Include="Content\LoginStyleSheet.css" />
+    <Content Include="Content\RegistrationStyleSheet.css" />
+    <Content Include="Content\TopicPageStyleSheet.css" />
+    <Content Include="Images\comment.png" />
+    <Content Include="Images\defaultUser.png" />
+    <Content Include="Images\downvote.png" />
+    <Content Include="Images\downvoteWhite.png" />
+    <Content Include="Images\homePageBackground.png" />
+    <Content Include="Images\homePageBackground2.png" />
     <Content Include="Images\loginBackground.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -173,6 +183,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\registrationBackground.jpg" />
+    <Content Include="Images\upvote.png" />
+    <Content Include="Images\upvoteWhite.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -209,6 +222,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\PostOfTopic\" />
+    <Folder Include="Views\RedditService\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
