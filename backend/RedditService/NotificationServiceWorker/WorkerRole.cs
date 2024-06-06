@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Common;
 using HealthMonitoringServiceWorker;
 using Microsoft.Azure;
+using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.ServiceRuntime;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;

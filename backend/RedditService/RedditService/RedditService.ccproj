@@ -39,7 +39,7 @@
   <ItemGroup>
     <ProjectReference Include="..\HealthMonitoringServiceWorker\HealthMonitoringServiceWorker.csproj">
       <Name>HealthMonitoringServiceWorker</Name>
-      <Project>{88dd32ca-7ccf-40eb-927a-3096236031f8}</Project>
+      <Project>{ce097245-c5dd-4e88-86a6-805d5dad81fe}</Project>
       <Private>True</Private>
       <RoleType>Worker</RoleType>
       <RoleName>HealthMonitoringServiceWorker</RoleName>
@@ -63,7 +63,7 @@
     </ProjectReference>
     <ProjectReference Include="..\NotificationServiceWorker\NotificationServiceWorker.csproj">
       <Name>NotificationServiceWorker</Name>
-      <Project>{01aff5f5-2be9-4a35-8280-db692aca9bc1}</Project>
+      <Project>{b7c6b319-b752-426c-a3c5-7ef52ea25937}</Project>
       <Private>True</Private>
       <RoleType>Worker</RoleType>
       <RoleName>NotificationServiceWorker</RoleName>

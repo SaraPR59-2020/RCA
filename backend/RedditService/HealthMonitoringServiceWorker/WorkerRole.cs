@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -12,7 +12,6 @@ using Microsoft.WindowsAzure.Storage;
 using System.ServiceModel;
 using Common;
 using System.Timers;
-using Microsoft.Extensions.Logging;
 using System.Net.Http;
 using Microsoft.Azure;
 using Microsoft.WindowsAzure.Storage.Table;
@@ -158,7 +157,7 @@ namespace HealthMonitoringServiceWorker
 
             try
             {
-                
+
                 var client = new PostmarkClient(postmarkServerToken);
 
                 var message = new PostmarkMessage
