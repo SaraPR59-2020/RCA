@@ -1,20 +1,18 @@
 ﻿using System;
+using Common;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
-using System.Net.Mail;
 using System.Threading;
 using System.Threading.Tasks;
-using Common;
-using HealthMonitoringServiceWorker;
-using Microsoft.Azure;
 using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.ServiceRuntime;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;
 using Microsoft.WindowsAzure.Storage.Table;
+using System.Net;
+using Microsoft.Azure;
 
 namespace NotificationServiceWorker
 {
@@ -29,31 +27,27 @@ namespace NotificationServiceWorker
         private CommentDataRepositorycs _commentRepository;
         private SubscriptionDataRepository _subscriptionRepository;
         private UserDataRepository _userRepository;
-        //private string _smtpServer;
-        //private int _smtpPort;
-        //private string _smtpUser;
-        //private string _smtpPassword;
         private List<string> _healthCheckUrls = new List<string>
         {
             "http://redditservice/health-monitoring",
             "http://notificationservice/health-monitoring"
         };
-        private List<string> _alertEmails = new List<string> { "admin@example.com" }; // Konfigurabilne email adrese
+        private List<string> _alertEmails = new List<string> { "admin@example.com" };
 
         public override void Run()
         {
             Trace.TraceInformation("NotificationServiceWorker is running");
 
             // Start the health check server in a new thread
-            Task.Run(() => StartHealthCheckServer());
+            Task.Run(() => StartHealthCheckServer(), cancellationTokenSource.Token);
 
             try
             {
-                this.RunAsync(this.cancellationTokenSource.Token).Wait();
+                RunAsync(cancellationTokenSource.Token).Wait();
             }
             finally
             {
-                this.runCompleteEvent.Set();
+                runCompleteEvent.Set();
             }
         }
 
@@ -80,11 +74,6 @@ namespace NotificationServiceWorker
             healthCheckTable = tableClient.GetTableReference("HealthCheck");
             healthCheckTable.CreateIfNotExists();
 
-            //_smtpServer = RoleEnvironment.GetConfigurationSettingValue("SmtpServer");
-            //_smtpPort = int.Parse(RoleEnvironment.GetConfigurationSettingValue("SmtpPort"));
-            //_smtpUser = RoleEnvironment.GetConfigurationSettingValue("SmtpUser");
-            //_smtpPassword = RoleEnvironment.GetConfigurationSettingValue("SmtpPassword");
-
             Trace.TraceInformation("NotificationServiceWorker has been started");
 
             return result;
@@ -94,8 +83,8 @@ namespace NotificationServiceWorker
         {
             Trace.TraceInformation("NotificationServiceWorker is stopping");
 
-            this.cancellationTokenSource.Cancel();
-            this.runCompleteEvent.WaitOne();
+            cancellationTokenSource.Cancel();
+            runCompleteEvent.WaitOne();
 
             base.OnStop();
 
@@ -110,28 +99,27 @@ namespace NotificationServiceWorker
 
                 try
                 {
-                    CloudQueueMessage message = await _queue.GetMessageAsync();
+                    var message = await _queue.GetMessageAsync();
                     if (message != null)
                     {
                         string commentId = message.AsString;
-                        Comment comment = _commentRepository.GetComment(commentId);
+                        var comment = _commentRepository.GetComment(commentId);
                         if (comment != null)
                         {
-                            List<string> subscribersEmails = GetSubscribersEmails(comment.TopicId);
-                            //await SendEmailsAsync(subscribersEmails, comment.Text);
+                            var subscribersEmails = GetSubscribersEmails(comment.TopicId);
                             PersistNotificationLog(commentId, subscribersEmails.Count);
                             await _queue.DeleteMessageAsync(message);
                         }
                     }
                     else
                     {
-                        await Task.Delay(1000);
+                        await Task.Delay(1000, cancellationToken);
                     }
                 }
                 catch (Exception ex)
                 {
                     Trace.TraceError("Error in processing queue: " + ex.Message);
-                    await Task.Delay(5000);
+                    await Task.Delay(5000, cancellationToken);
                 }
             }
         }
@@ -150,44 +138,6 @@ namespace NotificationServiceWorker
             return user?.Email ?? "user@example.com";
         }
 
-        /*private async Task SendEmailsAsync(List<string> emails, string commentText)
-        {
-            var fromAddress = new MailAddress("noreply@example.com", "Forum Notifications");
-            var subject = "New Comment Notification";
-            var plainTextContent = commentText;
-            var htmlContent = $"<p>{commentText}</p>";
-
-            //using (var smtpClient = new SmtpClient(_smtpServer, _smtpPort))
-            //{
-            //    smtpClient.EnableSsl = true;
-            //    smtpClient.Credentials = new NetworkCredential(_smtpUser, _smtpPassword);
-
-            //    var tasks = emails.Select(email =>
-            //    {
-            //        var toAddress = new MailAddress(email);
-            //        var mailMessage = new MailMessage(fromAddress, toAddress)
-            //        {
-            //            Subject = subject,
-            //            Body = htmlContent,
-            //            IsBodyHtml = true,
-            //        };
-            //        return smtpClient.SendMailAsync(mailMessage);
-            //    });
-
-            //    var notificationEntity = new NotificationEntity(DateTime.UtcNow.ToString("yyyyMMdd"), Guid.NewGuid().ToString())
-            //    {
-            //        CommentId = "your_comment_id",
-            //        SentDateTime = DateTime.UtcNow,
-            //        NumberOfEmailsSent = emails.Count
-            //    };
-
-            //    TableOperation insertOperation = TableOperation.Insert(notificationEntity);
-            //    notificationTable.Execute(insertOperation);
-
-            //    await Task.WhenAll(tasks);
-            //}
-        }*/
-
         private void PersistNotificationLog(string commentId, int emailsSent)
         {
             var log = new NotificationLogEntity
@@ -199,7 +149,7 @@ namespace NotificationServiceWorker
                 EmailsSent = emailsSent
             };
 
-            TableOperation insertOperation = TableOperation.Insert(log);
+            var insertOperation = TableOperation.Insert(log);
             notificationTable.Execute(insertOperation);
         }
 
@@ -211,11 +161,6 @@ namespace NotificationServiceWorker
                 {
                     bool isHealthy = await CheckHealthAsync(url);
                     await PersistHealthCheckResult(url, isHealthy);
-
-                    /*if (!isHealthy)
-                    {
-                        await SendHealthAlertAsync(url);
-                    }*/
                 }
 
                 await Task.Delay(TimeSpan.FromSeconds(5), cancellationTokenSource.Token);
@@ -246,38 +191,22 @@ namespace NotificationServiceWorker
                 Status = isHealthy ? "OK" : "NOT_OK"
             };
 
-            TableOperation insertOperation = TableOperation.Insert(log);
+            var insertOperation = TableOperation.Insert(log);
             await healthCheckTable.ExecuteAsync(insertOperation);
         }
-
-        //ovaj deo je ovo:  a ukoliko ne prođe šalje se mejl na mejl adrese koje je moguće urediti kroz konzolnu aplikaciju(implementirati autentifikaciju nekog tipa)
-
-        /*private async Task SendHealthAlertAsync(string url)
+    }
+    public class HealthCheck : TableEntity
+    {
+        public HealthCheck(string serviceName, DateTime checkTime)
         {
-            var fromAddress = new MailAddress("noreply@example.com", "Health Monitoring");
-            var subject = "Service Health Alert";
-            var plainTextContent = $"Health check failed for {url} at {DateTime.UtcNow}.";
-            var htmlContent = $"<p>Health check failed for {url} at {DateTime.UtcNow}.</p>";
+            PartitionKey = checkTime.ToString("yyyyMMdd");
+            RowKey = Guid.NewGuid().ToString();
+            ServiceName = serviceName;
+            CheckTime = checkTime;
+        }
 
-            //using (var smtpClient = new SmtpClient(_smtpServer, _smtpPort))
-            //{
-            //    smtpClient.EnableSsl = true;
-            //    smtpClient.Credentials = new NetworkCredential(_smtpUser, _smtpPassword);
-
-            //    var tasks = _alertEmails.Select(email =>
-            //    {
-            //        var toAddress = new MailAddress(email);
-            //        var mailMessage = new MailMessage(fromAddress, toAddress)
-            //        {
-            //            Subject = subject,
-            //            Body = htmlContent,
-            //            IsBodyHtml = true,
-            //        };
-            //        return smtpClient.SendMailAsync(mailMessage);
-            //    });
-
-            //    await Task.WhenAll(tasks);
-            //}
-        }*/
+        public string ServiceName { get; set; }
+        public DateTime CheckTime { get; set; }
+        public string Status { get; set; }
     }
 }

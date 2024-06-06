@@ -72,7 +72,7 @@ namespace HealthMonitoringServiceWorker
         private async Task RunAsync(CancellationToken cancellationToken)
         {
             System.Timers.Timer timer = new System.Timers.Timer();
-            timer.Interval = 5000; // 5 sekundi
+            timer.Interval = 15000; // 15 sekundi
             timer.Elapsed += async (sender, e) =>
             {
                 proxy.IAmAlive();
