@@ -16,6 +16,8 @@ using Microsoft.Extensions.Logging;
 using System.Net.Http;
 using Microsoft.Azure;
 using Microsoft.WindowsAzure.Storage.Table;
+using Postmark;
+using PostmarkDotNet;
 
 namespace HealthMonitoringServiceWorker
 {
@@ -75,7 +77,7 @@ namespace HealthMonitoringServiceWorker
             timer.Elapsed += async (sender, e) =>
             {
                 proxy.IAmAlive();
-                //await CheckHealthAsync();     ovde puca
+                await CheckHealthAsync();
             };
             timer.Start();
             await Task.Delay(Timeout.Infinite, cancellationToken);
@@ -118,7 +120,7 @@ namespace HealthMonitoringServiceWorker
 
         public async Task<bool> SendRequestToRedditService()
         {
-            return await SendRequestToService("http://RedditService/");
+            return await SendRequestToService("http://RedditServiceWeb/HealthMonitoringServiceEndpoint");
         }
 
         public async Task<bool> SendRequestToNotificationService()
@@ -145,15 +147,45 @@ namespace HealthMonitoringServiceWorker
 
         private async Task SendFailureEmailAsync(string serviceName)
         {
-            string toEmail = "configured-email@example.com"; // Nabaviti iz konfiguracije
-            string subject = $"Health check failed for {serviceName}";
-            string body = $"The health check for {serviceName} failed at {DateTime.UtcNow}";
+            ServicePointManager.Expect100Continue = true;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            string postmarkServerToken = CloudConfigurationManager.GetSetting("PostmarkServerToken");
+            string fromEmail = CloudConfigurationManager.GetSetting("FromEmail");  // Ensure this is a valid email address
+            string toEmail = CloudConfigurationManager.GetSetting("ToEmail");  // Ensure this is a valid email address
 
-            using (System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient("smtp.example.com"))
+            // Log configuration details
+            Trace.TraceInformation($"Postmark Server Token: {postmarkServerToken}, From: {fromEmail}, To: {toEmail}");
+
+            try
             {
-                client.Credentials = new NetworkCredential("username", "password");
-                client.EnableSsl = true;
-                await client.SendMailAsync("noreply@example.com", toEmail, subject, body);
+                
+                var client = new PostmarkClient(postmarkServerToken);
+
+                var message = new PostmarkMessage
+                {
+                    From = fromEmail,
+                    To = toEmail,
+                    Subject = $"Health check failed for {serviceName}",
+                    TextBody = $"The health check for {serviceName} failed at {DateTime.UtcNow}"
+                };
+
+                var sendResult = await client.SendMessageAsync(message);
+
+                if (sendResult.Status != PostmarkStatus.Success)
+                {
+                    Trace.TraceError($"Postmark error: {sendResult.Message}");
+                    throw new Exception($"Failed to send email via Postmark: {sendResult.Message}");
+                }
+            }
+            catch (FormatException ex)
+            {
+                Trace.TraceError($"Email format error: {ex.Message}");
+                throw;
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError($"Unexpected error: {ex.Message}");
+                throw;
             }
         }
     }

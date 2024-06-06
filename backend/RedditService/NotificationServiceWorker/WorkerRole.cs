@@ -117,7 +117,7 @@ namespace NotificationServiceWorker
                         if (comment != null)
                         {
                             List<string> subscribersEmails = GetSubscribersEmails(comment.TopicId);
-                            await SendEmailsAsync(subscribersEmails, comment.Text);
+                            //await SendEmailsAsync(subscribersEmails, comment.Text);
                             PersistNotificationLog(commentId, subscribersEmails.Count);
                             await _queue.DeleteMessageAsync(message);
                         }
@@ -149,7 +149,7 @@ namespace NotificationServiceWorker
             return user?.Email ?? "user@example.com";
         }
 
-        private async Task SendEmailsAsync(List<string> emails, string commentText)
+        /*private async Task SendEmailsAsync(List<string> emails, string commentText)
         {
             var fromAddress = new MailAddress("noreply@example.com", "Forum Notifications");
             var subject = "New Comment Notification";
@@ -185,7 +185,7 @@ namespace NotificationServiceWorker
 
             //    await Task.WhenAll(tasks);
             //}
-        }
+        }*/
 
         private void PersistNotificationLog(string commentId, int emailsSent)
         {
@@ -249,8 +249,9 @@ namespace NotificationServiceWorker
             await healthCheckTable.ExecuteAsync(insertOperation);
         }
 
-        //ovaj deo je ovo:  a ukoliko ne prođe šalje se mejl na mejl adrese koje je moguće urediti kroz konzolnu aplikaciju(implementirati autentifikaciju nekog tipa)
-        private async Task SendHealthAlertAsync(string url)
+        //ovaj deo je ovo:  a ukoliko ne prođe šalje se mejl na mejl adrese koje je moguće urediti kroz konzolnu aplikaciju(implementirati autentifikaciju nekog tipa)
+
+        /*private async Task SendHealthAlertAsync(string url)
         {
             var fromAddress = new MailAddress("noreply@example.com", "Health Monitoring");
             var subject = "Service Health Alert";
@@ -276,6 +277,6 @@ namespace NotificationServiceWorker
 
             //    await Task.WhenAll(tasks);
             //}
-        }
+        }*/
     }
 }

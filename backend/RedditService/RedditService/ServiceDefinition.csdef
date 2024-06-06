@@ -22,6 +22,9 @@
     <ConfigurationSettings>
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
       <Setting name="DataConnectionString" />
+      <Setting name="PostmarkServerToken" />
+      <Setting name="FromEmail" />
+      <Setting name="ToEmail" />
     </ConfigurationSettings>
     <Endpoints>
       <InternalEndpoint name="HealthMonitoringServiceEndpoint" protocol="http" />
@@ -30,6 +33,10 @@
   <WorkerRole name="HealthMonitoringServiceWorker" vmsize="Standard_D1_v2">
     <ConfigurationSettings>
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
+      <Setting name="DataConnectionString" />
+      <Setting name="PostmarkServerToken" />
+      <Setting name="FromEmail" />
+      <Setting name="ToEmail" />
     </ConfigurationSettings>
   </WorkerRole>
   <WebRole name="HealthStatusServiceWeb" vmsize="Standard_D1_v2">

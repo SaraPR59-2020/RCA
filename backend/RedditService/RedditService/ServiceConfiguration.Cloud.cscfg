@@ -12,12 +12,19 @@
     <ConfigurationSettings>
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
       <Setting name="DataConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="PostmarkServerToken" value="0053b656-e9fc-435c-a539-4134b0e7c406" />
+      <Setting name="FromEmail" value="stamenkovic.pr59.2020@uns.ac.rs" />
+      <Setting name="ToEmail" value="stamenkovic.pr59.2020@uns.ac.rs" />
     </ConfigurationSettings>
   </Role>
   <Role name="HealthMonitoringServiceWorker">
     <Instances count="2" />
     <ConfigurationSettings>
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="DataConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="PostmarkServerToken" value="0053b656-e9fc-435c-a539-4134b0e7c406" />
+      <Setting name="FromEmail" value="stamenkovic.pr59.2020@uns.ac.rs" />
+      <Setting name="ToEmail" value="stamenkovic.pr59.2020@uns.ac.rs" />
     </ConfigurationSettings>
   </Role>
   <Role name="HealthStatusServiceWeb">
